@@ -1,5 +1,7 @@
 # FastZIP
 
+<img src="assets/fastzip-icon.png" width="64" height="64" align="right">
+
 A native Rust archive tool with GUI and CLI. Compress, extract, test, and benchmark — all in one binary with no external dependencies for common formats.
 
 ## Features
@@ -110,7 +112,7 @@ Run it from CLI or from the Settings page in the GUI.
 
 ## Screenshots
 
-*(Add screenshots here: main GUI window, compression dialog, benchmark results, settings page.)*
+![FastZIP main window](images/app.png)
 
 ## Build from source
 
