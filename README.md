@@ -1,6 +1,6 @@
 # FastZIP
 
-[English](README.md) | [简体中文](README_zh.md)
+[English](README.md) | [简体中文](docs/README_zh.md)
 
 <img src="assets/fastzip-icon.png" width="64" height="64" align="right">
 

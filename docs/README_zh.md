@@ -1,8 +1,8 @@
 # FastZIP
 
-[English](README.md) | [简体中文](README_zh.md)
+[English](../README.md) | [简体中文](README_zh.md)
 
-<img src="assets/fastzip-icon.png" width="64" height="64" align="right">
+<img src="../assets/fastzip-icon.png" width="64" height="64" align="right">
 
 原生 Rust 压缩工具，同时提供 GUI 和 CLI。压缩、解压、测试、基准测试 — 一个二进制文件搞定，常见格式无需任何外部依赖。
 
@@ -114,7 +114,7 @@ FastZIP 内置基准测试功能，测试所有格式（ZIP, 7z, TarGz, TarBz2, 
 
 ## 截图
 
-![FastZIP 主窗口](images/app.png)
+![FastZIP 主窗口](../images/app.png)
 
 ## 从源码构建
 
