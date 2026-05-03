@@ -1402,7 +1402,7 @@ const ZIP_PARALLEL_DEFLATE_MIN_FILE_BYTES: u64 = 32 * 1024 * 1024;
 const ZIP_PARALLEL_DEFLATE_MIN_CHUNK_BYTES: u64 = 8 * 1024 * 1024;
 const ZIP_PARALLEL_DEFLATE_MAX_CHUNK_BYTES: u64 = 16 * 1024 * 1024;
 const ZIP_PARALLEL_DEFLATE_WINDOW_BYTES: u64 = 32 * 1024;
-const ZIP_PARALLEL_DEFLATE_OUTPUT_BUFFER_BYTES: usize = 256 * 1024;
+const ZIP_PARALLEL_DEFLATE_OUTPUT_BUFFER_BYTES: usize = 1024 * 1024;
 const ZIP_PARALLEL_DIRECT_DEFLATE_MAX_FILE_BYTES: u64 = 64 * 1024 * 1024;
 const ZIP_PARALLEL_DIRECT_DEFLATE_MAX_INFLIGHT_INPUT_BYTES: u64 = 1024 * 1024 * 1024;
 const ZIP_PARALLEL_DIRECT_MIXED_MAX_TOTAL_BYTES: u64 = 16 * 1024 * 1024;
@@ -5067,7 +5067,7 @@ fn split_staged_output_file_into_volumes(
     let result = (|| -> Result<()> {
         let mut input = File::open(staged_output)
             .with_context(|| format!("Failed to open {}", staged_output.display()))?;
-        let mut buffer = vec![0u8; 256 * 1024];
+        let mut buffer = vec![0u8; 1024 * 1024];
 
         for staged_part in &staged_parts {
             ensure_not_canceled(should_cancel)?;
@@ -5184,7 +5184,7 @@ where
     W: Write,
     F: FnMut(u64),
 {
-    let mut buffer = vec![0u8; 256 * 1024];
+    let mut buffer = vec![0u8; 1024 * 1024];
     let mut total = 0u64;
 
     loop {

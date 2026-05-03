@@ -8,7 +8,7 @@ license = "GPL-3.0"
 [dependencies]
 anyhow = "1.0"
 blake3 = "1.8"
-bzip2 = "0.5"
+bzip2 = "0.6"
 chardetng = "0.1"
 clap = { version = "4.5", features = ["derive"] }
 crc32fast = "1.5"
@@ -39,6 +39,11 @@ criterion = "0.8"
 [[bench]]
 name = "archive_backend"
 harness = false
+
+[profile.release]
+lto = "fat"
+strip = true
+codegen-units = 1
 
 [profile.dev.package.flate2]
 opt-level = 3
