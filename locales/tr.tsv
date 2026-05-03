@@ -1,0 +1,309 @@
+Compress	Sıkıştır
+Extract	Çıkar
+Task Queue	Görev Kuyruğu
+Logs	Günlükler
+Settings	Ayarlar
+Interface Language	Arayüz Dili
+Choose the language used across the dashboard, logs, and actions.	Gösterge paneli, günlükler ve işlemler için kullanılacak dili seçin.
+Dark Mode	Karanlık Mod
+Light	Açık
+Dark	Koyu
+Add Files to Compress	Sıkıştırılacak Dosyaları Ekle
+Drop Archive to Extract	Çıkarmak için arşivi bırakın
+Source files or folders	Kaynak dosyalar veya klasörler
+Source archive	Kaynak arşiv
+Output Path	Çıkış Yolu
+Output directory	Çıkış klasörü
+Archive Format	Arşiv Biçimi
+Compression Options	Sıkıştırma Seçenekleri
+Extraction Options	Çıkarma Seçenekleri
+Compression Level	Sıkıştırma Düzeyi
+Compression Method	Sıkıştırma Yöntemi
+Compression Memory	Gerekli Bellek
+Archive Password	Arşiv Parolası
+Enter Password	Parola Girin
+Reenter Password	Parolayı Yeniden Girin
+Encrypt File Names	Dosya Adlarını Şifrele
+Encryption Method	Şifreleme Yöntemi
+Keep Folder Structure	Klasör Yapısını Koru
+Overwrite existing files	Mevcut dosyaların üzerine yaz
+Skip existing files	Mevcut dosyaları atla
+Fail on conflicts	Çakışmalarda başarısız ol
+Dictionary Size	Sözlük Boyutu
+Word Size	Sözcük Boyutu
+Solid Block Size	Katı Blok Boyutu
+Split Volume Size	Bölünmüş Hacim Boyutu
+Thread Count	İş Parçacığı Sayısı
+Browse	Gözat
+Select Files	Dosya Seç
+Select Folders	Klasör Seç
+Refresh Contents	İçeriği Yenile
+File Contents	Dosya İçeriği
+View	Görüntüle
+Remove	Kaldır
+Open Folder	Klasörü Aç
+Cancel	İptal
+Canceled	İptal Edildi
+Canceling	İptal Ediliyor
+Canceling...	İptal ediliyor...
+Done	Tamamlandı
+Waiting	Bekliyor
+Queued	Kuyrukta
+Running	Çalışıyor
+Completed	Tamamlandı
+Failed	Başarısız
+Compression complete.	Sıkıştırma tamamlandı.
+Compression failed.	Sıkıştırma başarısız oldu.
+Compression canceled.	Sıkıştırma iptal edildi.
+Compressing...	Sıkıştırılıyor...
+FastZIP Background Compression	FastZIP Arka Plan Sıkıştırması
+FastZIP failed to start.	FastZIP başlatılamadı.
+Failed to save language preference	Dil tercihi kaydedilemedi
+No log entries yet.	Henüz günlük yok.
+Clear Logs	Günlükleri Temizle
+System Logs	Sistem Günlükleri
+Progress	İlerleme
+Speed	Hız
+Status	Durum
+Archive Preview	Arşiv Önizleme
+Back to Parent Folder	Üst klasöre dön
+Archive selected.	Arşiv seçildi.
+The archive could not be opened.	Arşiv açılamadı.
+Format	Biçim
+Preview	Önizleme
+Output archive	Çıkış arşivi
+Overwrite Mode	Üzerine yazma modu
+Stopping	Durduruluyor
+Finalizing	Sonlandırılıyor
+Ready	Hazır
+Other	Diğer
+Presets	Ön Ayarlar
+Manage archives	Arşivleri yönet
+Archives	Arşivler
+Action	Eylem
+Actions	Eylemler
+Add compression task	Sıkıştırma görevi ekle
+Add extraction task	Çıkarma görevi ekle
+Archive output path	Arşiv çıkış yolu
+Archive scan failed.	Arşiv taraması başarısız oldu.
+Archive selection was canceled.	Arşiv seçimi iptal edildi.
+Choose Source Type	Kaynak türünü seç
+Close	Kapat
+Delete	Sil
+Elapsed	Geçen süre
+ETA	Kalan süre
+File selection was canceled.	Dosya seçimi iptal edildi.
+Folder selection was canceled.	Klasör seçimi iptal edildi.
+Library	Kütüphane
+Name	Ad
+No split volumes	Bölünmüş hacim yok
+Not available for this format	Bu biçim için kullanılamıyor
+Opening file picker	Dosya seçici açılıyor
+Output folder updated.	Çıkış klasörü güncellendi.
+Output path updated.	Çıkış yolu güncellendi.
+Rerun	Yeniden çalıştır
+Run Next	Sonraki çalıştır
+Scanning archive contents	Arşiv içeriği taranıyor
+Size	Boyut
+Sources	Kaynaklar
+This task is already canceling.	Bu görev zaten iptal ediliyor.
+Type	Tür
+Unknown error	Bilinmeyen hata
+Waiting for source selection	Kaynak seçimi bekleniyor
+{count} Items	{count} öğe
+{count} Tasks	{count} görev
+{count} Lines	{count} satır
+{running} running · {queued} queued	{running} çalışıyor · {queued} kuyrukta
+{running} running	{running} çalışıyor
+{queued} queued	{queued} kuyrukta
+{first} and {rest} more	{first} ve {rest} tane daha
+1.44M (Floppy)	1.44M (Disket)
+2.88M (Floppy)	2.88M (Disket)
+650M (CD)	650M (CD)
+700M (CD)	700M (CD)
+4092M (FAT32)	4092M (FAT32)
+4480M (DVD)	4480M (DVD)
+8128M (DVD DL)	8128M (DVD DL)
+23040M (Blu-ray)	23040M (Blu-ray)
+BZip2 stream	BZip2 akışı
+Codec default	Kodlayıcı varsayılanı
+Complete	Tamamlandı
+Fast	Hızlı
+Fastest	En hızlı
+GZip stream	GZip akışı
+High (~64 MB+)	Yüksek (~64 MB+)
+Log history cleared.	Günlük geçmişi temizlendi.
+Low (< 16 MB)	Düşük (< 16 MB)
+LZMA2 preset (~1 MB)	LZMA2 ön ayarı (~1 MB)
+LZMA2 preset (~16 MB)	LZMA2 ön ayarı (~16 MB)
+LZMA2 preset (~32 MB)	LZMA2 ön ayarı (~32 MB)
+LZMA2 preset (~4 MB)	LZMA2 ön ayarı (~4 MB)
+LZMA2 preset (~8 MB)	LZMA2 ön ayarı (~8 MB)
+LZMA2 stream	LZMA2 akışı
+Maximum	Maksimum
+Medium (~32 MB)	Orta (~32 MB)
+Modern Glass	Modern Cam
+Native formats loaded successfully.	Yerel biçimler başarıyla yüklendi.
+Native Rust core	Yerel Rust çekirdeği
+Native Rust UI	Yerel Rust arayüzü
+Next	Sonraki
+Normal	Normal
+Preparing compression task...	Sıkıştırma görevi hazırlanıyor...
+RAR adapter	RAR bağdaştırıcısı
+Store	Depola
+Tar stream	TAR akışı
+Theme switched to Dark mode.	Karanlık moda geçildi.
+Theme switched to Light mode.	Açık moda geçildi.
+Ultra	Ultra
+Very low (< 8 MB)	Çok düşük (< 8 MB)
+Wait	Bekle
+XZ stream	XZ akışı
+{count} item(s) excluded from compression.	{count} öğe sıkıştırmadan çıkarıldı.
+{count} source(s) ready for compression.	{count} kaynak sıkıştırmaya hazır.
+{count} source(s) remain for compression.	Sıkıştırma için {count} kaynak kaldı.
+Added dropped sources. {count} source(s) ready for compression.	Sürüklenen kaynaklar eklendi. {count} kaynak sıkıştırmaya hazır.
+Archive selection failed: {error}	Arşiv seçimi başarısız oldu: {error}
+Cancel requested for task #{task_id}.	#{task_id} görevi için iptal istendi.
+Canceled queued task #{task_id}.	Kuyruktaki #{task_id} görevi iptal edildi.
+Canceling task #{task_id}...	#{task_id} görevi iptal ediliyor...
+Compress task #{task_id} added to queue.	#{task_id} sıkıştırma görevi kuyruğa eklendi.
+Compression finished for task #{task_id}: {files} file(s), {dirs} folder(s), output {output_path}.	#{task_id} görevi için sıkıştırma tamamlandı: {files} dosya, {dirs} klasör, çıktı {output_path}.
+Compression format switched to {format}.	Sıkıştırma biçimi {format} olarak değiştirildi.
+Compression task #{task_id} completed.	#{task_id} sıkıştırma görevi tamamlandı.
+Excluded from compression: {path}. {count} item(s) excluded.	Sıkıştırmadan çıkarıldı: {path}. {count} öğe dışlandı.
+Extract task #{task_id} added to queue.	#{task_id} çıkarma görevi kuyruğa eklendi.
+Extraction finished for task #{task_id}: {files} file(s), {dirs} directorie(s).	#{task_id} görevi için çıkarma tamamlandı: {files} dosya, {dirs} klasör.
+Extraction task #{task_id} completed.	#{task_id} çıkarma görevi tamamlandı.
+Failed to inspect archive size: {error}	Arşiv boyutu incelenemedi: {error}
+Failed to inspect source size: {error}	Kaynak boyutu incelenemedi: {error}
+Failed to open {path}: {error}	{path} açılamadı: {error}
+High (~64 MB+ x {thread_count} threads)	Yüksek (~64 MB+ x {thread_count} iş parçacığı)
+High (64 MB+ x up to {thread_count} workers)	Yüksek (64 MB+ x en fazla {thread_count} worker)
+Invalid split volume size `{value}`: {error}	`{value}` bölüm boyutu geçersiz: {error}
+Loaded {count} archive entries.	{count} arşiv girdisi yüklendi.
+Loaded {count} entries with {backend}.	{backend} ile {count} girdi yüklendi.
+Low to medium (< 16 MB x {thread_count} workers)	Düşük ila orta (< 16 MB x {thread_count} worker)
+Medium (~32 MB x up to {thread_count} workers)	Orta (~32 MB x en fazla {thread_count} worker)
+Medium (32-64 MB x up to {thread_count} workers)	Orta (32-64 MB x en fazla {thread_count} worker)
+Open failed: {error}	Açma başarısız: {error}
+Preview failed: {error}	Önizleme başarısız: {error}
+Queued compress task #{task_id}: {format}, {sources} source(s), {excluded} exclusion(s) -> {output_path}	#{task_id} sıkıştırma görevi kuyruğa alındı: {format}, {sources} kaynak, {excluded} dışlama -> {output_path}
+Queued extract task #{task_id}: {archive_path} -> {output_dir}	#{task_id} çıkarma görevi kuyruğa alındı: {archive_path} -> {output_dir}
+Removed compression source: {path}. {count} source(s) remain.	Sıkıştırma kaynağı kaldırıldı: {path}. {count} kaynak kaldı.
+Removed task #{task_id} from the queue.	#{task_id} görevi kuyruktan kaldırıldı.
+Scan failed: {message}	Tarama başarısız: {message}
+Selected {count} compression source(s).	{count} sıkıştırma kaynağı seçildi.
+Selected archive: {archive_path}	Seçilen arşiv: {archive_path}
+Started compress task #{task_id} -> {output_path}	#{task_id} sıkıştırma görevi başlatıldı -> {output_path}
+Started extract task #{task_id} -> {output_dir}	#{task_id} çıkarma görevi başlatıldı -> {output_dir}
+Task #{task_id} canceled.	#{task_id} görevi iptal edildi.
+Task #{task_id} failed: {message}	#{task_id} görevi başarısız oldu: {message}
+Task #{task_id} failed.	#{task_id} görevi başarısız oldu.
+Task #{task_id} moved to the front of the queue.	#{task_id} görevi kuyruğun başına taşındı.
+Task #{task_id} queued again.	#{task_id} görevi yeniden kuyruğa alındı.
+Task #{task_id} removed.	#{task_id} görevi kaldırıldı.
+Task #{task_id} was canceled.	#{task_id} görevi iptal edildi.
+Task #{task_id} will run next.	#{task_id} görevi sıradaki olarak çalışacak.
+7Z can also encrypt file names when the checkbox is enabled.	Onay kutusu etkinleştirildiğinde 7Z dosya adlarını da şifreleyebilir.
+Adaptive solid batching for compressible files	Sıkıştırılabilir dosyalar için uyarlanabilir solid gruplama
+Adjust language and appearance preferences for the FastZIP desktop app.	FastZIP masaüstü uygulamasının dil ve görünüm tercihlerini ayarlayın.
+All dropped local paths will be added as compression sources	Bırakılan tüm yerel yollar sıkıştırma kaynakları olarak eklenecek
+BZip2 (parallel file workers)	BZip2 (paralel dosya işçileri)
+Choose an output folder first.	Önce bir çıktı klasörü seçin.
+Choose the archive output path first.	Önce arşiv çıktı yolunu seçin.
+Compression and extraction jobs will appear here after you add them to the queue.	Sıkıştırma ve çıkarma işleri, kuyruğa ekledikten sonra burada görünecek.
+Compression password is empty. Enter a password and confirm it before starting.	Sıkıştırma parolası boş. Başlamadan önce bir parola girip doğrulayın.
+Compression passwords do not match.	Sıkıştırma parolaları eşleşmiyor.
+Compression source not found: {source_path}	Sıkıştırma kaynağı bulunamadı: {source_path}
+Compression worker disconnected unexpectedly.	Sıkıştırma işçisi beklenmedik şekilde bağlantıyı kesti.
+Currently uses the native LZMA2 preset	Şu anda yerel LZMA2 ön ayarını kullanıyor
+Deflate (parallel file workers)	Deflate (paralel dosya işçileri)
+does not support password encryption in FastZIP.	FastZIP içinde parola şifrelemesini desteklemiyor.
+Drop files or folders to compress	Sıkıştırmak için dosya veya klasör bırakın
+Drop one archive file to extract	Çıkarmak için bir arşiv dosyası bırakın
+Engine initialized. Multi-threading enabled.	Motor başlatıldı. Çok iş parçacığı etkin.
+Enter and confirm a password to enable archive encryption.	Arşiv şifrelemesini etkinleştirmek için bir parola girin ve doğrulayın.
+Extract drag-and-drop expects exactly one archive file.	Sürükleyip bırakarak çıkarma için tam olarak bir arşiv dosyası gerekir.
+Extract files using their original archive paths	Dosyaları özgün arşiv yollarını kullanarak çıkar
+Failed to create preview folder {preview_root}	Önizleme klasörü {preview_root} oluşturulamadı
+Failed to determine an output path for the selected sources	Seçilen kaynaklar için bir çıktı yolu belirlenemedi
+Failed to enumerate {path}	{path} listelenemedi
+Failed to open {path}	{path} açılamadı
+Failed to open output directory for task #{task_id}.	#{task_id} görevinin çıktı klasörü açılamadı.
+Failed to open output directory for task #{task_id}: {error}	#{task_id} görevinin çıktı klasörü açılamadı: {error}
+Failed to read an entry in {path}	{path} içindeki bir öğe okunamadı
+Failed to read metadata for {path}	{path} için üstveri okunamadı
+Fixed by Deflate (32 KB)	Deflate tarafından sabitlendi (32 KB)
+Hide archive contents in 7Z headers	Arşiv içeriğini 7Z başlıklarında gizle
+Import an archive to browse its contents before extraction.	Çıkarmadan önce içeriğine göz atmak için bir arşiv içe aktarın.
+Invalid extract drop: {path} is not a supported archive file.	Geçersiz çıkarma bırakma: {path} desteklenen bir arşiv dosyası değil.
+Invalid selection. Please choose an archive file again.	Geçersiz seçim. Lütfen tekrar bir arşiv dosyası seçin.
+Invalid selection. Please choose one archive file again.	Geçersiz seçim. Lütfen tekrar yalnızca bir arşiv dosyası seçin.
+Leave empty, or use 10M / 700M / 4G	Boş bırakın veya 10M / 700M / 4G kullanın
+Managed internally by the selected codec	Seçilen kodek tarafından dahili olarak yönetilir
+Missing preview cache for {archive_path}	{archive_path} için önizleme önbelleği eksik
+No valid files were dropped.	Geçerli bir dosya bırakılmadı.
+Not configurable in the current backend	Mevcut arka uçta yapılandırılamaz
+Not exposed for TAR-based formats	TAR tabanlı biçimlerde sunulmaz
+Not used for Store mode	Store modu için kullanılmaz
+Only 7Z archives support encrypted file names.	Yalnızca 7Z arşivleri şifrelenmiş dosya adlarını destekler.
+Only one supported archive file can be used at a time	Aynı anda yalnızca bir desteklenen arşiv dosyası kullanılabilir
+Opened output directory for task #{task_id}.	#{task_id} görevinin çıktı klasörü açıldı.
+Output folder selection was canceled.	Çıktı klasörü seçimi iptal edildi.
+Output path selection was canceled.	Çıktı yolu seçimi iptal edildi.
+Password encryption is currently available only for ZIP and 7Z archives.	Parola şifrelemesi şu anda yalnızca ZIP ve 7Z arşivleri için kullanılabilir.
+Pick an archive first.	Önce bir arşiv seçin.
+Pick files or folders to compress first.	Önce sıkıştırılacak dosya veya klasörleri seçin.
+Preview target not found: {target}	Önizleme hedefi bulunamadı: {target}
+Refresh contents after changing the password	Parolayı değiştirdikten sonra içeriği yenile
+Runtime events, backend routing, and extraction results.	Çalışma zamanı olayları, arka uç yönlendirmesi ve çıkarma sonuçları.
+Scanning {path}	{path} taranıyor
+Select files or folders to inspect archive contents before compression.	Sıkıştırmadan önce arşiv içeriğini incelemek için dosya veya klasör seçin.
+Selected archive output: {output_path}	Seçilen arşiv çıktısı: {output_path}
+Selected output folder: {output_dir}	Seçilen çıktı klasörü: {output_dir}
+Solid block mode is not available for the current formats	Solid blok modu mevcut biçimler için kullanılamaz
+Store (direct write)	Store (doğrudan yazma)
+System open command failed for {path}	{path} için sistem açma komutu başarısız oldu
+System preview is not supported on this platform	Sistem önizlemesi bu platformda desteklenmiyor
+This task is already next in queue.	Bu görev zaten sıradaki.
+Use the darker glass palette inspired by the new dashboard reference.	Yeni pano referansından ilham alan daha koyu cam paletini kullanın.
+Use this password for encrypted ZIP and 7Z archives. If preview fails first, enter the password here and refresh.	Bu parolayı şifrelenmiş ZIP ve 7Z arşivleri için kullanın. Önizleme önce başarısız olursa, parolayı buraya girip yenileyin.
+Very low (< 8 MB, direct write)	Çok düşük (< 8 MB, doğrudan yazma)
+XZ (limited parallel workers)	XZ (sınırlı paralel işçiler)
+ZIP only encrypts file data. Archive contents can still be listed by name, but extracting file data requires the password.	ZIP yalnızca dosya verilerini şifreler. Arşiv içeriği adla listelenebilir, ancak dosya verilerini çıkarmak için parola gerekir.
+Zstandard (parallel file workers)	Zstandard (paralel dosya işçileri)
+Archive drop failed: {error}	Arşiv bırakma başarısız oldu: {error}
+Archive not found: {archive_path}	Arşiv bulunamadı: {archive_path}
+Ask before overwrite	Üzerine yazmadan önce sor
+Resolve File Conflicts	Dosya çakışmalarını çöz
+Conflict {current} of {total}	Çakışma {current} / {total}
+Archive Entry	Arşiv girdisi
+Existing Path	Mevcut yol
+New File Name	Yeni dosya adı
+Apply this action to all remaining conflicts	Bu işlemi kalan tüm çakışmalara uygula
+Overwrite	Üzerine yaz
+Skip	Atla
+Rename	Yeniden adlandır
+Overwrite cannot replace a folder destination.	Üzerine yazma, hedef klasörün yerini alamaz.
+Conflict resolution canceled.	Çakışma çözümü iptal edildi.
+The new file name cannot be empty.	Yeni dosya adı boş olamaz.
+Enter a file name only, not a folder path.	Klasör yolu değil, yalnızca dosya adı girin.
+The selected rename target already exists.	Seçilen yeniden adlandırma hedefi zaten mevcut.
+The selected rename target is already reserved by another extracted file.	Seçilen yeniden adlandırma hedefi başka bir çıkarılan dosya için zaten ayrılmış.
+Failed to inspect extraction conflicts: {error}	Çıkarma çakışmaları incelenemedi: {error}
+Start with Windows	Windows ile başlat
+Launch FastZIP automatically when you sign in to Windows.	Windows'ta oturum açtığınızda FastZIP'i otomatik olarak başlat.
+Enabled	Etkin
+Disabled	Devre dışı
+Autostart enabled.	Otomatik başlatma etkinleştirildi.
+Autostart disabled.	Otomatik başlatma devre dışı bırakıldı.
+Failed to update autostart: {error}	Otomatik başlatma güncellenemedi: {error}
+File Manager	Dosya Yöneticisi
+Current Path	Geçerli Yol
+The current folder is empty.	Geçerli klasör boş.
+Folder path not found: {path}	Klasör yolu bulunamadı: {path}
+The selected path is not a folder: {path}	Seçilen yol bir klasör değil: {path}
+Failed to open path: {error}	Yol açılamadı: {error}
+No files or folders are selected in the file manager.	Dosya yöneticisinde seçili dosya veya klasör yok.
+View Selected Files	Seçili dosyaları görüntüle
+Selected Files	Seçili dosyalar

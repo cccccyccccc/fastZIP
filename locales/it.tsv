@@ -1,0 +1,309 @@
+Compress	Comprimi
+Extract	Estrai
+Task Queue	Coda attività
+Logs	Registri
+Settings	Impostazioni
+Interface Language	Lingua dell'interfaccia
+Choose the language used across the dashboard, logs, and actions.	Scegli la lingua usata nella dashboard, nei registri e nelle azioni.
+Dark Mode	Modalità scura
+Light	Chiaro
+Dark	Scuro
+Add Files to Compress	Aggiungi file da comprimere
+Drop Archive to Extract	Trascina un archivio da estrarre
+Source files or folders	File o cartelle sorgente
+Source archive	Archivio sorgente
+Output Path	Percorso di output
+Output directory	Cartella di output
+Archive Format	Formato archivio
+Compression Options	Opzioni di compressione
+Extraction Options	Opzioni di estrazione
+Compression Level	Livello di compressione
+Compression Method	Metodo di compressione
+Compression Memory	Memoria richiesta
+Archive Password	Password archivio
+Enter Password	Inserisci password
+Reenter Password	Reinserisci password
+Encrypt File Names	Cifra i nomi dei file
+Encryption Method	Metodo di cifratura
+Keep Folder Structure	Mantieni struttura cartelle
+Overwrite existing files	Sovrascrivi file esistenti
+Skip existing files	Salta file esistenti
+Fail on conflicts	Interrompi in caso di conflitto
+Dictionary Size	Dimensione dizionario
+Word Size	Dimensione parola
+Solid Block Size	Dimensione blocco solido
+Split Volume Size	Dimensione suddivisione volumi
+Thread Count	Numero di thread
+Browse	Sfoglia
+Select Files	Seleziona file
+Select Folders	Seleziona cartelle
+Refresh Contents	Aggiorna contenuto
+File Contents	Contenuto file
+View	Visualizza
+Remove	Rimuovi
+Open Folder	Apri cartella
+Cancel	Annulla
+Canceled	Annullato
+Canceling	Annullamento
+Canceling...	Annullamento...
+Done	Fatto
+Waiting	In attesa
+Queued	In coda
+Running	In esecuzione
+Completed	Completato
+Failed	Errore
+Compression complete.	Compressione completata.
+Compression failed.	Compressione non riuscita.
+Compression canceled.	Compressione annullata.
+Compressing...	Compressione in corso...
+FastZIP Background Compression	Compressione FastZIP in background
+FastZIP failed to start.	Impossibile avviare FastZIP.
+Failed to save language preference	Impossibile salvare la preferenza della lingua
+No log entries yet.	Nessun registro disponibile.
+Clear Logs	Cancella registri
+System Logs	Registri di sistema
+Progress	Avanzamento
+Speed	Velocità
+Status	Stato
+Archive Preview	Anteprima archivio
+Back to Parent Folder	Torna alla cartella superiore
+Archive selected.	Archivio selezionato.
+The archive could not be opened.	L'archivio non può essere aperto.
+Format	Formato
+Preview	Anteprima
+Output archive	Archivio di output
+Overwrite Mode	Modalità sovrascrittura
+Stopping	Arresto in corso
+Finalizing	Finalizzazione
+Ready	Pronto
+Other	Altro
+Presets	Preimpostazioni
+Manage archives	Gestisci archivi
+Archives	Archivi
+Action	Azione
+Actions	Azioni
+Add compression task	Aggiungi attività di compressione
+Add extraction task	Aggiungi attività di estrazione
+Archive output path	Percorso di output dell'archivio
+Archive scan failed.	Scansione dell'archivio non riuscita.
+Archive selection was canceled.	La selezione dell'archivio è stata annullata.
+Choose Source Type	Scegli il tipo di origine
+Close	Chiudi
+Delete	Elimina
+Elapsed	Tempo trascorso
+ETA	Tempo stimato
+File selection was canceled.	La selezione dei file è stata annullata.
+Folder selection was canceled.	La selezione delle cartelle è stata annullata.
+Library	Libreria
+Name	Nome
+No split volumes	Nessun volume suddiviso
+Not available for this format	Non disponibile per questo formato
+Opening file picker	Apertura selettore file
+Output folder updated.	Cartella di output aggiornata.
+Output path updated.	Percorso di output aggiornato.
+Rerun	Riesegui
+Run Next	Esegui dopo
+Scanning archive contents	Scansione del contenuto dell'archivio
+Size	Dimensione
+Sources	Origini
+This task is already canceling.	Questa attività è già in annullamento.
+Type	Tipo
+Unknown error	Errore sconosciuto
+Waiting for source selection	In attesa della selezione dell'origine
+{count} Items	{count} elementi
+{count} Tasks	{count} attività
+{count} Lines	{count} righe
+{running} running · {queued} queued	{running} in esecuzione · {queued} in coda
+{running} running	{running} in esecuzione
+{queued} queued	{queued} in coda
+{first} and {rest} more	{first} e altri {rest}
+1.44M (Floppy)	1.44M (Floppy)
+2.88M (Floppy)	2.88M (Floppy)
+650M (CD)	650M (CD)
+700M (CD)	700M (CD)
+4092M (FAT32)	4092M (FAT32)
+4480M (DVD)	4480M (DVD)
+8128M (DVD DL)	8128M (DVD DL)
+23040M (Blu-ray)	23040M (Blu-ray)
+BZip2 stream	Flusso BZip2
+Codec default	Valore predefinito del codec
+Complete	Completo
+Fast	Veloce
+Fastest	Velocissimo
+GZip stream	Flusso GZip
+High (~64 MB+)	Alto (~64 MB+)
+Log history cleared.	Cronologia registri cancellata.
+Low (< 16 MB)	Basso (< 16 MB)
+LZMA2 preset (~1 MB)	Preset LZMA2 (~1 MB)
+LZMA2 preset (~16 MB)	Preset LZMA2 (~16 MB)
+LZMA2 preset (~32 MB)	Preset LZMA2 (~32 MB)
+LZMA2 preset (~4 MB)	Preset LZMA2 (~4 MB)
+LZMA2 preset (~8 MB)	Preset LZMA2 (~8 MB)
+LZMA2 stream	Flusso LZMA2
+Maximum	Massimo
+Medium (~32 MB)	Medio (~32 MB)
+Modern Glass	Vetro moderno
+Native formats loaded successfully.	Formati nativi caricati correttamente.
+Native Rust core	Core Rust nativo
+Native Rust UI	Interfaccia Rust nativa
+Next	Successivo
+Normal	Normale
+Preparing compression task...	Preparazione attività di compressione...
+RAR adapter	Adattatore RAR
+Store	Archivia
+Tar stream	Flusso TAR
+Theme switched to Dark mode.	Passato alla modalità scura.
+Theme switched to Light mode.	Passato alla modalità chiara.
+Ultra	Ultra
+Very low (< 8 MB)	Molto basso (< 8 MB)
+Wait	Attendi
+XZ stream	Flusso XZ
+{count} item(s) excluded from compression.	{count} elemento/i esclusi dalla compressione.
+{count} source(s) ready for compression.	{count} origine/i pronti per la compressione.
+{count} source(s) remain for compression.	Rimangono {count} origine/i per la compressione.
+Added dropped sources. {count} source(s) ready for compression.	Origini trascinate aggiunte. {count} origine/i pronti per la compressione.
+Archive selection failed: {error}	Selezione archivio non riuscita: {error}
+Cancel requested for task #{task_id}.	Annullamento richiesto per l'attività #{task_id}.
+Canceled queued task #{task_id}.	Attività in coda #{task_id} annullata.
+Canceling task #{task_id}...	Annullamento attività #{task_id}...
+Compress task #{task_id} added to queue.	Attività di compressione #{task_id} aggiunta alla coda.
+Compression finished for task #{task_id}: {files} file(s), {dirs} folder(s), output {output_path}.	Compressione completata per l'attività #{task_id}: {files} file, {dirs} cartelle, output {output_path}.
+Compression format switched to {format}.	Il formato di compressione è stato cambiato in {format}.
+Compression task #{task_id} completed.	Attività di compressione #{task_id} completata.
+Excluded from compression: {path}. {count} item(s) excluded.	Escluso dalla compressione: {path}. {count} elemento/i esclusi.
+Extract task #{task_id} added to queue.	Attività di estrazione #{task_id} aggiunta alla coda.
+Extraction finished for task #{task_id}: {files} file(s), {dirs} directorie(s).	Estrazione completata per l'attività #{task_id}: {files} file, {dirs} cartelle.
+Extraction task #{task_id} completed.	Attività di estrazione #{task_id} completata.
+Failed to inspect archive size: {error}	Impossibile controllare la dimensione dell'archivio: {error}
+Failed to inspect source size: {error}	Impossibile controllare la dimensione dell'origine: {error}
+Failed to open {path}: {error}	Impossibile aprire {path}: {error}
+High (~64 MB+ x {thread_count} threads)	Alto (~64 MB+ x {thread_count} thread)
+High (64 MB+ x up to {thread_count} workers)	Alto (64 MB+ x fino a {thread_count} worker)
+Invalid split volume size `{value}`: {error}	Dimensione volume `{value}` non valida: {error}
+Loaded {count} archive entries.	Caricate {count} voci dell'archivio.
+Loaded {count} entries with {backend}.	Caricate {count} voci con {backend}.
+Low to medium (< 16 MB x {thread_count} workers)	Da basso a medio (< 16 MB x {thread_count} worker)
+Medium (~32 MB x up to {thread_count} workers)	Medio (~32 MB x fino a {thread_count} worker)
+Medium (32-64 MB x up to {thread_count} workers)	Medio (32-64 MB x fino a {thread_count} worker)
+Open failed: {error}	Apertura non riuscita: {error}
+Preview failed: {error}	Anteprima non riuscita: {error}
+Queued compress task #{task_id}: {format}, {sources} source(s), {excluded} exclusion(s) -> {output_path}	Attività di compressione #{task_id} in coda: {format}, {sources} origine/i, {excluded} esclusione/i -> {output_path}
+Queued extract task #{task_id}: {archive_path} -> {output_dir}	Attività di estrazione #{task_id} in coda: {archive_path} -> {output_dir}
+Removed compression source: {path}. {count} source(s) remain.	Origine di compressione rimossa: {path}. Rimangono {count} origine/i.
+Removed task #{task_id} from the queue.	Attività #{task_id} rimossa dalla coda.
+Scan failed: {message}	Scansione non riuscita: {message}
+Selected {count} compression source(s).	Selezionate {count} origini di compressione.
+Selected archive: {archive_path}	Archivio selezionato: {archive_path}
+Started compress task #{task_id} -> {output_path}	Attività di compressione #{task_id} avviata -> {output_path}
+Started extract task #{task_id} -> {output_dir}	Attività di estrazione #{task_id} avviata -> {output_dir}
+Task #{task_id} canceled.	Attività #{task_id} annullata.
+Task #{task_id} failed: {message}	Attività #{task_id} non riuscita: {message}
+Task #{task_id} failed.	Attività #{task_id} non riuscita.
+Task #{task_id} moved to the front of the queue.	Attività #{task_id} spostata in testa alla coda.
+Task #{task_id} queued again.	Attività #{task_id} rimessa in coda.
+Task #{task_id} removed.	Attività #{task_id} rimossa.
+Task #{task_id} was canceled.	L'attività #{task_id} è stata annullata.
+Task #{task_id} will run next.	L'attività #{task_id} verrà eseguita dopo.
+7Z can also encrypt file names when the checkbox is enabled.	7Z può anche cifrare i nomi dei file quando la casella è attivata.
+Adaptive solid batching for compressible files	Raggruppamento solido adattivo per i file comprimibili
+Adjust language and appearance preferences for the FastZIP desktop app.	Regola lingua e aspetto dell'app desktop FastZIP.
+All dropped local paths will be added as compression sources	Tutti i percorsi locali rilasciati verranno aggiunti come sorgenti di compressione
+BZip2 (parallel file workers)	BZip2 (worker file paralleli)
+Choose an output folder first.	Scegli prima una cartella di output.
+Choose the archive output path first.	Scegli prima il percorso di output dell'archivio.
+Compression and extraction jobs will appear here after you add them to the queue.	I processi di compressione ed estrazione appariranno qui dopo essere stati aggiunti alla coda.
+Compression password is empty. Enter a password and confirm it before starting.	La password di compressione è vuota. Inseriscila e confermala prima di iniziare.
+Compression passwords do not match.	Le password di compressione non corrispondono.
+Compression source not found: {source_path}	Sorgente di compressione non trovata: {source_path}
+Compression worker disconnected unexpectedly.	Il processo di compressione si è disconnesso in modo imprevisto.
+Currently uses the native LZMA2 preset	Attualmente usa il preset LZMA2 nativo
+Deflate (parallel file workers)	Deflate (worker file paralleli)
+does not support password encryption in FastZIP.	non supporta la crittografia con password in FastZIP.
+Drop files or folders to compress	Rilascia file o cartelle da comprimere
+Drop one archive file to extract	Rilascia un archivio da estrarre
+Engine initialized. Multi-threading enabled.	Motore inizializzato. Multithreading abilitato.
+Enter and confirm a password to enable archive encryption.	Inserisci e conferma una password per abilitare la crittografia dell'archivio.
+Extract drag-and-drop expects exactly one archive file.	Il trascinamento per l'estrazione richiede esattamente un archivio.
+Extract files using their original archive paths	Estrai i file usando i loro percorsi originali nell'archivio
+Failed to create preview folder {preview_root}	Impossibile creare la cartella di anteprima {preview_root}
+Failed to determine an output path for the selected sources	Impossibile determinare un percorso di output per le sorgenti selezionate
+Failed to enumerate {path}	Impossibile enumerare {path}
+Failed to open {path}	Impossibile aprire {path}
+Failed to open output directory for task #{task_id}.	Impossibile aprire la cartella di output dell'attività #{task_id}.
+Failed to open output directory for task #{task_id}: {error}	Impossibile aprire la cartella di output dell'attività #{task_id}: {error}
+Failed to read an entry in {path}	Impossibile leggere una voce in {path}
+Failed to read metadata for {path}	Impossibile leggere i metadati di {path}
+Fixed by Deflate (32 KB)	Fissato da Deflate (32 KB)
+Hide archive contents in 7Z headers	Nascondi il contenuto dell'archivio nelle intestazioni 7Z
+Import an archive to browse its contents before extraction.	Importa un archivio per sfogliarne il contenuto prima dell'estrazione.
+Invalid extract drop: {path} is not a supported archive file.	Rilascio di estrazione non valido: {path} non è un archivio supportato.
+Invalid selection. Please choose an archive file again.	Selezione non valida. Scegli di nuovo un archivio.
+Invalid selection. Please choose one archive file again.	Selezione non valida. Scegli di nuovo un solo archivio.
+Leave empty, or use 10M / 700M / 4G	Lascia vuoto oppure usa 10M / 700M / 4G
+Managed internally by the selected codec	Gestito internamente dal codec selezionato
+Missing preview cache for {archive_path}	Cache di anteprima mancante per {archive_path}
+No valid files were dropped.	Non è stato rilasciato alcun file valido.
+Not configurable in the current backend	Non configurabile nel backend corrente
+Not exposed for TAR-based formats	Non disponibile per i formati basati su TAR
+Not used for Store mode	Non usato in modalità Store
+Only 7Z archives support encrypted file names.	Solo gli archivi 7Z supportano nomi di file crittografati.
+Only one supported archive file can be used at a time	È possibile usare un solo archivio supportato alla volta
+Opened output directory for task #{task_id}.	Cartella di output aperta per l'attività #{task_id}.
+Output folder selection was canceled.	La selezione della cartella di output è stata annullata.
+Output path selection was canceled.	La selezione del percorso di output è stata annullata.
+Password encryption is currently available only for ZIP and 7Z archives.	La crittografia con password è attualmente disponibile solo per archivi ZIP e 7Z.
+Pick an archive first.	Scegli prima un archivio.
+Pick files or folders to compress first.	Scegli prima file o cartelle da comprimere.
+Preview target not found: {target}	Destinazione di anteprima non trovata: {target}
+Refresh contents after changing the password	Aggiorna il contenuto dopo aver cambiato la password
+Runtime events, backend routing, and extraction results.	Eventi di esecuzione, instradamento backend e risultati di estrazione.
+Scanning {path}	Scansione di {path}
+Select files or folders to inspect archive contents before compression.	Seleziona file o cartelle per controllare il contenuto prima della compressione.
+Selected archive output: {output_path}	Output archivio selezionato: {output_path}
+Selected output folder: {output_dir}	Cartella di output selezionata: {output_dir}
+Solid block mode is not available for the current formats	La modalità blocco solido non è disponibile per i formati correnti
+Store (direct write)	Store (scrittura diretta)
+System open command failed for {path}	Il comando di sistema per aprire {path} non è riuscito
+System preview is not supported on this platform	L'anteprima di sistema non è supportata su questa piattaforma
+This task is already next in queue.	Questa attività è già la prossima in coda.
+Use the darker glass palette inspired by the new dashboard reference.	Usa la palette vetro più scura ispirata al nuovo riferimento del dashboard.
+Use this password for encrypted ZIP and 7Z archives. If preview fails first, enter the password here and refresh.	Usa questa password per gli archivi ZIP e 7Z crittografati. Se l'anteprima fallisce prima, inserisci qui la password e aggiorna.
+Very low (< 8 MB, direct write)	Molto basso (< 8 MB, scrittura diretta)
+XZ (limited parallel workers)	XZ (worker paralleli limitati)
+ZIP only encrypts file data. Archive contents can still be listed by name, but extracting file data requires the password.	ZIP cifra solo i dati dei file. Il contenuto dell'archivio può ancora essere elencato per nome, ma per estrarre i dati dei file è richiesta la password.
+Zstandard (parallel file workers)	Zstandard (worker file paralleli)
+Archive drop failed: {error}	Rilascio archivio non riuscito: {error}
+Archive not found: {archive_path}	Archivio non trovato: {archive_path}
+Ask before overwrite	Chiedi prima di sovrascrivere
+Resolve File Conflicts	Risolvi i conflitti dei file
+Conflict {current} of {total}	Conflitto {current} di {total}
+Archive Entry	Voce dell'archivio
+Existing Path	Percorso esistente
+New File Name	Nuovo nome file
+Apply this action to all remaining conflicts	Applica questa azione a tutti i conflitti rimanenti
+Overwrite	Sovrascrivi
+Skip	Salta
+Rename	Rinomina
+Overwrite cannot replace a folder destination.	La sovrascrittura non può sostituire una cartella di destinazione.
+Conflict resolution canceled.	Risoluzione dei conflitti annullata.
+The new file name cannot be empty.	Il nuovo nome file non può essere vuoto.
+Enter a file name only, not a folder path.	Inserisci solo un nome file, non un percorso di cartella.
+The selected rename target already exists.	La destinazione di rinomina selezionata esiste già.
+The selected rename target is already reserved by another extracted file.	La destinazione di rinomina selezionata è già riservata da un altro file estratto.
+Failed to inspect extraction conflicts: {error}	Impossibile controllare i conflitti di estrazione: {error}
+Start with Windows	Avvia con Windows
+Launch FastZIP automatically when you sign in to Windows.	Avvia automaticamente FastZIP quando accedi a Windows.
+Enabled	Attivato
+Disabled	Disattivato
+Autostart enabled.	Avvio automatico attivato.
+Autostart disabled.	Avvio automatico disattivato.
+Failed to update autostart: {error}	Impossibile aggiornare l'avvio automatico: {error}
+File Manager	Gestore file
+Current Path	Percorso corrente
+The current folder is empty.	La cartella corrente è vuota.
+Folder path not found: {path}	Percorso cartella non trovato: {path}
+The selected path is not a folder: {path}	Il percorso selezionato non è una cartella: {path}
+Failed to open path: {error}	Impossibile aprire il percorso: {error}
+No files or folders are selected in the file manager.	Nessun file o cartella selezionato nel gestore file.
+View Selected Files	Visualizza file selezionati
+Selected Files	File selezionati

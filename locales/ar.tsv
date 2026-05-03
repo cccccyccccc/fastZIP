@@ -1,0 +1,309 @@
+Compress	ضغط
+Extract	استخراج
+Task Queue	قائمة المهام
+Logs	السجلات
+Settings	الإعدادات
+Interface Language	لغة الواجهة
+Choose the language used across the dashboard, logs, and actions.	اختر اللغة المستخدمة في الواجهة والسجلات والإجراءات.
+Dark Mode	الوضع الداكن
+Light	فاتح
+Dark	داكن
+Add Files to Compress	إضافة ملفات للضغط
+Drop Archive to Extract	أسقط الأرشيف لفك الضغط
+Source files or folders	الملفات أو المجلدات المصدر
+Source archive	الأرشيف المصدر
+Output Path	مسار الإخراج
+Output directory	مجلد الإخراج
+Archive Format	تنسيق الأرشيف
+Compression Options	خيارات الضغط
+Extraction Options	خيارات الاستخراج
+Compression Level	مستوى الضغط
+Compression Method	طريقة الضغط
+Compression Memory	الذاكرة المطلوبة للضغط
+Archive Password	كلمة مرور الأرشيف
+Enter Password	أدخل كلمة المرور
+Reenter Password	أعد إدخال كلمة المرور
+Encrypt File Names	تشفير أسماء الملفات
+Encryption Method	طريقة التشفير
+Keep Folder Structure	الاحتفاظ ببنية المجلدات
+Overwrite existing files	استبدال الملفات الموجودة
+Skip existing files	تخطي الملفات الموجودة
+Fail on conflicts	فشل عند التعارض
+Dictionary Size	حجم القاموس
+Word Size	حجم الكلمة
+Solid Block Size	حجم الكتلة الصلبة
+Split Volume Size	حجم تقسيم الأجزاء
+Thread Count	عدد الخيوط
+Browse	استعراض
+Select Files	تحديد الملفات
+Select Folders	تحديد المجلدات
+Refresh Contents	تحديث المحتوى
+File Contents	محتوى الملفات
+View	عرض
+Remove	إزالة
+Open Folder	فتح المجلد
+Cancel	إلغاء
+Canceled	أُلغي
+Canceling	جارٍ الإلغاء
+Canceling...	جارٍ الإلغاء...
+Done	تم
+Waiting	قيد الانتظار
+Queued	في قائمة الانتظار
+Running	قيد التشغيل
+Completed	اكتمل
+Failed	فشل
+Compression complete.	اكتمل الضغط.
+Compression failed.	فشل الضغط.
+Compression canceled.	تم إلغاء الضغط.
+Compressing...	جارٍ الضغط...
+FastZIP Background Compression	ضغط FastZIP في الخلفية
+FastZIP failed to start.	تعذر بدء FastZIP.
+Failed to save language preference	تعذر حفظ تفضيل اللغة
+No log entries yet.	لا توجد سجلات بعد.
+Clear Logs	مسح السجلات
+System Logs	سجلات النظام
+Progress	التقدم
+Speed	السرعة
+Status	الحالة
+Archive Preview	معاينة الأرشيف
+Back to Parent Folder	العودة إلى المجلد الأصل
+Archive selected.	تم تحديد الأرشيف.
+The archive could not be opened.	تعذر فتح الأرشيف.
+Format	تنسيق
+Preview	معاينة
+Output archive	أرشيف الإخراج
+Overwrite Mode	وضع الاستبدال
+Stopping	جارٍ الإيقاف
+Finalizing	جارٍ الإنهاء
+Ready	جاهز
+Other	أخرى
+Presets	إعدادات مسبقة
+Manage archives	إدارة الأرشيفات
+Archives	الأرشيفات
+Action	إجراء
+Actions	إجراءات
+Add compression task	إضافة مهمة ضغط
+Add extraction task	إضافة مهمة استخراج
+Archive output path	مسار إخراج الأرشيف
+Archive scan failed.	فشل فحص الأرشيف.
+Archive selection was canceled.	تم إلغاء اختيار الأرشيف.
+Choose Source Type	اختر نوع المصدر
+Close	إغلاق
+Delete	حذف
+Elapsed	الوقت المنقضي
+ETA	الوقت المتبقي
+File selection was canceled.	تم إلغاء اختيار الملفات.
+Folder selection was canceled.	تم إلغاء اختيار المجلدات.
+Library	المكتبة
+Name	الاسم
+No split volumes	بدون أجزاء
+Not available for this format	غير متاح لهذا التنسيق
+Opening file picker	جارٍ فتح محدد الملفات
+Output folder updated.	تم تحديث مجلد الإخراج.
+Output path updated.	تم تحديث مسار الإخراج.
+Rerun	إعادة التشغيل
+Run Next	تشغيل التالي
+Scanning archive contents	جارٍ فحص محتويات الأرشيف
+Size	الحجم
+Sources	المصادر
+This task is already canceling.	هذه المهمة قيد الإلغاء بالفعل.
+Type	النوع
+Unknown error	خطأ غير معروف
+Waiting for source selection	بانتظار اختيار المصدر
+{count} Items	{count} عناصر
+{count} Tasks	{count} مهام
+{count} Lines	{count} سطور
+{running} running · {queued} queued	{running} قيد التشغيل · {queued} في الانتظار
+{running} running	{running} قيد التشغيل
+{queued} queued	{queued} في الانتظار
+{first} and {rest} more	{first} و {rest} أخرى
+1.44M (Floppy)	1.44M (قرص مرن)
+2.88M (Floppy)	2.88M (قرص مرن)
+650M (CD)	650M (CD)
+700M (CD)	700M (CD)
+4092M (FAT32)	4092M (FAT32)
+4480M (DVD)	4480M (DVD)
+8128M (DVD DL)	8128M (DVD DL)
+23040M (Blu-ray)	23040M (Blu-ray)
+BZip2 stream	تدفق BZip2
+Codec default	الإعداد الافتراضي للمرمز
+Complete	مكتمل
+Fast	سريع
+Fastest	الأسرع
+GZip stream	تدفق GZip
+High (~64 MB+)	مرتفع (~64 MB+)
+Log history cleared.	تم مسح سجل السجلات.
+Low (< 16 MB)	منخفض (< 16 MB)
+LZMA2 preset (~1 MB)	إعداد LZMA2 (~1 MB)
+LZMA2 preset (~16 MB)	إعداد LZMA2 (~16 MB)
+LZMA2 preset (~32 MB)	إعداد LZMA2 (~32 MB)
+LZMA2 preset (~4 MB)	إعداد LZMA2 (~4 MB)
+LZMA2 preset (~8 MB)	إعداد LZMA2 (~8 MB)
+LZMA2 stream	تدفق LZMA2
+Maximum	أقصى
+Medium (~32 MB)	متوسط (~32 MB)
+Modern Glass	زجاج حديث
+Native formats loaded successfully.	تم تحميل التنسيقات الأصلية بنجاح.
+Native Rust core	نواة Rust أصلية
+Native Rust UI	واجهة Rust أصلية
+Next	التالي
+Normal	عادي
+Preparing compression task...	جارٍ تجهيز مهمة الضغط...
+RAR adapter	موائم RAR
+Store	تخزين
+Tar stream	تدفق TAR
+Theme switched to Dark mode.	تم التبديل إلى الوضع الداكن.
+Theme switched to Light mode.	تم التبديل إلى الوضع الفاتح.
+Ultra	فائق
+Very low (< 8 MB)	منخفض جدًا (< 8 MB)
+Wait	انتظار
+XZ stream	تدفق XZ
+{count} item(s) excluded from compression.	تم استبعاد {count} عنصر من الضغط.
+{count} source(s) ready for compression.	{count} مصدر جاهز للضغط.
+{count} source(s) remain for compression.	تبقى {count} مصدر للضغط.
+Added dropped sources. {count} source(s) ready for compression.	تمت إضافة المصادر المسحوبة. {count} مصدر جاهز للضغط.
+Archive selection failed: {error}	فشل اختيار الأرشيف: {error}
+Cancel requested for task #{task_id}.	تم طلب إلغاء المهمة #{task_id}.
+Canceled queued task #{task_id}.	تم إلغاء المهمة الموجودة في الانتظار #{task_id}.
+Canceling task #{task_id}...	جارٍ إلغاء المهمة #{task_id}...
+Compress task #{task_id} added to queue.	تمت إضافة مهمة الضغط #{task_id} إلى قائمة الانتظار.
+Compression finished for task #{task_id}: {files} file(s), {dirs} folder(s), output {output_path}.	اكتمل الضغط للمهمة #{task_id}: {files} ملف، {dirs} مجلد، والإخراج {output_path}.
+Compression format switched to {format}.	تم تغيير تنسيق الضغط إلى {format}.
+Compression task #{task_id} completed.	اكتملت مهمة الضغط #{task_id}.
+Excluded from compression: {path}. {count} item(s) excluded.	تم استبعاد {path} من الضغط. عدد العناصر المستبعدة {count}.
+Extract task #{task_id} added to queue.	تمت إضافة مهمة الاستخراج #{task_id} إلى قائمة الانتظار.
+Extraction finished for task #{task_id}: {files} file(s), {dirs} directorie(s).	اكتمل الاستخراج للمهمة #{task_id}: {files} ملف، {dirs} مجلد.
+Extraction task #{task_id} completed.	اكتملت مهمة الاستخراج #{task_id}.
+Failed to inspect archive size: {error}	فشل فحص حجم الأرشيف: {error}
+Failed to inspect source size: {error}	فشل فحص حجم المصدر: {error}
+Failed to open {path}: {error}	تعذر فتح {path}: {error}
+High (~64 MB+ x {thread_count} threads)	مرتفع (~64 MB+ x {thread_count} خيط)
+High (64 MB+ x up to {thread_count} workers)	مرتفع (64 MB+ x حتى {thread_count} عامل)
+Invalid split volume size `{value}`: {error}	حجم الجزء `{value}` غير صالح: {error}
+Loaded {count} archive entries.	تم تحميل {count} عنصر من الأرشيف.
+Loaded {count} entries with {backend}.	تم تحميل {count} عنصر باستخدام {backend}.
+Low to medium (< 16 MB x {thread_count} workers)	منخفض إلى متوسط (< 16 MB x {thread_count} عامل)
+Medium (~32 MB x up to {thread_count} workers)	متوسط (~32 MB x حتى {thread_count} عامل)
+Medium (32-64 MB x up to {thread_count} workers)	متوسط (32-64 MB x حتى {thread_count} عامل)
+Open failed: {error}	فشل الفتح: {error}
+Preview failed: {error}	فشلت المعاينة: {error}
+Queued compress task #{task_id}: {format}, {sources} source(s), {excluded} exclusion(s) -> {output_path}	تمت إضافة مهمة الضغط #{task_id} إلى الانتظار: {format}، {sources} مصدر، استبعاد {excluded} -> {output_path}
+Queued extract task #{task_id}: {archive_path} -> {output_dir}	تمت إضافة مهمة الاستخراج #{task_id} إلى الانتظار: {archive_path} -> {output_dir}
+Removed compression source: {path}. {count} source(s) remain.	تمت إزالة مصدر الضغط: {path}. تبقى {count} مصدر.
+Removed task #{task_id} from the queue.	تمت إزالة المهمة #{task_id} من قائمة الانتظار.
+Scan failed: {message}	فشل الفحص: {message}
+Selected {count} compression source(s).	تم تحديد {count} مصدر للضغط.
+Selected archive: {archive_path}	تم تحديد الأرشيف: {archive_path}
+Started compress task #{task_id} -> {output_path}	بدأت مهمة الضغط #{task_id} -> {output_path}
+Started extract task #{task_id} -> {output_dir}	بدأت مهمة الاستخراج #{task_id} -> {output_dir}
+Task #{task_id} canceled.	تم إلغاء المهمة #{task_id}.
+Task #{task_id} failed: {message}	فشلت المهمة #{task_id}: {message}
+Task #{task_id} failed.	فشلت المهمة #{task_id}.
+Task #{task_id} moved to the front of the queue.	تم نقل المهمة #{task_id} إلى مقدمة قائمة الانتظار.
+Task #{task_id} queued again.	تمت إعادة وضع المهمة #{task_id} في قائمة الانتظار.
+Task #{task_id} removed.	تمت إزالة المهمة #{task_id}.
+Task #{task_id} was canceled.	تم إلغاء المهمة #{task_id}.
+Task #{task_id} will run next.	سيتم تشغيل المهمة #{task_id} بعد ذلك.
+7Z can also encrypt file names when the checkbox is enabled.	يمكن لـ 7Z أيضا تشفير أسماء الملفات عند تفعيل خانة الاختيار.
+Adaptive solid batching for compressible files	تجميع صلب تكيفي للملفات القابلة للضغط
+Adjust language and appearance preferences for the FastZIP desktop app.	اضبط اللغة والمظهر لتطبيق FastZIP على سطح المكتب.
+All dropped local paths will be added as compression sources	ستتم إضافة جميع المسارات المحلية التي تم إفلاتها كمصادر ضغط
+BZip2 (parallel file workers)	BZip2 (عمال ملفات متوازيون)
+Choose an output folder first.	اختر مجلد الإخراج أولا.
+Choose the archive output path first.	اختر مسار إخراج الأرشيف أولا.
+Compression and extraction jobs will appear here after you add them to the queue.	ستظهر مهام الضغط والاستخراج هنا بعد إضافتها إلى قائمة الانتظار.
+Compression password is empty. Enter a password and confirm it before starting.	كلمة مرور الضغط فارغة. أدخل كلمة مرور وأكدها قبل البدء.
+Compression passwords do not match.	كلمتا مرور الضغط غير متطابقتين.
+Compression source not found: {source_path}	لم يتم العثور على مصدر الضغط: {source_path}
+Compression worker disconnected unexpectedly.	انقطع عامل الضغط بشكل غير متوقع.
+Currently uses the native LZMA2 preset	يستخدم حاليا الإعداد المسبق الأصلي LZMA2
+Deflate (parallel file workers)	Deflate (عمال ملفات متوازيون)
+does not support password encryption in FastZIP.	لا يدعم التشفير بكلمة مرور في FastZIP.
+Drop files or folders to compress	أسقط الملفات أو المجلدات للضغط
+Drop one archive file to extract	أسقط أرشيفا واحدا للاستخراج
+Engine initialized. Multi-threading enabled.	تمت تهيئة المحرك. تم تفعيل تعدد الخيوط.
+Enter and confirm a password to enable archive encryption.	أدخل كلمة مرور وأكدها لتفعيل تشفير الأرشيف.
+Extract drag-and-drop expects exactly one archive file.	يتطلب السحب والإفلات للاستخراج أرشيفا واحدا فقط.
+Extract files using their original archive paths	استخرج الملفات باستخدام مساراتها الأصلية داخل الأرشيف
+Failed to create preview folder {preview_root}	تعذر إنشاء مجلد المعاينة {preview_root}
+Failed to determine an output path for the selected sources	تعذر تحديد مسار إخراج للمصادر المحددة
+Failed to enumerate {path}	تعذر تعداد {path}
+Failed to open {path}	تعذر فتح {path}
+Failed to open output directory for task #{task_id}.	تعذر فتح مجلد الإخراج للمهمة #{task_id}.
+Failed to open output directory for task #{task_id}: {error}	تعذر فتح مجلد الإخراج للمهمة #{task_id}: {error}
+Failed to read an entry in {path}	تعذر قراءة عنصر داخل {path}
+Failed to read metadata for {path}	تعذر قراءة البيانات الوصفية لـ {path}
+Fixed by Deflate (32 KB)	ثابت بواسطة Deflate ‏(32 كيلوبايت)
+Hide archive contents in 7Z headers	إخفاء محتويات الأرشيف في ترويسات 7Z
+Import an archive to browse its contents before extraction.	استورد أرشيفا لتصفح محتوياته قبل الاستخراج.
+Invalid extract drop: {path} is not a supported archive file.	إفلات استخراجي غير صالح: {path} ليس أرشيفا مدعوما.
+Invalid selection. Please choose an archive file again.	اختيار غير صالح. يرجى اختيار أرشيف مرة أخرى.
+Invalid selection. Please choose one archive file again.	اختيار غير صالح. يرجى اختيار أرشيف واحد فقط مرة أخرى.
+Leave empty, or use 10M / 700M / 4G	اتركه فارغا أو استخدم 10M / 700M / 4G
+Managed internally by the selected codec	تتم إدارته داخليا بواسطة برنامج الترميز المحدد
+Missing preview cache for {archive_path}	ذاكرة معاينة مفقودة لـ {archive_path}
+No valid files were dropped.	لم يتم إسقاط أي ملفات صالحة.
+Not configurable in the current backend	غير قابل للإعداد في الواجهة الخلفية الحالية
+Not exposed for TAR-based formats	غير متاح لصيغ TAR
+Not used for Store mode	لا يُستخدم في وضع Store
+Only 7Z archives support encrypted file names.	أرشيفات 7Z فقط تدعم أسماء الملفات المشفرة.
+Only one supported archive file can be used at a time	يمكن استخدام أرشيف مدعوم واحد فقط في كل مرة
+Opened output directory for task #{task_id}.	تم فتح مجلد الإخراج للمهمة #{task_id}.
+Output folder selection was canceled.	تم إلغاء اختيار مجلد الإخراج.
+Output path selection was canceled.	تم إلغاء اختيار مسار الإخراج.
+Password encryption is currently available only for ZIP and 7Z archives.	تشفير كلمة المرور متاح حاليا فقط لأرشيفات ZIP و7Z.
+Pick an archive first.	اختر أرشيفا أولا.
+Pick files or folders to compress first.	اختر الملفات أو المجلدات المراد ضغطها أولا.
+Preview target not found: {target}	لم يتم العثور على هدف المعاينة: {target}
+Refresh contents after changing the password	حدّث المحتويات بعد تغيير كلمة المرور
+Runtime events, backend routing, and extraction results.	أحداث التشغيل، وتوجيه الواجهة الخلفية، ونتائج الاستخراج.
+Scanning {path}	جار فحص {path}
+Select files or folders to inspect archive contents before compression.	حدد ملفات أو مجلدات لفحص محتويات الأرشيف قبل الضغط.
+Selected archive output: {output_path}	مخرج الأرشيف المحدد: {output_path}
+Selected output folder: {output_dir}	مجلد الإخراج المحدد: {output_dir}
+Solid block mode is not available for the current formats	وضع الكتلة الصلبة غير متاح للتنسيقات الحالية
+Store (direct write)	Store (كتابة مباشرة)
+System open command failed for {path}	فشل أمر النظام لفتح {path}
+System preview is not supported on this platform	معاينة النظام غير مدعومة على هذه المنصة
+This task is already next in queue.	هذه المهمة هي التالية بالفعل في قائمة الانتظار.
+Use the darker glass palette inspired by the new dashboard reference.	استخدم لوحة الزجاج الأغمق المستوحاة من مرجع لوحة التحكم الجديد.
+Use this password for encrypted ZIP and 7Z archives. If preview fails first, enter the password here and refresh.	استخدم كلمة المرور هذه لأرشيفات ZIP و7Z المشفرة. إذا فشلت المعاينة أولا، فأدخل كلمة المرور هنا ثم حدّث.
+Very low (< 8 MB, direct write)	منخفض جدا (< 8 ميجابايت، كتابة مباشرة)
+XZ (limited parallel workers)	XZ (عمال متوازيون محدودون)
+ZIP only encrypts file data. Archive contents can still be listed by name, but extracting file data requires the password.	يقوم ZIP بتشفير بيانات الملفات فقط. لا يزال من الممكن عرض محتويات الأرشيف حسب الاسم، لكن استخراج البيانات يتطلب كلمة المرور.
+Zstandard (parallel file workers)	Zstandard (عمال ملفات متوازيون)
+Archive drop failed: {error}	فشل إفلات الأرشيف: {error}
+Archive not found: {archive_path}	لم يتم العثور على الأرشيف: {archive_path}
+Ask before overwrite	الاستفسار قبل الاستبدال
+Resolve File Conflicts	معالجة تعارضات الملفات
+Conflict {current} of {total}	تعارض {current} من {total}
+Archive Entry	عنصر الأرشيف
+Existing Path	المسار الموجود
+New File Name	اسم الملف الجديد
+Apply this action to all remaining conflicts	تطبيق هذا الإجراء على جميع التعارضات المتبقية
+Overwrite	استبدال
+Skip	تخطي
+Rename	إعادة تسمية
+Overwrite cannot replace a folder destination.	لا يمكن للاستبدال أن يحل محل مجلد الوجهة.
+Conflict resolution canceled.	تم إلغاء معالجة التعارضات.
+The new file name cannot be empty.	لا يمكن أن يكون اسم الملف الجديد فارغًا.
+Enter a file name only, not a folder path.	أدخل اسم ملف فقط، وليس مسار مجلد.
+The selected rename target already exists.	هدف إعادة التسمية المحدد موجود بالفعل.
+The selected rename target is already reserved by another extracted file.	هدف إعادة التسمية المحدد محجوز بالفعل لملف آخر يتم استخراجه.
+Failed to inspect extraction conflicts: {error}	تعذر فحص تعارضات الاستخراج: {error}
+Start with Windows	البدء مع Windows
+Launch FastZIP automatically when you sign in to Windows.	تشغيل FastZIP تلقائيًا عند تسجيل الدخول إلى Windows.
+Enabled	ممكّن
+Disabled	معطّل
+Autostart enabled.	تم تمكين التشغيل التلقائي.
+Autostart disabled.	تم تعطيل التشغيل التلقائي.
+Failed to update autostart: {error}	تعذر تحديث التشغيل التلقائي: {error}
+File Manager	مدير الملفات
+Current Path	المسار الحالي
+The current folder is empty.	المجلد الحالي فارغ.
+Folder path not found: {path}	لم يتم العثور على مسار المجلد: {path}
+The selected path is not a folder: {path}	المسار المحدد ليس مجلدًا: {path}
+Failed to open path: {error}	تعذر فتح المسار: {error}
+No files or folders are selected in the file manager.	لا توجد ملفات أو مجلدات محددة في مدير الملفات.
+View Selected Files	عرض الملفات المحددة
+Selected Files	الملفات المحددة

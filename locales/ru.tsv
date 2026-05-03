@@ -1,0 +1,309 @@
+Compress	Сжать
+Extract	Распаковать
+Task Queue	Очередь задач
+Logs	Журнал
+Settings	Настройки
+Interface Language	Язык интерфейса
+Choose the language used across the dashboard, logs, and actions.	Выберите язык для интерфейса, журнала и действий.
+Dark Mode	Тёмный режим
+Light	Светлая
+Dark	Тёмная
+Add Files to Compress	Добавить файлы для сжатия
+Drop Archive to Extract	Перетащите архив для распаковки
+Source files or folders	Исходные файлы или папки
+Source archive	Исходный архив
+Output Path	Путь вывода
+Output directory	Папка вывода
+Archive Format	Формат архива
+Compression Options	Параметры сжатия
+Extraction Options	Параметры распаковки
+Compression Level	Уровень сжатия
+Compression Method	Метод сжатия
+Compression Memory	Требуемая память
+Archive Password	Пароль архива
+Enter Password	Введите пароль
+Reenter Password	Повторите пароль
+Encrypt File Names	Шифровать имена файлов
+Encryption Method	Метод шифрования
+Keep Folder Structure	Сохранять структуру папок
+Overwrite existing files	Перезаписывать существующие файлы
+Skip existing files	Пропускать существующие файлы
+Fail on conflicts	Завершать при конфликтах
+Dictionary Size	Размер словаря
+Word Size	Размер слова
+Solid Block Size	Размер solid-блока
+Split Volume Size	Размер тома
+Thread Count	Число потоков
+Browse	Обзор
+Select Files	Выбрать файлы
+Select Folders	Выбрать папки
+Refresh Contents	Обновить содержимое
+File Contents	Содержимое файлов
+View	Просмотр
+Remove	Удалить
+Open Folder	Открыть папку
+Cancel	Отмена
+Canceled	Отменено
+Canceling	Отмена
+Canceling...	Отмена...
+Done	Готово
+Waiting	Ожидание
+Queued	В очереди
+Running	Выполняется
+Completed	Завершено
+Failed	Ошибка
+Compression complete.	Сжатие завершено.
+Compression failed.	Ошибка сжатия.
+Compression canceled.	Сжатие отменено.
+Compressing...	Сжатие...
+FastZIP Background Compression	Фоновое сжатие FastZIP
+FastZIP failed to start.	Не удалось запустить FastZIP.
+Failed to save language preference	Не удалось сохранить язык интерфейса
+No log entries yet.	Записей журнала пока нет.
+Clear Logs	Очистить журнал
+System Logs	Системный журнал
+Progress	Прогресс
+Speed	Скорость
+Status	Состояние
+Archive Preview	Предпросмотр архива
+Back to Parent Folder	Вернуться в родительскую папку
+Archive selected.	Архив выбран.
+The archive could not be opened.	Не удалось открыть архив.
+Format	Формат
+Preview	Предпросмотр
+Output archive	Выходной архив
+Overwrite Mode	Режим перезаписи
+Stopping	Остановка
+Finalizing	Завершение
+Ready	Готово
+Other	Другое
+Presets	Предустановки
+Manage archives	Управление архивами
+Archives	Архивы
+Action	Действие
+Actions	Действия
+Add compression task	Добавить задачу сжатия
+Add extraction task	Добавить задачу распаковки
+Archive output path	Путь вывода архива
+Archive scan failed.	Не удалось просканировать архив.
+Archive selection was canceled.	Выбор архива отменён.
+Choose Source Type	Выберите тип источника
+Close	Закрыть
+Delete	Удалить
+Elapsed	Прошло
+ETA	Осталось
+File selection was canceled.	Выбор файлов отменён.
+Folder selection was canceled.	Выбор папок отменён.
+Library	Библиотека
+Name	Имя
+No split volumes	Без разделения на тома
+Not available for this format	Недоступно для этого формата
+Opening file picker	Открывается выбор файлов
+Output folder updated.	Папка вывода обновлена.
+Output path updated.	Путь вывода обновлён.
+Rerun	Повторить
+Run Next	Запустить следующей
+Scanning archive contents	Сканирование содержимого архива
+Size	Размер
+Sources	Источники
+This task is already canceling.	Эта задача уже отменяется.
+Type	Тип
+Unknown error	Неизвестная ошибка
+Waiting for source selection	Ожидание выбора источника
+{count} Items	{count} элементов
+{count} Tasks	{count} задач
+{count} Lines	{count} строк
+{running} running · {queued} queued	{running} выполняется · {queued} в очереди
+{running} running	{running} выполняется
+{queued} queued	{queued} в очереди
+{first} and {rest} more	{first} и ещё {rest}
+1.44M (Floppy)	1.44M (Дискета)
+2.88M (Floppy)	2.88M (Дискета)
+650M (CD)	650M (CD)
+700M (CD)	700M (CD)
+4092M (FAT32)	4092M (FAT32)
+4480M (DVD)	4480M (DVD)
+8128M (DVD DL)	8128M (DVD DL)
+23040M (Blu-ray)	23040M (Blu-ray)
+BZip2 stream	Поток BZip2
+Codec default	Значение кодека по умолчанию
+Complete	Готово
+Fast	Быстро
+Fastest	Максимальная скорость
+GZip stream	Поток GZip
+High (~64 MB+)	Высоко (~64 MB+)
+Log history cleared.	История журнала очищена.
+Low (< 16 MB)	Низко (< 16 MB)
+LZMA2 preset (~1 MB)	Профиль LZMA2 (~1 MB)
+LZMA2 preset (~16 MB)	Профиль LZMA2 (~16 MB)
+LZMA2 preset (~32 MB)	Профиль LZMA2 (~32 MB)
+LZMA2 preset (~4 MB)	Профиль LZMA2 (~4 MB)
+LZMA2 preset (~8 MB)	Профиль LZMA2 (~8 MB)
+LZMA2 stream	Поток LZMA2
+Maximum	Максимум
+Medium (~32 MB)	Средне (~32 MB)
+Modern Glass	Современное стекло
+Native formats loaded successfully.	Нативные форматы успешно загружены.
+Native Rust core	Нативное ядро Rust
+Native Rust UI	Нативный интерфейс Rust
+Next	Далее
+Normal	Обычный
+Preparing compression task...	Подготовка задачи сжатия...
+RAR adapter	Адаптер RAR
+Store	Хранить
+Tar stream	Поток TAR
+Theme switched to Dark mode.	Переключено на тёмный режим.
+Theme switched to Light mode.	Переключено на светлый режим.
+Ultra	Ультра
+Very low (< 8 MB)	Очень низко (< 8 MB)
+Wait	Ждать
+XZ stream	Поток XZ
+{count} item(s) excluded from compression.	{count} элемент(ов) исключено из сжатия.
+{count} source(s) ready for compression.	{count} источник(ов) готово к сжатию.
+{count} source(s) remain for compression.	Осталось {count} источник(ов) для сжатия.
+Added dropped sources. {count} source(s) ready for compression.	Добавлены перетащенные источники. {count} источник(ов) готово к сжатию.
+Archive selection failed: {error}	Не удалось выбрать архив: {error}
+Cancel requested for task #{task_id}.	Запрошена отмена задачи #{task_id}.
+Canceled queued task #{task_id}.	Задача в очереди #{task_id} отменена.
+Canceling task #{task_id}...	Отмена задачи #{task_id}...
+Compress task #{task_id} added to queue.	Задача сжатия #{task_id} добавлена в очередь.
+Compression finished for task #{task_id}: {files} file(s), {dirs} folder(s), output {output_path}.	Сжатие для задачи #{task_id} завершено: {files} файл(ов), {dirs} папка(ок), выход {output_path}.
+Compression format switched to {format}.	Формат сжатия переключён на {format}.
+Compression task #{task_id} completed.	Задача сжатия #{task_id} завершена.
+Excluded from compression: {path}. {count} item(s) excluded.	Исключено из сжатия: {path}. Исключено {count} элемент(ов).
+Extract task #{task_id} added to queue.	Задача распаковки #{task_id} добавлена в очередь.
+Extraction finished for task #{task_id}: {files} file(s), {dirs} directorie(s).	Распаковка для задачи #{task_id} завершена: {files} файл(ов), {dirs} папка(ок).
+Extraction task #{task_id} completed.	Задача распаковки #{task_id} завершена.
+Failed to inspect archive size: {error}	Не удалось проверить размер архива: {error}
+Failed to inspect source size: {error}	Не удалось проверить размер источника: {error}
+Failed to open {path}: {error}	Не удалось открыть {path}: {error}
+High (~64 MB+ x {thread_count} threads)	Высоко (~64 MB+ x {thread_count} потоков)
+High (64 MB+ x up to {thread_count} workers)	Высоко (64 MB+ x до {thread_count} workers)
+Invalid split volume size `{value}`: {error}	Недопустимый размер тома `{value}`: {error}
+Loaded {count} archive entries.	Загружено {count} записей архива.
+Loaded {count} entries with {backend}.	Загружено {count} записей с {backend}.
+Low to medium (< 16 MB x {thread_count} workers)	Низко-средне (< 16 MB x {thread_count} workers)
+Medium (~32 MB x up to {thread_count} workers)	Средне (~32 MB x до {thread_count} workers)
+Medium (32-64 MB x up to {thread_count} workers)	Средне (32-64 MB x до {thread_count} workers)
+Open failed: {error}	Не удалось открыть: {error}
+Preview failed: {error}	Ошибка предпросмотра: {error}
+Queued compress task #{task_id}: {format}, {sources} source(s), {excluded} exclusion(s) -> {output_path}	Задача сжатия #{task_id} поставлена в очередь: {format}, {sources} источник(ов), {excluded} исключение(й) -> {output_path}
+Queued extract task #{task_id}: {archive_path} -> {output_dir}	Задача распаковки #{task_id} поставлена в очередь: {archive_path} -> {output_dir}
+Removed compression source: {path}. {count} source(s) remain.	Источник сжатия удалён: {path}. Осталось {count} источник(ов).
+Removed task #{task_id} from the queue.	Задача #{task_id} удалена из очереди.
+Scan failed: {message}	Сканирование не удалось: {message}
+Selected {count} compression source(s).	Выбрано {count} источник(ов) для сжатия.
+Selected archive: {archive_path}	Выбран архив: {archive_path}
+Started compress task #{task_id} -> {output_path}	Запущена задача сжатия #{task_id} -> {output_path}
+Started extract task #{task_id} -> {output_dir}	Запущена задача распаковки #{task_id} -> {output_dir}
+Task #{task_id} canceled.	Задача #{task_id} отменена.
+Task #{task_id} failed: {message}	Задача #{task_id} завершилась ошибкой: {message}
+Task #{task_id} failed.	Задача #{task_id} завершилась ошибкой.
+Task #{task_id} moved to the front of the queue.	Задача #{task_id} перемещена в начало очереди.
+Task #{task_id} queued again.	Задача #{task_id} снова поставлена в очередь.
+Task #{task_id} removed.	Задача #{task_id} удалена.
+Task #{task_id} was canceled.	Задача #{task_id} была отменена.
+Task #{task_id} will run next.	Задача #{task_id} будет выполнена следующей.
+7Z can also encrypt file names when the checkbox is enabled.	7Z также может шифровать имена файлов, если включен этот параметр.
+Adaptive solid batching for compressible files	Адаптивная солидная группировка для хорошо сжимаемых файлов
+Adjust language and appearance preferences for the FastZIP desktop app.	Настройте язык и внешний вид настольного приложения FastZIP.
+All dropped local paths will be added as compression sources	Все перетащенные локальные пути будут добавлены как источники сжатия
+BZip2 (parallel file workers)	BZip2 (параллельные обработчики файлов)
+Choose an output folder first.	Сначала выберите папку вывода.
+Choose the archive output path first.	Сначала выберите путь вывода архива.
+Compression and extraction jobs will appear here after you add them to the queue.	Задания сжатия и распаковки появятся здесь после добавления в очередь.
+Compression password is empty. Enter a password and confirm it before starting.	Пароль сжатия пуст. Введите пароль и подтвердите его перед началом.
+Compression passwords do not match.	Пароли сжатия не совпадают.
+Compression source not found: {source_path}	Источник сжатия не найден: {source_path}
+Compression worker disconnected unexpectedly.	Процесс сжатия неожиданно отключился.
+Currently uses the native LZMA2 preset	Сейчас используется встроенный пресет LZMA2
+Deflate (parallel file workers)	Deflate (параллельные обработчики файлов)
+does not support password encryption in FastZIP.	не поддерживает шифрование паролем в FastZIP.
+Drop files or folders to compress	Перетащите файлы или папки для сжатия
+Drop one archive file to extract	Перетащите один архив для распаковки
+Engine initialized. Multi-threading enabled.	Движок инициализирован. Многопоточность включена.
+Enter and confirm a password to enable archive encryption.	Введите и подтвердите пароль, чтобы включить шифрование архива.
+Extract drag-and-drop expects exactly one archive file.	Для распаковки перетаскиванием требуется ровно один архив.
+Extract files using their original archive paths	Извлекать файлы с сохранением исходных путей в архиве
+Failed to create preview folder {preview_root}	Не удалось создать папку предпросмотра {preview_root}
+Failed to determine an output path for the selected sources	Не удалось определить путь вывода для выбранных источников
+Failed to enumerate {path}	Не удалось перечислить содержимое {path}
+Failed to open {path}	Не удалось открыть {path}
+Failed to open output directory for task #{task_id}.	Не удалось открыть папку вывода для задачи #{task_id}.
+Failed to open output directory for task #{task_id}: {error}	Не удалось открыть папку вывода для задачи #{task_id}: {error}
+Failed to read an entry in {path}	Не удалось прочитать запись в {path}
+Failed to read metadata for {path}	Не удалось прочитать метаданные для {path}
+Fixed by Deflate (32 KB)	Фиксировано Deflate (32 КБ)
+Hide archive contents in 7Z headers	Скрывать содержимое архива в заголовках 7Z
+Import an archive to browse its contents before extraction.	Импортируйте архив, чтобы просмотреть его содержимое перед распаковкой.
+Invalid extract drop: {path} is not a supported archive file.	Недопустимый архив для распаковки: {path} не является поддерживаемым архивом.
+Invalid selection. Please choose an archive file again.	Неверный выбор. Снова выберите архив.
+Invalid selection. Please choose one archive file again.	Неверный выбор. Снова выберите только один архив.
+Leave empty, or use 10M / 700M / 4G	Оставьте пустым или используйте 10M / 700M / 4G
+Managed internally by the selected codec	Управляется внутренне выбранным кодеком
+Missing preview cache for {archive_path}	Отсутствует кэш предпросмотра для {archive_path}
+No valid files were dropped.	Не было перетащено ни одного допустимого файла.
+Not configurable in the current backend	Недоступно для настройки в текущем backend
+Not exposed for TAR-based formats	Недоступно для форматов на основе TAR
+Not used for Store mode	Не используется в режиме Store
+Only 7Z archives support encrypted file names.	Только архивы 7Z поддерживают шифрование имен файлов.
+Only one supported archive file can be used at a time	Одновременно можно использовать только один поддерживаемый архив
+Opened output directory for task #{task_id}.	Папка вывода для задачи #{task_id} открыта.
+Output folder selection was canceled.	Выбор папки вывода отменен.
+Output path selection was canceled.	Выбор пути вывода отменен.
+Password encryption is currently available only for ZIP and 7Z archives.	Шифрование паролем сейчас доступно только для архивов ZIP и 7Z.
+Pick an archive first.	Сначала выберите архив.
+Pick files or folders to compress first.	Сначала выберите файлы или папки для сжатия.
+Preview target not found: {target}	Цель предпросмотра не найдена: {target}
+Refresh contents after changing the password	Обновите содержимое после смены пароля
+Runtime events, backend routing, and extraction results.	События выполнения, маршрутизация backend и результаты распаковки.
+Scanning {path}	Сканирование {path}
+Select files or folders to inspect archive contents before compression.	Выберите файлы или папки, чтобы просмотреть содержимое архива перед сжатием.
+Selected archive output: {output_path}	Выбранный вывод архива: {output_path}
+Selected output folder: {output_dir}	Выбранная папка вывода: {output_dir}
+Solid block mode is not available for the current formats	Режим solid-блоков недоступен для текущих форматов
+Store (direct write)	Store (прямая запись)
+System open command failed for {path}	Системная команда открытия завершилась ошибкой для {path}
+System preview is not supported on this platform	Системный предпросмотр не поддерживается на этой платформе
+This task is already next in queue.	Эта задача уже следующая в очереди.
+Use the darker glass palette inspired by the new dashboard reference.	Использовать более темную стеклянную палитру по образцу нового интерфейса.
+Use this password for encrypted ZIP and 7Z archives. If preview fails first, enter the password here and refresh.	Используйте этот пароль для зашифрованных архивов ZIP и 7Z. Если предпросмотр сначала не сработает, введите пароль здесь и обновите.
+Very low (< 8 MB, direct write)	Очень низко (< 8 МБ, прямая запись)
+XZ (limited parallel workers)	XZ (ограниченные параллельные обработчики)
+ZIP only encrypts file data. Archive contents can still be listed by name, but extracting file data requires the password.	ZIP шифрует только данные файлов. Содержимое архива по-прежнему можно просматривать по именам, но для извлечения данных нужен пароль.
+Zstandard (parallel file workers)	Zstandard (параллельные обработчики файлов)
+Archive drop failed: {error}	Не удалось обработать перетаскивание архива: {error}
+Archive not found: {archive_path}	Архив не найден: {archive_path}
+Ask before overwrite	Спрашивать перед перезаписью
+Resolve File Conflicts	Разрешить конфликты файлов
+Conflict {current} of {total}	Конфликт {current} из {total}
+Archive Entry	Элемент архива
+Existing Path	Существующий путь
+New File Name	Новое имя файла
+Apply this action to all remaining conflicts	Применить это действие ко всем оставшимся конфликтам
+Overwrite	Перезаписать
+Skip	Пропустить
+Rename	Переименовать
+Overwrite cannot replace a folder destination.	Перезапись не может заменить папку назначения.
+Conflict resolution canceled.	Разрешение конфликтов отменено.
+The new file name cannot be empty.	Новое имя файла не может быть пустым.
+Enter a file name only, not a folder path.	Укажите только имя файла, а не путь к папке.
+The selected rename target already exists.	Выбранная цель переименования уже существует.
+The selected rename target is already reserved by another extracted file.	Выбранная цель переименования уже зарезервирована другим извлекаемым файлом.
+Failed to inspect extraction conflicts: {error}	Не удалось проверить конфликты при извлечении: {error}
+Start with Windows	Запускать вместе с Windows
+Launch FastZIP automatically when you sign in to Windows.	Автоматически запускать FastZIP при входе в Windows.
+Enabled	Включено
+Disabled	Отключено
+Autostart enabled.	Автозапуск включен.
+Autostart disabled.	Автозапуск отключен.
+Failed to update autostart: {error}	Не удалось обновить автозапуск: {error}
+File Manager	Файловый менеджер
+Current Path	Текущий путь
+The current folder is empty.	Текущая папка пуста.
+Folder path not found: {path}	Путь к папке не найден: {path}
+The selected path is not a folder: {path}	Выбранный путь не является папкой: {path}
+Failed to open path: {error}	Не удалось открыть путь: {error}
+No files or folders are selected in the file manager.	В файловом менеджере не выбраны файлы или папки.
+View Selected Files	Показать выбранные файлы
+Selected Files	Выбранные файлы

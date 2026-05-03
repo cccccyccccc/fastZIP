@@ -1,0 +1,309 @@
+Compress	압축
+Extract	압축 해제
+Task Queue	작업 대기열
+Logs	로그
+Settings	설정
+Interface Language	인터페이스 언어
+Choose the language used across the dashboard, logs, and actions.	대시보드, 로그, 작업 전반에 사용할 언어를 선택합니다.
+Dark Mode	다크 모드
+Light	라이트
+Dark	다크
+Add Files to Compress	압축할 파일 추가
+Drop Archive to Extract	압축 해제할 아카이브를 끌어놓기
+Source files or folders	원본 파일 또는 폴더
+Source archive	원본 아카이브
+Output Path	출력 경로
+Output directory	출력 폴더
+Archive Format	압축 형식
+Compression Options	압축 옵션
+Extraction Options	압축 해제 옵션
+Compression Level	압축 수준
+Compression Method	압축 방식
+Compression Memory	압축에 필요한 메모리
+Archive Password	아카이브 비밀번호
+Enter Password	비밀번호 입력
+Reenter Password	비밀번호 다시 입력
+Encrypt File Names	파일 이름 암호화
+Encryption Method	암호화 방식
+Keep Folder Structure	폴더 구조 유지
+Overwrite existing files	기존 파일 덮어쓰기
+Skip existing files	기존 파일 건너뛰기
+Fail on conflicts	충돌 시 실패
+Dictionary Size	사전 크기
+Word Size	워드 크기
+Solid Block Size	솔리드 블록 크기
+Split Volume Size	분할 크기
+Thread Count	스레드 수
+Browse	찾아보기
+Select Files	파일 선택
+Select Folders	폴더 선택
+Refresh Contents	내용 새로 고침
+File Contents	파일 내용
+View	보기
+Remove	제거
+Open Folder	폴더 열기
+Cancel	취소
+Canceled	취소됨
+Canceling	취소 중
+Canceling...	취소하는 중...
+Done	완료
+Waiting	대기 중
+Queued	대기열에 추가됨
+Running	실행 중
+Completed	완료됨
+Failed	실패
+Compression complete.	압축이 완료되었습니다.
+Compression failed.	압축에 실패했습니다.
+Compression canceled.	압축이 취소되었습니다.
+Compressing...	압축 중...
+FastZIP Background Compression	FastZIP 백그라운드 압축
+FastZIP failed to start.	FastZIP을 시작하지 못했습니다.
+Failed to save language preference	언어 설정을 저장하지 못했습니다
+No log entries yet.	아직 로그가 없습니다.
+Clear Logs	로그 지우기
+System Logs	시스템 로그
+Progress	진행률
+Speed	속도
+Status	상태
+Archive Preview	아카이브 미리보기
+Back to Parent Folder	상위 폴더로 돌아가기
+Archive selected.	아카이브를 선택했습니다.
+The archive could not be opened.	아카이브를 열 수 없습니다.
+Format	형식
+Preview	미리보기
+Output archive	출력 아카이브
+Overwrite Mode	덮어쓰기 모드
+Stopping	중지 중
+Finalizing	마무리 중
+Ready	준비 완료
+Other	기타
+Presets	프리셋
+Manage archives	아카이브 관리
+Archives	아카이브
+Action	동작
+Actions	동작
+Add compression task	압축 작업 추가
+Add extraction task	압축 해제 작업 추가
+Archive output path	아카이브 출력 경로
+Archive scan failed.	아카이브 스캔에 실패했습니다.
+Archive selection was canceled.	아카이브 선택이 취소되었습니다.
+Choose Source Type	원본 유형 선택
+Close	닫기
+Delete	삭제
+Elapsed	경과 시간
+ETA	예상 시간
+File selection was canceled.	파일 선택이 취소되었습니다.
+Folder selection was canceled.	폴더 선택이 취소되었습니다.
+Library	라이브러리
+Name	이름
+No split volumes	분할 안 함
+Not available for this format	이 형식에서는 사용할 수 없습니다
+Opening file picker	파일 선택기를 여는 중
+Output folder updated.	출력 폴더가 업데이트되었습니다.
+Output path updated.	출력 경로가 업데이트되었습니다.
+Rerun	다시 실행
+Run Next	다음 실행
+Scanning archive contents	아카이브 내용을 스캔하는 중
+Size	크기
+Sources	원본
+This task is already canceling.	이 작업은 이미 취소 중입니다.
+Type	유형
+Unknown error	알 수 없는 오류
+Waiting for source selection	원본 선택 대기 중
+{count} Items	{count}개 항목
+{count} Tasks	{count}개 작업
+{count} Lines	{count}줄
+{running} running · {queued} queued	{running}개 실행 중 · {queued}개 대기 중
+{running} running	{running}개 실행 중
+{queued} queued	{queued}개 대기 중
+{first} and {rest} more	{first} 외 {rest}개
+1.44M (Floppy)	1.44M (플로피)
+2.88M (Floppy)	2.88M (플로피)
+650M (CD)	650M (CD)
+700M (CD)	700M (CD)
+4092M (FAT32)	4092M (FAT32)
+4480M (DVD)	4480M (DVD)
+8128M (DVD DL)	8128M (듀얼 레이어 DVD)
+23040M (Blu-ray)	23040M (블루레이)
+BZip2 stream	BZip2 스트림
+Codec default	코덱 기본값
+Complete	완료
+Fast	빠름
+Fastest	가장 빠름
+GZip stream	GZip 스트림
+High (~64 MB+)	높음 (~64 MB+)
+Log history cleared.	로그 기록을 지웠습니다.
+Low (< 16 MB)	낮음 (< 16 MB)
+LZMA2 preset (~1 MB)	LZMA2 프리셋 (~1 MB)
+LZMA2 preset (~16 MB)	LZMA2 프리셋 (~16 MB)
+LZMA2 preset (~32 MB)	LZMA2 프리셋 (~32 MB)
+LZMA2 preset (~4 MB)	LZMA2 프리셋 (~4 MB)
+LZMA2 preset (~8 MB)	LZMA2 프리셋 (~8 MB)
+LZMA2 stream	LZMA2 스트림
+Maximum	최대
+Medium (~32 MB)	중간 (~32 MB)
+Modern Glass	모던 글래스
+Native formats loaded successfully.	네이티브 형식을 성공적으로 불러왔습니다.
+Native Rust core	네이티브 Rust 코어
+Native Rust UI	네이티브 Rust UI
+Next	다음
+Normal	보통
+Preparing compression task...	압축 작업 준비 중...
+RAR adapter	RAR 어댑터
+Store	저장
+Tar stream	TAR 스트림
+Theme switched to Dark mode.	다크 모드로 전환했습니다.
+Theme switched to Light mode.	라이트 모드로 전환했습니다.
+Ultra	울트라
+Very low (< 8 MB)	매우 낮음 (< 8 MB)
+Wait	대기
+XZ stream	XZ 스트림
+{count} item(s) excluded from compression.	{count}개 항목이 압축에서 제외되었습니다.
+{count} source(s) ready for compression.	{count}개 원본이 압축 준비 완료되었습니다.
+{count} source(s) remain for compression.	압축할 원본이 {count}개 남았습니다.
+Added dropped sources. {count} source(s) ready for compression.	끌어놓은 원본을 추가했습니다. {count}개 원본이 압축 준비 완료되었습니다.
+Archive selection failed: {error}	아카이브 선택에 실패했습니다: {error}
+Cancel requested for task #{task_id}.	작업 #{task_id} 취소가 요청되었습니다.
+Canceled queued task #{task_id}.	대기 중인 작업 #{task_id}를 취소했습니다.
+Canceling task #{task_id}...	작업 #{task_id}를 취소하는 중...
+Compress task #{task_id} added to queue.	압축 작업 #{task_id}가 대기열에 추가되었습니다.
+Compression finished for task #{task_id}: {files} file(s), {dirs} folder(s), output {output_path}.	압축 작업 #{task_id} 완료: 파일 {files}개, 폴더 {dirs}개, 출력 {output_path}.
+Compression format switched to {format}.	압축 형식이 {format}(으)로 변경되었습니다.
+Compression task #{task_id} completed.	압축 작업 #{task_id}가 완료되었습니다.
+Excluded from compression: {path}. {count} item(s) excluded.	압축에서 제외됨: {path}. {count}개 항목이 제외되었습니다.
+Extract task #{task_id} added to queue.	압축 해제 작업 #{task_id}가 대기열에 추가되었습니다.
+Extraction finished for task #{task_id}: {files} file(s), {dirs} directorie(s).	압축 해제 작업 #{task_id} 완료: 파일 {files}개, 폴더 {dirs}개.
+Extraction task #{task_id} completed.	압축 해제 작업 #{task_id}가 완료되었습니다.
+Failed to inspect archive size: {error}	아카이브 크기 확인에 실패했습니다: {error}
+Failed to inspect source size: {error}	원본 크기 확인에 실패했습니다: {error}
+Failed to open {path}: {error}	{path} 열기에 실패했습니다: {error}
+High (~64 MB+ x {thread_count} threads)	높음 (~64 MB+ x {thread_count} 스레드)
+High (64 MB+ x up to {thread_count} workers)	높음 (64 MB+ x 최대 {thread_count} 워커)
+Invalid split volume size `{value}`: {error}	분할 크기 `{value}` 가 잘못되었습니다: {error}
+Loaded {count} archive entries.	{count}개의 아카이브 항목을 불러왔습니다.
+Loaded {count} entries with {backend}.	{backend}(으)로 {count}개 항목을 불러왔습니다.
+Low to medium (< 16 MB x {thread_count} workers)	낮음~중간 (< 16 MB x {thread_count} 워커)
+Medium (~32 MB x up to {thread_count} workers)	중간 (~32 MB x 최대 {thread_count} 워커)
+Medium (32-64 MB x up to {thread_count} workers)	중간 (32-64 MB x 최대 {thread_count} 워커)
+Open failed: {error}	열기에 실패했습니다: {error}
+Preview failed: {error}	미리보기에 실패했습니다: {error}
+Queued compress task #{task_id}: {format}, {sources} source(s), {excluded} exclusion(s) -> {output_path}	압축 작업 #{task_id}가 대기열에 추가되었습니다: {format}, 원본 {sources}개, 제외 {excluded}개 -> {output_path}
+Queued extract task #{task_id}: {archive_path} -> {output_dir}	압축 해제 작업 #{task_id}가 대기열에 추가되었습니다: {archive_path} -> {output_dir}
+Removed compression source: {path}. {count} source(s) remain.	압축 원본 제거됨: {path}. {count}개 원본이 남았습니다.
+Removed task #{task_id} from the queue.	대기열에서 작업 #{task_id}를 제거했습니다.
+Scan failed: {message}	스캔 실패: {message}
+Selected {count} compression source(s).	{count}개 압축 원본을 선택했습니다.
+Selected archive: {archive_path}	선택한 아카이브: {archive_path}
+Started compress task #{task_id} -> {output_path}	압축 작업 #{task_id} 시작 -> {output_path}
+Started extract task #{task_id} -> {output_dir}	압축 해제 작업 #{task_id} 시작 -> {output_dir}
+Task #{task_id} canceled.	작업 #{task_id}가 취소되었습니다.
+Task #{task_id} failed: {message}	작업 #{task_id} 실패: {message}
+Task #{task_id} failed.	작업 #{task_id}가 실패했습니다.
+Task #{task_id} moved to the front of the queue.	작업 #{task_id}가 대기열 맨 앞으로 이동했습니다.
+Task #{task_id} queued again.	작업 #{task_id}가 다시 대기열에 추가되었습니다.
+Task #{task_id} removed.	작업 #{task_id}가 제거되었습니다.
+Task #{task_id} was canceled.	작업 #{task_id}가 취소되었습니다.
+Task #{task_id} will run next.	작업 #{task_id}가 다음에 실행됩니다.
+7Z can also encrypt file names when the checkbox is enabled.	체크하면 7Z는 파일 이름도 암호화할 수 있습니다.
+Adaptive solid batching for compressible files	압축 가능한 파일용 적응형 솔리드 배칭
+Adjust language and appearance preferences for the FastZIP desktop app.	FastZIP 데스크톱 앱의 언어 및 모양 설정을 조정합니다.
+All dropped local paths will be added as compression sources	드롭한 모든 로컬 경로가 압축 원본으로 추가됩니다
+BZip2 (parallel file workers)	BZip2(병렬 파일 작업)
+Choose an output folder first.	먼저 출력 폴더를 선택하세요.
+Choose the archive output path first.	먼저 압축 파일 출력 경로를 선택하세요.
+Compression and extraction jobs will appear here after you add them to the queue.	압축 및 압축 해제 작업은 대기열에 추가한 뒤 여기에 표시됩니다.
+Compression password is empty. Enter a password and confirm it before starting.	압축 비밀번호가 비어 있습니다. 시작하기 전에 비밀번호를 입력하고 확인하세요.
+Compression passwords do not match.	압축 비밀번호가 일치하지 않습니다.
+Compression source not found: {source_path}	압축 원본을 찾을 수 없습니다: {source_path}
+Compression worker disconnected unexpectedly.	압축 작업자가 예기치 않게 연결 해제되었습니다.
+Currently uses the native LZMA2 preset	현재 기본 LZMA2 프리셋을 사용합니다
+Deflate (parallel file workers)	Deflate(병렬 파일 작업)
+does not support password encryption in FastZIP.	FastZIP에서는 비밀번호 암호화를 지원하지 않습니다.
+Drop files or folders to compress	압축할 파일 또는 폴더를 드롭하세요
+Drop one archive file to extract	압축 해제할 압축 파일 하나를 드롭하세요
+Engine initialized. Multi-threading enabled.	엔진이 초기화되었습니다. 멀티스레딩이 활성화되었습니다.
+Enter and confirm a password to enable archive encryption.	압축 파일 암호화를 사용하려면 비밀번호를 입력하고 확인하세요.
+Extract drag-and-drop expects exactly one archive file.	압축 해제 드래그 앤 드롭은 압축 파일 하나만 지원합니다.
+Extract files using their original archive paths	원래 압축 경로를 유지하여 파일을 추출합니다
+Failed to create preview folder {preview_root}	미리보기 폴더 {preview_root}를 만들지 못했습니다
+Failed to determine an output path for the selected sources	선택한 원본의 출력 경로를 결정하지 못했습니다
+Failed to enumerate {path}	{path}을(를) 열거하지 못했습니다
+Failed to open {path}	{path}을(를) 열지 못했습니다
+Failed to open output directory for task #{task_id}.	작업 #{task_id}의 출력 폴더를 열지 못했습니다.
+Failed to open output directory for task #{task_id}: {error}	작업 #{task_id}의 출력 폴더를 열지 못했습니다: {error}
+Failed to read an entry in {path}	{path}의 항목을 읽지 못했습니다
+Failed to read metadata for {path}	{path}의 메타데이터를 읽지 못했습니다
+Fixed by Deflate (32 KB)	Deflate로 고정됨(32 KB)
+Hide archive contents in 7Z headers	7Z 헤더에서 압축 파일 내용을 숨깁니다
+Import an archive to browse its contents before extraction.	추출 전에 내용을 보려면 압축 파일을 가져오세요.
+Invalid extract drop: {path} is not a supported archive file.	잘못된 추출 드롭: {path}은(는) 지원되는 압축 파일이 아닙니다.
+Invalid selection. Please choose an archive file again.	선택이 올바르지 않습니다. 압축 파일을 다시 선택하세요.
+Invalid selection. Please choose one archive file again.	선택이 올바르지 않습니다. 압축 파일 하나만 다시 선택하세요.
+Leave empty, or use 10M / 700M / 4G	비워 두거나 10M / 700M / 4G를 사용하세요
+Managed internally by the selected codec	선택한 코덱이 내부적으로 관리합니다
+Missing preview cache for {archive_path}	{archive_path}의 미리보기 캐시가 없습니다
+No valid files were dropped.	유효한 파일이 드롭되지 않았습니다.
+Not configurable in the current backend	현재 백엔드에서는 설정할 수 없습니다
+Not exposed for TAR-based formats	TAR 계열 형식에서는 제공되지 않습니다
+Not used for Store mode	저장 모드에서는 사용되지 않습니다
+Only 7Z archives support encrypted file names.	암호화된 파일 이름은 7Z 압축 파일만 지원합니다.
+Only one supported archive file can be used at a time	한 번에 사용할 수 있는 지원 압축 파일은 하나뿐입니다
+Opened output directory for task #{task_id}.	작업 #{task_id}의 출력 폴더를 열었습니다.
+Output folder selection was canceled.	출력 폴더 선택이 취소되었습니다.
+Output path selection was canceled.	출력 경로 선택이 취소되었습니다.
+Password encryption is currently available only for ZIP and 7Z archives.	비밀번호 암호화는 현재 ZIP 및 7Z 압축 파일에서만 사용할 수 있습니다.
+Pick an archive first.	먼저 압축 파일을 선택하세요.
+Pick files or folders to compress first.	먼저 압축할 파일 또는 폴더를 선택하세요.
+Preview target not found: {target}	미리보기 대상을 찾을 수 없습니다: {target}
+Refresh contents after changing the password	비밀번호를 변경한 뒤 내용을 새로고침하세요
+Runtime events, backend routing, and extraction results.	실행 이벤트, 백엔드 라우팅 및 추출 결과입니다.
+Scanning {path}	{path} 검사 중
+Select files or folders to inspect archive contents before compression.	압축 전에 압축 파일 내용을 확인할 파일 또는 폴더를 선택하세요.
+Selected archive output: {output_path}	선택한 압축 출력 경로: {output_path}
+Selected output folder: {output_dir}	선택한 출력 폴더: {output_dir}
+Solid block mode is not available for the current formats	현재 형식에서는 솔리드 블록 모드를 사용할 수 없습니다
+Store (direct write)	Store(직접 쓰기)
+System open command failed for {path}	{path}에 대한 시스템 열기 명령이 실패했습니다
+System preview is not supported on this platform	이 플랫폼에서는 시스템 미리보기를 지원하지 않습니다
+This task is already next in queue.	이 작업은 이미 대기열의 다음 순서입니다.
+Use the darker glass palette inspired by the new dashboard reference.	새 대시보드 레퍼런스를 바탕으로 한 더 어두운 글래스 팔레트를 사용합니다.
+Use this password for encrypted ZIP and 7Z archives. If preview fails first, enter the password here and refresh.	암호화된 ZIP 및 7Z 압축 파일에는 이 비밀번호를 사용합니다. 미리보기가 먼저 실패하면 여기서 비밀번호를 입력하고 새로고침하세요.
+Very low (< 8 MB, direct write)	매우 낮음(< 8 MB, 직접 쓰기)
+XZ (limited parallel workers)	XZ(제한된 병렬 작업)
+ZIP only encrypts file data. Archive contents can still be listed by name, but extracting file data requires the password.	ZIP은 파일 데이터만 암호화합니다. 압축 파일 내용은 이름으로 계속 볼 수 있지만 파일 데이터를 추출하려면 비밀번호가 필요합니다.
+Zstandard (parallel file workers)	Zstandard(병렬 파일 작업)
+Archive drop failed: {error}	압축 파일 드롭 실패: {error}
+Archive not found: {archive_path}	압축 파일을 찾을 수 없습니다: {archive_path}
+Ask before overwrite	덮어쓰기 전에 확인
+Resolve File Conflicts	파일 충돌 처리
+Conflict {current} of {total}	충돌 {current} / {total}
+Archive Entry	압축 파일 항목
+Existing Path	기존 경로
+New File Name	새 파일 이름
+Apply this action to all remaining conflicts	이 작업을 남은 모든 충돌에 적용
+Overwrite	덮어쓰기
+Skip	건너뛰기
+Rename	이름 바꾸기
+Overwrite cannot replace a folder destination.	덮어쓰기로는 대상 폴더를 대체할 수 없습니다.
+Conflict resolution canceled.	충돌 처리가 취소되었습니다.
+The new file name cannot be empty.	새 파일 이름은 비워 둘 수 없습니다.
+Enter a file name only, not a folder path.	폴더 경로가 아닌 파일 이름만 입력하세요.
+The selected rename target already exists.	선택한 이름 변경 대상이 이미 존재합니다.
+The selected rename target is already reserved by another extracted file.	선택한 이름 변경 대상은 이미 다른 추출 파일에 예약되어 있습니다.
+Failed to inspect extraction conflicts: {error}	추출 충돌을 검사하지 못했습니다: {error}
+Start with Windows	Windows 시작 시 실행
+Launch FastZIP automatically when you sign in to Windows.	Windows에 로그인할 때 FastZIP을 자동으로 실행합니다.
+Enabled	사용
+Disabled	사용 안 함
+Autostart enabled.	자동 시작을 켰습니다.
+Autostart disabled.	자동 시작을 껐습니다.
+Failed to update autostart: {error}	자동 시작을 업데이트하지 못했습니다: {error}
+File Manager	파일 관리자
+Current Path	현재 경로
+The current folder is empty.	현재 폴더가 비어 있습니다.
+Folder path not found: {path}	폴더 경로를 찾을 수 없습니다: {path}
+The selected path is not a folder: {path}	선택한 경로는 폴더가 아닙니다: {path}
+Failed to open path: {error}	경로를 열지 못했습니다: {error}
+No files or folders are selected in the file manager.	파일 관리자에서 선택된 파일 또는 폴더가 없습니다.
+View Selected Files	선택한 파일 보기
+Selected Files	선택한 파일

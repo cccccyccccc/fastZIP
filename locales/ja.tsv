@@ -1,0 +1,309 @@
+Compress	圧縮
+Extract	解凍
+Task Queue	タスクキュー
+Logs	ログ
+Settings	設定
+Interface Language	表示言語
+Choose the language used across the dashboard, logs, and actions.	ダッシュボード、ログ、操作全体で使用する言語を選択します。
+Dark Mode	ダークモード
+Light	ライト
+Dark	ダーク
+Add Files to Compress	圧縮するファイルを追加
+Drop Archive to Extract	解凍する書庫をドロップ
+Source files or folders	元のファイルまたはフォルダー
+Source archive	元の書庫
+Output Path	出力パス
+Output directory	出力フォルダー
+Archive Format	書庫形式
+Compression Options	圧縮オプション
+Extraction Options	解凍オプション
+Compression Level	圧縮レベル
+Compression Method	圧縮方式
+Compression Memory	圧縮時の必要メモリ
+Archive Password	書庫パスワード
+Enter Password	パスワードを入力
+Reenter Password	パスワードを再入力
+Encrypt File Names	ファイル名を暗号化
+Encryption Method	暗号化方式
+Keep Folder Structure	フォルダー構造を保持
+Overwrite existing files	既存ファイルを上書き
+Skip existing files	既存ファイルをスキップ
+Fail on conflicts	競合時に失敗
+Dictionary Size	辞書サイズ
+Word Size	ワードサイズ
+Solid Block Size	ソリッドブロックサイズ
+Split Volume Size	分割サイズ
+Thread Count	スレッド数
+Browse	参照
+Select Files	ファイルを選択
+Select Folders	フォルダーを選択
+Refresh Contents	内容を再読み込み
+File Contents	ファイル内容
+View	表示
+Remove	削除
+Open Folder	フォルダーを開く
+Cancel	キャンセル
+Canceled	キャンセル済み
+Canceling	キャンセル中
+Canceling...	キャンセル中...
+Done	完了
+Waiting	待機中
+Queued	待機中
+Running	実行中
+Completed	完了
+Failed	失敗
+Compression complete.	圧縮が完了しました。
+Compression failed.	圧縮に失敗しました。
+Compression canceled.	圧縮をキャンセルしました。
+Compressing...	圧縮中...
+FastZIP Background Compression	FastZIP バックグラウンド圧縮
+FastZIP failed to start.	FastZIP の起動に失敗しました。
+Failed to save language preference	言語設定の保存に失敗しました
+No log entries yet.	まだログはありません。
+Clear Logs	ログをクリア
+System Logs	システムログ
+Progress	進行状況
+Speed	速度
+Status	状態
+Archive Preview	書庫プレビュー
+Back to Parent Folder	親フォルダーへ戻る
+Archive selected.	書庫を選択しました。
+The archive could not be opened.	書庫を開けませんでした。
+Format	形式
+Preview	プレビュー
+Output archive	出力書庫
+Overwrite Mode	上書きモード
+Stopping	停止中
+Finalizing	最終処理中
+Ready	準備完了
+Other	その他
+Presets	プリセット
+Manage archives	書庫を管理
+Archives	書庫
+Action	操作
+Actions	操作
+Add compression task	圧縮タスクを追加
+Add extraction task	解凍タスクを追加
+Archive output path	書庫の出力パス
+Archive scan failed.	書庫のスキャンに失敗しました。
+Archive selection was canceled.	書庫の選択はキャンセルされました。
+Choose Source Type	ソースの種類を選択
+Close	閉じる
+Delete	削除
+Elapsed	経過時間
+ETA	残り時間
+File selection was canceled.	ファイルの選択はキャンセルされました。
+Folder selection was canceled.	フォルダーの選択はキャンセルされました。
+Library	ライブラリ
+Name	名前
+No split volumes	分割しない
+Not available for this format	この形式では利用できません
+Opening file picker	ファイル選択を開いています
+Output folder updated.	出力フォルダーを更新しました。
+Output path updated.	出力パスを更新しました。
+Rerun	再実行
+Run Next	次に実行
+Scanning archive contents	書庫の内容をスキャンしています
+Size	サイズ
+Sources	ソース
+This task is already canceling.	このタスクはすでにキャンセル中です。
+Type	種類
+Unknown error	不明なエラー
+Waiting for source selection	ソースの選択を待っています
+{count} Items	{count} 項目
+{count} Tasks	{count} タスク
+{count} Lines	{count} 行
+{running} running · {queued} queued	{running} 実行中 · {queued} 待機中
+{running} running	{running} 実行中
+{queued} queued	{queued} 待機中
+{first} and {rest} more	{first} と他 {rest} 件
+1.44M (Floppy)	1.44M (フロッピー)
+2.88M (Floppy)	2.88M (フロッピー)
+650M (CD)	650M (CD)
+700M (CD)	700M (CD)
+4092M (FAT32)	4092M (FAT32)
+4480M (DVD)	4480M (DVD)
+8128M (DVD DL)	8128M (2層DVD)
+23040M (Blu-ray)	23040M (Blu-ray)
+BZip2 stream	BZip2 ストリーム
+Codec default	コーデック既定値
+Complete	完了
+Fast	高速
+Fastest	最速
+GZip stream	GZip ストリーム
+High (~64 MB+)	高 (~64 MB+)
+Log history cleared.	ログ履歴を消去しました。
+Low (< 16 MB)	低 (< 16 MB)
+LZMA2 preset (~1 MB)	LZMA2 プリセット (~1 MB)
+LZMA2 preset (~16 MB)	LZMA2 プリセット (~16 MB)
+LZMA2 preset (~32 MB)	LZMA2 プリセット (~32 MB)
+LZMA2 preset (~4 MB)	LZMA2 プリセット (~4 MB)
+LZMA2 preset (~8 MB)	LZMA2 プリセット (~8 MB)
+LZMA2 stream	LZMA2 ストリーム
+Maximum	最大
+Medium (~32 MB)	中 (~32 MB)
+Modern Glass	モダングラス
+Native formats loaded successfully.	ネイティブ形式の読み込みに成功しました。
+Native Rust core	ネイティブ Rust コア
+Native Rust UI	ネイティブ Rust UI
+Next	次へ
+Normal	標準
+Preparing compression task...	圧縮タスクを準備しています...
+RAR adapter	RAR アダプター
+Store	保存
+Tar stream	TAR ストリーム
+Theme switched to Dark mode.	ダークモードに切り替えました。
+Theme switched to Light mode.	ライトモードに切り替えました。
+Ultra	ウルトラ
+Very low (< 8 MB)	非常に低い (< 8 MB)
+Wait	待機
+XZ stream	XZ ストリーム
+{count} item(s) excluded from compression.	{count} 個の項目を圧縮から除外しました。
+{count} source(s) ready for compression.	{count} 個のソースが圧縮の準備完了です。
+{count} source(s) remain for compression.	圧縮対象は残り {count} 個です。
+Added dropped sources. {count} source(s) ready for compression.	ドラッグされたソースを追加しました。{count} 個のソースが圧縮の準備完了です。
+Archive selection failed: {error}	書庫の選択に失敗しました: {error}
+Cancel requested for task #{task_id}.	タスク #{task_id} のキャンセルを要求しました。
+Canceled queued task #{task_id}.	キュー内のタスク #{task_id} をキャンセルしました。
+Canceling task #{task_id}...	タスク #{task_id} をキャンセルしています...
+Compress task #{task_id} added to queue.	圧縮タスク #{task_id} をキューに追加しました。
+Compression finished for task #{task_id}: {files} file(s), {dirs} folder(s), output {output_path}.	圧縮タスク #{task_id} が完了しました: {files} 個のファイル、{dirs} 個のフォルダー、出力 {output_path}。
+Compression format switched to {format}.	圧縮形式を {format} に切り替えました。
+Compression task #{task_id} completed.	圧縮タスク #{task_id} が完了しました。
+Excluded from compression: {path}. {count} item(s) excluded.	圧縮から除外しました: {path}。{count} 個の項目が除外されています。
+Extract task #{task_id} added to queue.	解凍タスク #{task_id} をキューに追加しました。
+Extraction finished for task #{task_id}: {files} file(s), {dirs} directorie(s).	解凍タスク #{task_id} が完了しました: {files} 個のファイル、{dirs} 個のフォルダー。
+Extraction task #{task_id} completed.	解凍タスク #{task_id} が完了しました。
+Failed to inspect archive size: {error}	書庫サイズの確認に失敗しました: {error}
+Failed to inspect source size: {error}	ソースサイズの確認に失敗しました: {error}
+Failed to open {path}: {error}	{path} を開けませんでした: {error}
+High (~64 MB+ x {thread_count} threads)	高 (~64 MB+ x {thread_count} スレッド)
+High (64 MB+ x up to {thread_count} workers)	高 (64 MB+ x 最大 {thread_count} ワーカー)
+Invalid split volume size `{value}`: {error}	分割サイズ `{value}` は無効です: {error}
+Loaded {count} archive entries.	{count} 件の書庫項目を読み込みました。
+Loaded {count} entries with {backend}.	{backend} で {count} 件の項目を読み込みました。
+Low to medium (< 16 MB x {thread_count} workers)	低から中 (< 16 MB x {thread_count} ワーカー)
+Medium (~32 MB x up to {thread_count} workers)	中 (~32 MB x 最大 {thread_count} ワーカー)
+Medium (32-64 MB x up to {thread_count} workers)	中 (32-64 MB x 最大 {thread_count} ワーカー)
+Open failed: {error}	開くのに失敗しました: {error}
+Preview failed: {error}	プレビューに失敗しました: {error}
+Queued compress task #{task_id}: {format}, {sources} source(s), {excluded} exclusion(s) -> {output_path}	圧縮タスク #{task_id} をキューに追加しました: {format}、{sources} 個のソース、{excluded} 個を除外 -> {output_path}
+Queued extract task #{task_id}: {archive_path} -> {output_dir}	解凍タスク #{task_id} をキューに追加しました: {archive_path} -> {output_dir}
+Removed compression source: {path}. {count} source(s) remain.	圧縮ソースを削除しました: {path}。残り {count} 個です。
+Removed task #{task_id} from the queue.	キューからタスク #{task_id} を削除しました。
+Scan failed: {message}	スキャンに失敗しました: {message}
+Selected {count} compression source(s).	{count} 個の圧縮ソースを選択しました。
+Selected archive: {archive_path}	書庫を選択しました: {archive_path}
+Started compress task #{task_id} -> {output_path}	圧縮タスク #{task_id} を開始しました -> {output_path}
+Started extract task #{task_id} -> {output_dir}	解凍タスク #{task_id} を開始しました -> {output_dir}
+Task #{task_id} canceled.	タスク #{task_id} をキャンセルしました。
+Task #{task_id} failed: {message}	タスク #{task_id} は失敗しました: {message}
+Task #{task_id} failed.	タスク #{task_id} は失敗しました。
+Task #{task_id} moved to the front of the queue.	タスク #{task_id} をキューの先頭に移動しました。
+Task #{task_id} queued again.	タスク #{task_id} を再度キューに追加しました。
+Task #{task_id} removed.	タスク #{task_id} を削除しました。
+Task #{task_id} was canceled.	タスク #{task_id} はキャンセルされました。
+Task #{task_id} will run next.	タスク #{task_id} が次に実行されます。
+7Z can also encrypt file names when the checkbox is enabled.	チェックを入れると、7Z ではファイル名も暗号化できます。
+Adaptive solid batching for compressible files	圧縮しやすいファイル向けの適応型ソリッド分割
+Adjust language and appearance preferences for the FastZIP desktop app.	FastZIP デスクトップアプリの言語と表示設定を調整します。
+All dropped local paths will be added as compression sources	ドロップしたローカルパスはすべて圧縮元として追加されます
+BZip2 (parallel file workers)	BZip2（並列ファイルワーカー）
+Choose an output folder first.	先に出力フォルダーを選択してください。
+Choose the archive output path first.	先に書庫の出力パスを選択してください。
+Compression and extraction jobs will appear here after you add them to the queue.	圧縮と解凍のジョブは、キューに追加するとここに表示されます。
+Compression password is empty. Enter a password and confirm it before starting.	圧縮パスワードが空です。開始前にパスワードを入力して確認してください。
+Compression passwords do not match.	圧縮パスワードが一致しません。
+Compression source not found: {source_path}	圧縮元が見つかりません: {source_path}
+Compression worker disconnected unexpectedly.	圧縮ワーカーが予期せず切断されました。
+Currently uses the native LZMA2 preset	現在はネイティブの LZMA2 プリセットを使用します
+Deflate (parallel file workers)	Deflate（並列ファイルワーカー）
+does not support password encryption in FastZIP.	FastZIP ではパスワード暗号化をサポートしていません。
+Drop files or folders to compress	圧縮するファイルまたはフォルダーをドロップ
+Drop one archive file to extract	解凍する書庫ファイルを 1 つドロップ
+Engine initialized. Multi-threading enabled.	エンジンを初期化しました。マルチスレッドを有効にしています。
+Enter and confirm a password to enable archive encryption.	書庫の暗号化を有効にするには、パスワードを入力して確認してください。
+Extract drag-and-drop expects exactly one archive file.	解凍のドラッグ＆ドロップでは、書庫ファイルを 1 つだけ指定してください。
+Extract files using their original archive paths	元の書庫パスを保持してファイルを展開します
+Failed to create preview folder {preview_root}	プレビュー用フォルダー {preview_root} を作成できませんでした
+Failed to determine an output path for the selected sources	選択した元データの出力パスを判定できませんでした
+Failed to enumerate {path}	{path} を列挙できませんでした
+Failed to open {path}	{path} を開けませんでした
+Failed to open output directory for task #{task_id}.	タスク #{task_id} の出力フォルダーを開けませんでした。
+Failed to open output directory for task #{task_id}: {error}	タスク #{task_id} の出力フォルダーを開けませんでした: {error}
+Failed to read an entry in {path}	{path} 内のエントリを読み取れませんでした
+Failed to read metadata for {path}	{path} のメタデータを読み取れませんでした
+Fixed by Deflate (32 KB)	Deflate により固定（32 KB）
+Hide archive contents in 7Z headers	7Z ヘッダー内の書庫内容を非表示にする
+Import an archive to browse its contents before extraction.	解凍前に内容を閲覧するには、書庫を読み込んでください。
+Invalid extract drop: {path} is not a supported archive file.	無効な解凍ドロップ: {path} は対応している書庫ファイルではありません。
+Invalid selection. Please choose an archive file again.	選択が無効です。書庫ファイルをもう一度選択してください。
+Invalid selection. Please choose one archive file again.	選択が無効です。書庫ファイルを 1 つだけ選び直してください。
+Leave empty, or use 10M / 700M / 4G	空欄のままにするか、10M / 700M / 4G を使用してください
+Managed internally by the selected codec	選択したコーデックが内部で管理します
+Missing preview cache for {archive_path}	{archive_path} のプレビューキャッシュがありません
+No valid files were dropped.	有効なファイルがドロップされませんでした。
+Not configurable in the current backend	現在のバックエンドでは設定できません
+Not exposed for TAR-based formats	TAR 系形式では公開されていません
+Not used for Store mode	保存モードでは使用されません
+Only 7Z archives support encrypted file names.	暗号化されたファイル名をサポートするのは 7Z 書庫のみです。
+Only one supported archive file can be used at a time	一度に使用できる対応書庫ファイルは 1 つだけです
+Opened output directory for task #{task_id}.	タスク #{task_id} の出力フォルダーを開きました。
+Output folder selection was canceled.	出力フォルダーの選択はキャンセルされました。
+Output path selection was canceled.	出力パスの選択はキャンセルされました。
+Password encryption is currently available only for ZIP and 7Z archives.	パスワード暗号化は現在 ZIP と 7Z 書庫でのみ利用できます。
+Pick an archive first.	先に書庫を選択してください。
+Pick files or folders to compress first.	先に圧縮するファイルまたはフォルダーを選択してください。
+Preview target not found: {target}	プレビュー対象が見つかりません: {target}
+Refresh contents after changing the password	パスワード変更後に内容を再読み込み
+Runtime events, backend routing, and extraction results.	実行時イベント、バックエンドルーティング、解凍結果を表示します。
+Scanning {path}	{path} をスキャン中
+Select files or folders to inspect archive contents before compression.	圧縮前に書庫内容を確認するファイルまたはフォルダーを選択してください。
+Selected archive output: {output_path}	選択した書庫出力先: {output_path}
+Selected output folder: {output_dir}	選択した出力フォルダー: {output_dir}
+Solid block mode is not available for the current formats	現在の形式ではソリッドブロックモードは利用できません
+Store (direct write)	Store（直接書き込み）
+System open command failed for {path}	{path} に対するシステムのオープンコマンドが失敗しました
+System preview is not supported on this platform	このプラットフォームではシステムプレビューをサポートしていません
+This task is already next in queue.	このタスクはすでにキューの次です。
+Use the darker glass palette inspired by the new dashboard reference.	新しいダッシュボード参考デザインに基づく、より濃いガラス調パレットを使用します。
+Use this password for encrypted ZIP and 7Z archives. If preview fails first, enter the password here and refresh.	暗号化された ZIP / 7Z 書庫にはこのパスワードを使用します。先にプレビューが失敗した場合は、ここにパスワードを入力して再読み込みしてください。
+Very low (< 8 MB, direct write)	非常に低い（< 8 MB、直接書き込み）
+XZ (limited parallel workers)	XZ（並列ワーカー数に制限あり）
+ZIP only encrypts file data. Archive contents can still be listed by name, but extracting file data requires the password.	ZIP はファイルデータのみを暗号化します。書庫内容のファイル名一覧は表示できますが、ファイルデータの展開にはパスワードが必要です。
+Zstandard (parallel file workers)	Zstandard（並列ファイルワーカー）
+Archive drop failed: {error}	書庫のドロップに失敗しました: {error}
+Archive not found: {archive_path}	書庫が見つかりません: {archive_path}
+Ask before overwrite	上書き前に確認
+Resolve File Conflicts	同名ファイルの競合を処理
+Conflict {current} of {total}	競合 {current} / {total}
+Archive Entry	書庫内項目
+Existing Path	既存のパス
+New File Name	新しいファイル名
+Apply this action to all remaining conflicts	この操作を残りすべての競合に適用
+Overwrite	上書き
+Skip	スキップ
+Rename	名前変更
+Overwrite cannot replace a folder destination.	上書きではフォルダーの宛先を置き換えられません。
+Conflict resolution canceled.	競合の処理をキャンセルしました。
+The new file name cannot be empty.	新しいファイル名は空にできません。
+Enter a file name only, not a folder path.	フォルダーのパスではなく、ファイル名のみを入力してください。
+The selected rename target already exists.	選択した名前変更先は既に存在します。
+The selected rename target is already reserved by another extracted file.	選択した名前変更先は、別の展開ファイルにより既に予約されています。
+Failed to inspect extraction conflicts: {error}	展開時の競合確認に失敗しました: {error}
+Start with Windows	Windows 起動時に開始
+Launch FastZIP automatically when you sign in to Windows.	Windows にサインインしたときに FastZIP を自動的に起動します。
+Enabled	有効
+Disabled	無効
+Autostart enabled.	自動起動を有効にしました。
+Autostart disabled.	自動起動を無効にしました。
+Failed to update autostart: {error}	自動起動の更新に失敗しました: {error}
+File Manager	ファイルマネージャー
+Current Path	現在のパス
+The current folder is empty.	現在のフォルダーは空です。
+Folder path not found: {path}	フォルダーのパスが見つかりません: {path}
+The selected path is not a folder: {path}	選択したパスはフォルダーではありません: {path}
+Failed to open path: {error}	パスを開けませんでした: {error}
+No files or folders are selected in the file manager.	ファイルマネージャーでファイルまたはフォルダーが選択されていません。
+View Selected Files	選択したファイルを表示
+Selected Files	選択したファイル

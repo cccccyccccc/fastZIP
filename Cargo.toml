@@ -1,0 +1,53 @@
+[package]
+name = "fastzip"
+version = "0.1.0"
+edition = "2024"
+description = "A native Rust archive extractor"
+license = "GPL-3.0"
+
+[dependencies]
+anyhow = "1.0"
+blake3 = "1.8"
+bzip2 = "0.5"
+chardetng = "0.1"
+clap = { version = "4.5", features = ["derive"] }
+crc32fast = "1.5"
+eframe = "0.33"
+egui = "0.33"
+encoding_rs = "0.8"
+flate2 = { version = "1.1", default-features = false, features = ["zlib-rs"] }
+libdeflater = "1.25.2"
+lz4_flex = "0.11"
+raw-window-handle = "0.6"
+rfd = "0.15"
+sha2 = "0.11"
+sevenz-rust2 = "0.20"
+tar = "0.4"
+tempfile = "3.23"
+wim-parser = "0.1"
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Globalization", "Win32_Graphics_Dwm", "Win32_System_Antimalware", "Win32_System_Console", "Win32_System_Registry", "Win32_UI_HiDpi", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+xz2 = "0.1"
+zip = { version = "2.4", default-features = false, features = ["aes-crypto", "bzip2", "deflate-flate2", "flate2", "deflate64", "lzma", "time", "zstd", "xz"] }
+zstd = { version = "0.13", features = ["zstdmt"] }
+iso9660_simple = "0.2.3"
+[build-dependencies]
+winres = "0.1"
+
+[dev-dependencies]
+criterion = "0.8"
+
+[[bench]]
+name = "archive_backend"
+harness = false
+
+[profile.dev.package.flate2]
+opt-level = 3
+
+[profile.dev.package.zip]
+opt-level = 3
+
+[profile.dev.package.sevenz-rust2]
+opt-level = 3
+
+[profile.dev.package.xz2]
+opt-level = 3
