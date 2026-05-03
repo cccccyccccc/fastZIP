@@ -1,5 +1,7 @@
 # FastZIP
 
+[English](README.md) | [简体中文](README_zh.md)
+
 <img src="assets/fastzip-icon.png" width="64" height="64" align="right">
 
 A native Rust archive tool with GUI and CLI. Compress, extract, test, and benchmark — all in one binary with no external dependencies for common formats.
