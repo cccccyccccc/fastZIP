@@ -4,8 +4,9 @@ use std::path::Path;
 use std::time::Instant;
 
 use anyhow::{Context, Result};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum HashAlgorithm {
     Crc32,
     Sha256,
@@ -26,11 +27,12 @@ impl HashAlgorithm {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChecksumResult {
     pub algorithm: HashAlgorithm,
     pub hex_digest: String,
     pub file_size: u64,
+    #[serde(with = "crate::serde_helpers::serde_duration")]
     pub elapsed: std::time::Duration,
 }
 

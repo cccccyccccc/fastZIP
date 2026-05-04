@@ -11,6 +11,8 @@ mod amsi;
 mod archive;
 #[path = "../encoding.rs"]
 mod encoding;
+#[path = "../serde_helpers.rs"]
+mod serde_helpers;
 
 use archive::{ArchiveService, ExtractOptions, ExtractPathPlan, OverwriteMode};
 

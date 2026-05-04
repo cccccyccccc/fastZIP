@@ -73,19 +73,19 @@ Source: "{#ReleaseDir}\{#CliExeName}"; DestDir: "{app}"; Flags: ignoreversion sk
 Source: "{#RepoRoot}\assets\{#IconFileName}"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\FastZIP"; Filename: "{app}\{#MainExeName}"; Parameters: "gui"; WorkingDir: "{app}"; IconFilename: "{app}\{#IconFileName}"
+Name: "{group}\FastZIP"; Filename: "{app}\{#MainExeName}"; WorkingDir: "{app}"; IconFilename: "{app}\{#IconFileName}"
 Name: "{group}\Uninstall FastZIP"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\FastZIP"; Filename: "{app}\{#MainExeName}"; Parameters: "gui"; WorkingDir: "{app}"; IconFilename: "{app}\{#IconFileName}"; Tasks: desktopicon
+Name: "{autodesktop}\FastZIP"; Filename: "{app}\{#MainExeName}"; WorkingDir: "{app}"; IconFilename: "{app}\{#IconFileName}"; Tasks: desktopicon
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\FastZIP.Archive"; ValueType: string; ValueData: "{cm:ArchiveTypeName}"; Flags: uninsdeletekey; Tasks: fileassoc
 Root: HKA; Subkey: "Software\Classes\FastZIP.Archive"; ValueName: "FriendlyTypeName"; ValueType: string; ValueData: "{cm:ArchiveTypeName}"; Tasks: fileassoc
 Root: HKA; Subkey: "Software\Classes\FastZIP.Archive"; ValueName: "AppUserModelID"; ValueType: string; ValueData: "FastZIP"; Tasks: fileassoc
 Root: HKA; Subkey: "Software\Classes\FastZIP.Archive\DefaultIcon"; ValueType: string; ValueData: "{app}\{#IconFileName}"; Flags: uninsdeletekeyifempty; Tasks: fileassoc
-Root: HKA; Subkey: "Software\Classes\FastZIP.Archive\shell\open\command"; ValueType: string; ValueData: """{app}\{#MainExeName}"" gui --archive ""%1"""; Flags: uninsdeletekeyifempty; Tasks: fileassoc
+Root: HKA; Subkey: "Software\Classes\FastZIP.Archive\shell\open\command"; ValueType: string; ValueData: """{app}\{#MainExeName}"" --archive ""%1"""; Flags: uninsdeletekeyifempty; Tasks: fileassoc
 
 Root: HKA; Subkey: "Software\Classes\Applications\fastzip.exe"; ValueName: "FriendlyAppName"; ValueType: string; ValueData: "FastZIP"; Flags: uninsdeletekey; Tasks: fileassoc
-Root: HKA; Subkey: "Software\Classes\Applications\fastzip.exe\shell\open\command"; ValueType: string; ValueData: """{app}\{#MainExeName}"" gui --archive ""%1"""; Flags: uninsdeletekeyifempty; Tasks: fileassoc
+Root: HKA; Subkey: "Software\Classes\Applications\fastzip.exe\shell\open\command"; ValueType: string; ValueData: """{app}\{#MainExeName}"" --archive ""%1"""; Flags: uninsdeletekeyifempty; Tasks: fileassoc
 Root: HKA; Subkey: "Software\Classes\Applications\fastzip.exe\SupportedTypes"; ValueName: ".7z"; ValueType: string; ValueData: ""; Tasks: fileassoc
 Root: HKA; Subkey: "Software\Classes\Applications\fastzip.exe\SupportedTypes"; ValueName: ".zip"; ValueType: string; ValueData: ""; Tasks: fileassoc
 Root: HKA; Subkey: "Software\Classes\Applications\fastzip.exe\SupportedTypes"; ValueName: ".tar"; ValueType: string; ValueData: ""; Tasks: fileassoc
@@ -242,10 +242,10 @@ Root: HKA; Subkey: "Software\Classes\AllFilesystemObjects\shell\FastZIPCompressT
 Root: HKA; Subkey: "Software\Classes\AllFilesystemObjects\shell\FastZIPCompressTo\shell\tarlz4"; ValueName: "MultiSelectModel"; ValueType: string; ValueData: "Player"; Tasks: contextmenu
 Root: HKA; Subkey: "Software\Classes\AllFilesystemObjects\shell\FastZIPCompressTo\shell\tarlz4\command"; ValueType: string; ValueData: """{app}\{#MainExeName}"" shell-compress --format tar.lz4 ""%1"""; Flags: uninsdeletekeyifempty; Tasks: contextmenu
 
-Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "FastZIP"; ValueType: string; ValueData: """{app}\{#MainExeName}"" gui"; Flags: uninsdeletevalue; Tasks: autostart
+Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "FastZIP"; ValueType: string; ValueData: """{app}\{#MainExeName}"""; Flags: uninsdeletevalue; Tasks: autostart
 
 [Run]
-Filename: "{app}\{#MainExeName}"; Parameters: "gui"; Description: "{cm:LaunchFastZIP}"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\{#MainExeName}"; Description: "{cm:LaunchFastZIP}"; Flags: nowait postinstall skipifsilent unchecked
 
 [CustomMessages]
 TaskDesktopIcon=Create a desktop shortcut

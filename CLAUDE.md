@@ -5,69 +5,90 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build and test commands
 
 ```powershell
-cargo build                  # debug build
+cargo build                  # debug build (workspace: lib + CLI + Tauri)
 cargo build --release        # release build
-cargo run                    # launch GUI (default entrypoint)
-cargo run -- list <archive>  # CLI: list archive entries
-cargo run -- extract <archive> -o <dir>  # CLI: extract archive
-cargo run -- compress <input> -o <output>  # CLI: compress
-cargo run -- backends        # CLI: show backend status
-cargo run -- formats         # CLI: list supported formats
-cargo test                   # run all unit tests
+cargo test --workspace       # run all unit tests
 cargo fmt -- --check         # verify formatting
 cargo bench                  # run criterion benchmarks
-.\run-fastzip.bat            # build release + launch with auto-cleanup
+
+# Frontend
+cd frontend
+pnpm install                 # install deps
+pnpm build                   # tsc + vite build
+pnpm dev                     # Vite dev server at :1420
+
+# Tauri (runs dev server + native window)
+cargo tauri dev              # interactive dev mode
+cargo tauri build            # release + platform bundle
+
+# CLI (slim binary, no GUI deps)
+cargo run --bin fastzip-cli -- list <archive>
+cargo run --bin fastzip-cli -- extract <archive> -o <dir>
+cargo run --bin fastzip-cli -- compress <input> -o <output>
+
+.\run-fastzip.bat            # build release + launch GUI with auto-cleanup
 ```
 
-The project compiles with Rust edition 2024. The CLI is also available as a separate slim binary: `cargo run --bin fastzip-cli -- <command>`.
+The project compiles with Rust edition 2024. Workspace members: `.` (lib + CLI + SFX stub), `src-tauri` (Tauri GUI binary).
 
 ## Architecture
 
-This is a Rust archive extraction/compression tool with both a native GUI (egui/eframe) and a CLI (clap). The app runs on Windows primarily but the core extraction logic is cross-platform.
+FastZIP is an archive extraction/compression tool with a Tauri v2 GUI (React + TypeScript) and a CLI (clap). The core archive logic is cross-platform; the app targets Windows primarily.
 
 ### Crate layout
 
-- **`src/lib.rs`** — modules: `archive`, `gui`, `localization`, `settings`
-- **`src/main.rs`** — GUI entrypoint (default binary). Defines `Cli` with clap derive. No-arg runs GUI; subcommands run CLI operations. Maps CLI enums to archive types.
-- **`src/bin/fastzip-cli.rs`** — Slim CLI binary without GUI startup overhead. Reuses `archive/mod.rs` via `#[path]` to avoid linking egui/eframe.
+- **`src/lib.rs`** — modules: `archive`, `tauri_commands`, `localization`, `settings`, `encoding`, `hash`, `update`, `benchmark`, `amsi`, `serde_helpers`
+- **`src-tauri/`** — Tauri v2 GUI binary (`[[bin]] name = "fastzip"`). Uses `tauri::command` invoke handler. Plugins: dialog, shell.
+- **`src/bin/fastzip-cli.rs`** — Slim CLI binary (clap). Reuses `archive/mod.rs` via `#[path]` to avoid linking Tauri.
+- **`src/bin/sfx-stub.rs`** — Self-extracting archive stub.
+- **`frontend/`** — React 18 + TypeScript + Vite + Tailwind CSS. Zustand state management.
+
+### Tauri commands (`src/tauri_commands/`)
+
+- **`archive_commands.rs`** — `inspect_archive`, `list_archive`, `test_archive`, `start_extract`, `start_compress`, `cancel_archive_task`, `get_backend_statuses`. Extract/compress run in `thread::spawn` + emit `task-progress`/`task-completed`/`task-failed`/`task-canceled` events.
+- **`settings_commands.rs`** — Language, theme, autostart, auto-update, presets CRUD, `get_translations`.
+- **`hash_commands.rs`** — `calculate_checksum`, `calculate_all_checksums`.
+- **`update_commands.rs`** — `check_for_updates`.
+- **`file_manager_commands.rs`** — `list_directory`, `get_file_info`.
+- **`benchmark_commands.rs`** — `run_benchmark`.
+- **`mod.rs`** — Global `TASK_REGISTRY` (OnceLock<Mutex<HashMap<u64, Arc<AtomicBool>>>>) for cancellation.
+
+### Frontend (`frontend/src/`)
+
+- **Pages**: Extract, Compress, Tasks, FileManager, Benchmark, Settings, Logs
+- **Components**: Layout, SideNav, TitleBar (custom chrome, `data-tauri-drag-region`), Toast, UpdateDialog, I18nProvider
+- **State**: Zustand stores — `uiStore`, `settingsStore`, `taskStore`
+- **Hooks**: `useTauriEvent`, `useI18n`, `useTheme`
+- **i18n**: Translations loaded at startup via `get_translations` command, cached in React Context
 
 ### Archive pipeline (`src/archive/`)
 
-- **`mod.rs`** — Core types: `ArchiveFormat` (detection from file extension), `BackendKind`, `ArchiveEntry`, `ExtractOptions`, `ExtractionReport`, `CompressionOptions`, `CompressionReport`, `ZipCompressionMethod`, `CompressionFormat`, `CompressionLevel`, `ExtractPathPlan`. Also contains the actual extraction/compression logic (zip, tar, gz, bz2, xz, 7z, split volumes) behind free functions.
-- **`native.rs`** — `NativeBackend` struct. Routes format detection to the correct extraction/list function. Handles split-volume archive joining (concatenates volumes to a temp file before processing). Contains the bulk of unit tests for archive operations.
-- **`rar.rs`** — `RarBackend` struct. RAR support via external `unrar.exe`/`rar.exe` process. Discovery checks `FASTZIP_RAR_TOOL` env var, PATH, and standard WinRAR install paths. Extraction stages to a temp directory for per-file cancellation support.
-- **`service.rs`** — `ArchiveService` facade. Owns both backends, routes by `ArchiveFormat` (RAR → RarBackend, everything else → NativeBackend). All public API methods delegate here.
-
-### GUI (`src/gui.rs`, ~9400 lines)
-
-Uses `egui` with `eframe` for the native window. `run_native_gui()` is the entry point. Key subsystems:
-- Custom window chrome via Windows DWM — rounded corners, custom title bar with drag, resize hit-testing via `WM_NCHITTEST`, min/max/close buttons
-- `GuiLaunchRequest` enum: opens the main window or auto-loads an archive
-- `ShellCompressionRequest` / `run_shell_compression_progress()`: Windows Explorer context menu integration for "Compress with FastZIP"
-- Main UI pages: archive browser, content inspection, extraction/compression tasks, file manager, settings
-- Background task system with progress tracking, cancellation, and file conflict resolution dialogs
-- Settings page: language switcher, Windows autostart toggle, backend status display
+- **`mod.rs`** — Core types with serde Serialize/Deserialize: `ArchiveFormat`, `BackendKind`, `ArchiveEntry`, `ExtractOptions`, `ExtractionReport`, `CompressionOptions`, `CompressionReport`, etc. Also contains extraction/compression logic (zip, tar, gz, bz2, xz, 7z, split volumes).
+- **`native.rs`** — `NativeBackend` struct. Routes format detection, handles split-volume archive joining.
+- **`rar.rs`** — `RarBackend`. RAR support via external `unrar.exe`/`rar.exe`. Discovery checks `FASTZIP_RAR_TOOL` env var, PATH, and WinRAR install paths.
+- **`service.rs`** — `ArchiveService` facade. Routes by `ArchiveFormat` (RAR → RarBackend, everything else → NativeBackend).
 
 ### Localization (`src/localization.rs`)
 
-12 supported locales. Detection order: `FASTZIP_LANG` env → settings.ini → `LC_*`/`LANG` env vars → Windows `GetUserDefaultUILanguage`. Translations stored as TSV files in `locales/` (key[TAB]translation). `localize_message()` takes an English fallback and a Chinese literal; other languages are looked up from the TSV catalog parsed at first use. The catalog includes English as a recognized code (mapped to locale 0) and Chinese/mapped variants under simplified Chinese.
+12 supported locales. Detection order: `FASTZIP_LANG` env → settings.ini → `LC_*`/`LANG` env vars → Windows `GetUserDefaultUILanguage`. Translations stored as TSV files in `locales/`. The `translations_for()` function returns a `HashMap<String, String>` for a given locale code (used by the Tauri `get_translations` command).
 
 ### Settings (`src/settings.rs`)
 
-Language preference persisted to `%LOCALAPPDATA%\FastZIP\settings.ini` as INI format (`[ui]\nlanguage=...`), with a fallback to `%PROGRAMDATA%\FastZIP\settings.ini`. Windows autostart persisted to `HKCU\Software\Microsoft\Windows\CurrentVersion\Run\FastZIP`.
+Language/theme persisted to `%LOCALAPPDATA%\FastZIP\settings.ini`. Windows autostart via `HKCU\Software\Microsoft\Windows\CurrentVersion\Run\FastZIP`.
 
 ### Tooling (`tools/`)
 
-PowerShell scripts for install/uninstall, shell context menu registration, installer building (Inno Setup via `build-installer.ps1`), and performance comparison (`zip_compare.ps1`, `zip_perf.ps1`). The installer definition is in `installer/FastZIP.iss` with a custom Chinese Simplified translation (`ChineseSimplified.isl`).
+PowerShell scripts for install/uninstall, shell context menu registration, installer building (Inno Setup via `build-installer.ps1`), and performance comparison. The installer definition is in `installer/FastZIP.iss`.
 
 ## RAR adapter
 
-RAR is intentionally isolated — it never touches the native Rust pipeline. The backend shells out to `unrar.exe`/`rar.exe`. If no tool is found, RAR operations fail gracefully; the GUI backend status panel shows the missing tool. Set `FASTZIP_RAR_TOOL` to override discovery.
+RAR is isolated from the native Rust pipeline. The backend shells out to `unrar.exe`/`rar.exe`. If no tool is found, RAR operations fail gracefully. Set `FASTZIP_RAR_TOOL` to override discovery.
 
 ## Dependencies
 
-- **Compression**: `zip` (with aes-crypto, bzip2, deflate, zstd, xz, lzma, deflate64 features), `flate2` (zlib-rs backend), `libdeflater`, `bzip2`, `xz2` (multithreaded), `tar`, `sevenz-rust2` (7z read/write)
-- **GUI**: `egui` 0.33, `eframe` 0.33, `rfd` (file dialogs), `raw-window-handle`
+- **Compression**: `zip` (aes-crypto, bzip2, deflate, zstd, xz, lzma, deflate64), `flate2` (zlib-rs), `libdeflater`, `bzip2`, `xz2` (mt), `tar`, `sevenz-rust2` (7z r/w)
+- **GUI**: Tauri v2, `tauri-plugin-dialog`, `tauri-plugin-shell`
 - **CLI**: `clap` 4.5 with derive
-- **Windows**: `windows-sys` 0.61 for DWM, HiDPI, registry, console detection, shell execute
+- **Frontend**: React 18, Zustand 5, Tailwind CSS 3, Vite 6
+- **Windows**: `windows-sys` 0.61 for AMSI, registry, globalization
 - **Dev**: `criterion` (benchmarks), `tempfile` (test fixtures)

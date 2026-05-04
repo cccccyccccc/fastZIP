@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-config-schema/schema.json",
+  "productName": "FastZIP",
+  "version": "0.2.0",
+  "identifier": "com.fastzip.app",
+  "build": {
+    "frontendDist": "../frontend/dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "cd frontend && pnpm dev",
+    "beforeBuildCommand": "cd frontend && pnpm build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "FastZIP",
+        "width": 1360,
+        "height": 780,
+        "minWidth": 925,
+        "minHeight": 530,
+        "decorations": false,
+        "resizable": true
+      }
+    ]
+  }
+}

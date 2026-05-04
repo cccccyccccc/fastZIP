@@ -1,17 +1,19 @@
 use std::time::Instant;
 
 use anyhow::{Context, Result};
+use serde::{Deserialize, Serialize};
 
 use crate::archive::{
     ArchiveService, CompressionFormat, CompressionLevel, CompressionOptions, ZipCompressionMethod,
 };
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BenchmarkEntry {
     pub format: CompressionFormat,
     pub level: CompressionLevel,
     pub input_bytes: u64,
     pub output_bytes: u64,
+    #[serde(with = "crate::serde_helpers::serde_duration")]
     pub elapsed: std::time::Duration,
 }
 

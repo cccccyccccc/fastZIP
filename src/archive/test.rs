@@ -7,6 +7,7 @@ use anyhow::{Context, Result, anyhow, bail};
 use bzip2::read::BzDecoder;
 use flate2::read::GzDecoder;
 use lz4_flex::frame::FrameDecoder as Lz4FrameDecoder;
+use serde::{Deserialize, Serialize};
 use sevenz_rust2::{ArchiveReader as SevenZReader, Password as SevenZPassword};
 use tar::Archive as TarArchive;
 use xz2::read::XzDecoder;
@@ -15,13 +16,14 @@ use zstd::stream::Decoder as ZstdDecoder;
 
 use super::{ArchiveFormat, native::open_archive, rar::RarBackend};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TestReport {
     pub archive_path: PathBuf,
     pub format: ArchiveFormat,
     pub entries_tested: u64,
     pub entries_failed: u64,
     pub bytes_read: u64,
+    #[serde(with = "crate::serde_helpers::serde_duration")]
     pub elapsed: std::time::Duration,
     pub errors: Vec<String>,
 }

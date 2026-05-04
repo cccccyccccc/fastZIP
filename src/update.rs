@@ -1,6 +1,7 @@
 use anyhow::{Context, Result};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReleaseInfo {
     pub version: String,
     pub download_url: String,

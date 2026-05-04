@@ -1,0 +1,23 @@
+[package]
+name = "fastzip-tauri"
+version = "0.2.0"
+edition = "2024"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+fastzip = { path = ".." }
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[lib]
+name = "fastzip_tauri_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "fastzip"
+path = "src/main.rs"

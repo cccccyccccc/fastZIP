@@ -2,6 +2,7 @@ use std::io::{self, Read, Write};
 use std::path::{Path, PathBuf};
 
 use anyhow::{Context, Result};
+use serde::{Deserialize, Serialize};
 
 use super::test::TestReport;
 use super::{
@@ -10,7 +11,7 @@ use super::{
     native::NativeBackend, rar::RarBackend, test,
 };
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BackendStatus {
     pub kind: BackendKind,
     pub label: String,
@@ -19,7 +20,7 @@ pub struct BackendStatus {
     pub formats: Vec<String>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ArchiveInspection {
     pub archive_path: PathBuf,
     pub format: ArchiveFormat,

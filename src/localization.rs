@@ -253,3 +253,14 @@ static PT_BR_CATALOG: OnceLock<HashMap<&'static str, &'static str>> = OnceLock::
 static RU_CATALOG: OnceLock<HashMap<&'static str, &'static str>> = OnceLock::new();
 static AR_CATALOG: OnceLock<HashMap<&'static str, &'static str>> = OnceLock::new();
 static TR_CATALOG: OnceLock<HashMap<&'static str, &'static str>> = OnceLock::new();
+
+pub fn translations_for(locale_code: &str) -> HashMap<String, String> {
+    catalog_for(locale_code)
+        .map(|catalog| {
+            catalog
+                .iter()
+                .map(|(k, v)| (k.to_string(), v.to_string()))
+                .collect()
+        })
+        .unwrap_or_default()
+}

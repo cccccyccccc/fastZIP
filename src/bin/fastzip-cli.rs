@@ -16,6 +16,8 @@ mod benchmark;
 mod encoding;
 #[path = "../hash.rs"]
 mod hash;
+#[path = "../serde_helpers.rs"]
+mod serde_helpers;
 #[path = "../settings.rs"]
 mod settings;
 

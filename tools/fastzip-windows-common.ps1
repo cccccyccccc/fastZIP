@@ -342,7 +342,7 @@ function Register-FastZipArchiveAssociations {
     $scopeInfo = Get-FastZipRegistryScopeInfo -Scope $Scope
     $archiveExtensions = Get-FastZipArchiveExtensions
     $quotedExe = '"' + $resolvedExePath + '"'
-    $openArchiveCommand = '{0} gui --archive "%1"' -f $quotedExe
+    $openArchiveCommand = '{0} --archive "%1"' -f $quotedExe
 
     $progIdKey = Join-Path $scopeInfo.ClassesRoot $FastZipProgId
     Set-DefaultValue $progIdKey "FastZIP Archive"
@@ -483,7 +483,7 @@ function Set-FastZipAutostart {
     $runKey = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run"
     if ($Enabled) {
         $resolvedExePath = [System.IO.Path]::GetFullPath($ExePath)
-        Set-StringValue $runKey "FastZIP" ('"{0}" gui' -f $resolvedExePath)
+        Set-StringValue $runKey "FastZIP" ('"{0}"' -f $resolvedExePath)
     } else {
         Remove-RegistryValue $runKey "FastZIP"
     }
@@ -536,7 +536,6 @@ function Install-FastZipShortcuts {
     New-FastZipShortcut `
         -ShortcutPath (Join-Path $programsFolder "FastZIP.lnk") `
         -TargetPath $ExePath `
-        -Arguments "gui" `
         -WorkingDirectory $InstallDir `
         -IconLocation $iconLocation
 
@@ -551,7 +550,6 @@ function Install-FastZipShortcuts {
         New-FastZipShortcut `
             -ShortcutPath (Join-Path $scopeInfo.DesktopFolder "FastZIP.lnk") `
             -TargetPath $ExePath `
-            -Arguments "gui" `
             -WorkingDirectory $InstallDir `
             -IconLocation $iconLocation
     }

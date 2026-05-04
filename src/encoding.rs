@@ -1,7 +1,8 @@
+use serde::{Deserialize, Serialize};
 use std::fmt;
 
 /// Filename encoding hint for non-UTF-8 archives (primarily ZIP).
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum FilenameEncoding {
     /// Keep the raw bytes as-is (default if UTF-8 is valid).
     Utf8,

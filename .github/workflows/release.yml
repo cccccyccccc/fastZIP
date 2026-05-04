@@ -38,12 +38,31 @@ jobs:
           rustup toolchain install stable --profile minimal -t ${{ matrix.target }}
           rustup default stable
 
-      - name: Install Linux system deps (GUI)
-        if: runner.os == 'Linux' && matrix.gui
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          pnpm install --frozen-lockfile
+          pnpm build
+        env:
+          CI: true
+
+      - name: Install Linux system deps
+        if: runner.os == 'Linux'
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
-            libxkbcommon-dev libwayland-dev libx11-dev libgtk-3-dev libudev-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libxdo-dev \
+            libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
+            libxkbcommon-dev libwayland-dev libx11-dev libudev-dev
 
       - uses: Swatinem/rust-cache@v2
         with:
@@ -182,7 +201,6 @@ jobs:
           set -euxo pipefail
           for dir in artifacts/*/; do
             name=$(basename "$dir")
-            # Skip already-packaged platform dirs and the installer
             if [[ "$name" == FastZIP-Installer ]] || [[ "$name" == fastzip-pkg-* ]]; then
               continue
             fi
@@ -192,12 +210,10 @@ jobs:
               (cd "$dir" && tar -caf "../${name}.tar.gz" *)
             fi
           done
-          # Package Linux and macOS platform bundles
           for dir in artifacts/fastzip-pkg-*/; do
             name=$(basename "$dir")
             pkgname="${name#fastzip-pkg-}"
             (cd "$dir" && tar -caf "../${pkgname}.tar.gz" *)
-            # remove the raw dir so it's not uploaded twice
             rm -rf "$dir"
           done
           ls -lh artifacts/
@@ -230,21 +246,6 @@ jobs:
             | File | Description |
             |------|-------------|
             | `x86_64-apple-darwin.tar.gz` | GUI + CLI |
-
-            ### Linux setup
-
-            ```bash
-            tar xf x86_64-unknown-linux-gnu.tar.gz
-            cd fastzip-x86_64-unknown-linux-gnu
-            sudo ./install-fastzip-linux.sh
-            ```
-
-            ### macOS setup
-
-            ```bash
-            tar xf x86_64-apple-darwin.tar.gz
-            sudo cp fastzip-apple-darwin/fastzip /usr/local/bin/
-            ```
 
             See the [README](https://github.com/ccccyccccc/fastZIP#readme) for more details.
           files: artifacts/*

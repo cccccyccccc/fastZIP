@@ -1,7 +1,7 @@
 mod iso;
 mod native;
 mod rar;
-mod service;
+pub mod service;
 mod sfx;
 pub mod test;
 mod wim;
@@ -20,6 +20,7 @@ use std::thread;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
 use anyhow::{Context, Result, anyhow, bail};
+use serde::{Deserialize, Serialize};
 
 use crate::encoding::{FilenameEncoding, decode_zip_filename};
 use bzip2::Compression as BzCompression;
@@ -55,7 +56,8 @@ use zstd::stream::Encoder as ZstdEncoder;
 pub use service::{ArchiveInspection, ArchiveService, BackendStatus};
 pub use test::TestReport;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum ArchiveFormat {
     SevenZip,
     Zip,
@@ -191,7 +193,8 @@ impl fmt::Display for ArchiveFormat {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum BackendKind {
     Native,
     RarAdapter,
@@ -206,7 +209,7 @@ impl BackendKind {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ArchiveEntry {
     pub path: PathBuf,
     pub is_dir: bool,
@@ -214,14 +217,15 @@ pub struct ArchiveEntry {
     pub compressed_size: Option<u64>,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum OverwriteMode {
     Overwrite,
     Skip,
     Error,
 }
 
-#[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExtractPathPlan {
     pub skipped_paths: BTreeSet<PathBuf>,
     pub renamed_paths: BTreeMap<PathBuf, PathBuf>,
@@ -241,7 +245,7 @@ impl ExtractPathPlan {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExtractOptions {
     pub output_dir: PathBuf,
     pub overwrite_mode: OverwriteMode,
@@ -270,7 +274,7 @@ impl ExtractOptions {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExtractionReport {
     pub output_dir: PathBuf,
     pub files_written: usize,
@@ -287,7 +291,7 @@ impl ExtractionReport {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompressionReport {
     pub archive_path: PathBuf,
     pub files_added: usize,
@@ -308,7 +312,8 @@ impl CompressionReport {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum CompressionFormat {
     SevenZip,
     Zip,
@@ -489,7 +494,8 @@ impl fmt::Display for CompressionFormat {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum CompressionLevel {
     Fastest,
     Fast,
@@ -600,7 +606,8 @@ impl CompressionLevel {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum ZipCompressionMethod {
     Deflate,
     Stored,
@@ -635,7 +642,7 @@ impl ZipCompressionMethod {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompressionOptions {
     pub format: CompressionFormat,
     pub level: CompressionLevel,
