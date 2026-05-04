@@ -70,7 +70,10 @@ pub fn file_checksum(path: &Path, algorithm: HashAlgorithm) -> Result<ChecksumRe
                 total_bytes += n as u64;
             }
             let digest = hasher.finalize();
-            let hex = digest.iter().map(|b| format!("{:02x}", b)).collect::<String>();
+            let hex = digest
+                .iter()
+                .map(|b| format!("{:02x}", b))
+                .collect::<String>();
             Ok(ChecksumResult {
                 algorithm,
                 hex_digest: hex,

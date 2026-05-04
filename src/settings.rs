@@ -10,9 +10,9 @@ use anyhow::{Context, Result, anyhow, bail};
 
 use crate::archive::{CompressionFormat, CompressionLevel, ZipCompressionMethod};
 #[cfg(target_os = "windows")]
-use windows_sys::Win32::Foundation::ERROR_FILE_NOT_FOUND;
-#[cfg(target_os = "windows")]
 use windows_sys::Win32::Foundation::ERROR_ACCESS_DENIED;
+#[cfg(target_os = "windows")]
+use windows_sys::Win32::Foundation::ERROR_FILE_NOT_FOUND;
 #[cfg(target_os = "windows")]
 use windows_sys::Win32::System::Registry::{
     HKEY, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, KEY_QUERY_VALUE, KEY_SET_VALUE, REG_SZ,
@@ -320,7 +320,13 @@ fn delete_autostart_value(root: HKEY) -> Result<()> {
     let subkey = wide_null(OsStr::new(AUTOSTART_RUN_SUBKEY));
     let mut key: HKEY = std::ptr::null_mut();
     let status = unsafe {
-        RegOpenKeyExW(root, subkey.as_ptr(), 0, KEY_SET_VALUE | KEY_QUERY_VALUE, &mut key)
+        RegOpenKeyExW(
+            root,
+            subkey.as_ptr(),
+            0,
+            KEY_SET_VALUE | KEY_QUERY_VALUE,
+            &mut key,
+        )
     };
     if status == ERROR_FILE_NOT_FOUND {
         return Ok(());
@@ -520,12 +526,24 @@ pub fn encode_preset_value(
     )
 }
 
-pub fn decode_preset_value(value: &str) -> Result<(CompressionFormat, CompressionLevel, ZipCompressionMethod, u32, bool)> {
+pub fn decode_preset_value(
+    value: &str,
+) -> Result<(
+    CompressionFormat,
+    CompressionLevel,
+    ZipCompressionMethod,
+    u32,
+    bool,
+)> {
     let parts: Vec<&str> = value.split('|').collect();
     if parts.len() != 5 {
-        bail!("Invalid preset value: expected 5 fields, got {}", parts.len());
+        bail!(
+            "Invalid preset value: expected 5 fields, got {}",
+            parts.len()
+        );
     }
-    let format = CompressionFormat::detect(&std::path::PathBuf::from(format!("dummy{}", parts[0])))?;
+    let format =
+        CompressionFormat::detect(&std::path::PathBuf::from(format!("dummy{}", parts[0])))?;
     let level = parse_level_name(parts[1])?;
     let method = parse_method_name(parts[2])?;
     let threads: u32 = parts[3].parse().unwrap_or(1);

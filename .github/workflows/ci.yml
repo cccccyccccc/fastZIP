@@ -41,10 +41,10 @@ jobs:
           key: ${{ matrix.target }}
 
       - name: Build
-        run: cargo build --locked --target ${{ matrix.target }}
+        run: cargo build --target ${{ matrix.target }}
 
       - name: Test
-        run: cargo test --locked --target ${{ matrix.target }}
+        run: cargo test --target ${{ matrix.target }}
 
   # Cross-compilation checks (build-only, no test runner)
   cross-check:
@@ -80,7 +80,7 @@ jobs:
           key: cross-${{ matrix.target }}
 
       - name: Build
-        run: ${{ env.CARGO }} build --locked --target ${{ matrix.target }}
+        run: ${{ env.CARGO }} build --target ${{ matrix.target }}
 
   fmt:
     name: Format

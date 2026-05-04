@@ -73,7 +73,9 @@ fn is_newer(latest: &str, current: &str) -> bool {
 }
 
 fn parse_semver(v: &str) -> (u32, u32, u32) {
-    let mut parts = v.split(|c: char| !c.is_ascii_digit()).filter(|s| !s.is_empty());
+    let mut parts = v
+        .split(|c: char| !c.is_ascii_digit())
+        .filter(|s| !s.is_empty());
     let major: u32 = parts.next().and_then(|s| s.parse().ok()).unwrap_or(0);
     let minor: u32 = parts.next().and_then(|s| s.parse().ok()).unwrap_or(0);
     let patch: u32 = parts.next().and_then(|s| s.parse().ok()).unwrap_or(0);
@@ -88,8 +90,14 @@ mod tests {
     fn test_extract_json_string() {
         let json = r#"{"tag_name": "v0.2.0", "html_url": "https://example.com/releases/tag/v0.2.0", "body": "Release notes - Feature A - Bug fix B"}"#;
         assert_eq!(extract_json_string(json, "tag_name"), Some("v0.2.0"));
-        assert_eq!(extract_json_string(json, "html_url"), Some("https://example.com/releases/tag/v0.2.0"));
-        assert_eq!(extract_json_string(json, "body"), Some("Release notes - Feature A - Bug fix B"));
+        assert_eq!(
+            extract_json_string(json, "html_url"),
+            Some("https://example.com/releases/tag/v0.2.0")
+        );
+        assert_eq!(
+            extract_json_string(json, "body"),
+            Some("Release notes - Feature A - Bug fix B")
+        );
     }
 
     #[test]

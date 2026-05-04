@@ -26,10 +26,7 @@ impl AmsiSession {
 
         let mut context = std::ptr::null_mut();
         let hr = unsafe {
-            windows_sys::Win32::System::Antimalware::AmsiInitialize(
-                app_name.as_ptr(),
-                &mut context,
-            )
+            windows_sys::Win32::System::Antimalware::AmsiInitialize(app_name.as_ptr(), &mut context)
         };
 
         if hr != 0 || context.is_null() {
@@ -38,10 +35,7 @@ impl AmsiSession {
 
         let mut session = std::ptr::null_mut();
         let hr = unsafe {
-            windows_sys::Win32::System::Antimalware::AmsiOpenSession(
-                context,
-                &mut session,
-            )
+            windows_sys::Win32::System::Antimalware::AmsiOpenSession(context, &mut session)
         };
 
         if hr != 0 {

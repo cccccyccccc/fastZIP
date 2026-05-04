@@ -98,7 +98,10 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("zip-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
+                            keep_paths: true,
+                            filename_encoding: FilenameEncoding::Utf8,
+                            password: None,
+                            scan_files: false,
                         },
                     )
                     .unwrap();
@@ -118,7 +121,10 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("tar-gz-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
+                            keep_paths: true,
+                            filename_encoding: FilenameEncoding::Utf8,
+                            password: None,
+                            scan_files: false,
                         },
                     )
                     .unwrap();
@@ -138,7 +144,10 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("tar-bz2-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
+                            keep_paths: true,
+                            filename_encoding: FilenameEncoding::Utf8,
+                            password: None,
+                            scan_files: false,
                         },
                     )
                     .unwrap();
@@ -158,7 +167,10 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("tar-xz-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
+                            keep_paths: true,
+                            filename_encoding: FilenameEncoding::Utf8,
+                            password: None,
+                            scan_files: false,
                         },
                     )
                     .unwrap();
@@ -183,7 +195,10 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("gz-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
+                            keep_paths: true,
+                            filename_encoding: FilenameEncoding::Utf8,
+                            password: None,
+                            scan_files: false,
                         },
                     )
                     .unwrap();

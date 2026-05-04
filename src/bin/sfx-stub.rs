@@ -4,11 +4,11 @@
 use std::io::{Read, Seek, SeekFrom};
 use std::process::Command;
 
-#[path = "../archive/mod.rs"]
-mod archive;
 #[cfg(target_os = "windows")]
 #[path = "../amsi.rs"]
 mod amsi;
+#[path = "../archive/mod.rs"]
+mod archive;
 #[path = "../encoding.rs"]
 mod encoding;
 
@@ -105,9 +105,7 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     )?;
 
     // Open Explorer
-    let _ = Command::new("explorer")
-        .arg(output_dir.as_os_str())
-        .spawn();
+    let _ = Command::new("explorer").arg(output_dir.as_os_str()).spawn();
 
     Ok(())
 }

@@ -5,11 +5,11 @@ use std::path::PathBuf;
 use anyhow::Result;
 use clap::{Parser, Subcommand, ValueEnum};
 
-#[path = "../archive/mod.rs"]
-mod archive;
 #[cfg(target_os = "windows")]
 #[path = "../amsi.rs"]
 mod amsi;
+#[path = "../archive/mod.rs"]
+mod archive;
 #[path = "../benchmark.rs"]
 mod benchmark;
 #[path = "../encoding.rs"]
@@ -229,8 +229,8 @@ fn run() -> Result<()> {
                 let fmt = format.ok_or_else(|| {
                     anyhow::anyhow!("--format is required when reading archive from stdin")
                 })?;
-                let entries =
-                    service.list_archive_from_stdin(map_archive_format(fmt), password.as_deref())?;
+                let entries = service
+                    .list_archive_from_stdin(map_archive_format(fmt), password.as_deref())?;
                 println!("archive: <stdin>");
                 println!("format: {}", map_archive_format(fmt));
                 println!(
@@ -255,8 +255,7 @@ fn run() -> Result<()> {
                 }
             } else {
                 let inspection = service.inspect_archive(&archive)?;
-                let entries =
-                    service.list_archive_with_password(&archive, password.as_deref())?;
+                let entries = service.list_archive_with_password(&archive, password.as_deref())?;
                 println!("archive: {}", archive.display());
                 println!("format: {}", inspection.format);
                 println!("backend: {}", inspection.backend_label);
@@ -360,8 +359,13 @@ fn run() -> Result<()> {
                 .as_deref()
                 .map(parse_volume_size_spec)
                 .transpose()?;
-            let (mut preset_format, mut preset_level, mut preset_method, mut preset_threads, mut preset_encrypt) =
-                (None, None, None, None, None);
+            let (
+                mut preset_format,
+                mut preset_level,
+                mut preset_method,
+                mut preset_threads,
+                mut preset_encrypt,
+            ) = (None, None, None, None, None);
             if let Some(ref preset_name) = preset {
                 if let Some(preset_value) = settings::load_preset(preset_name) {
                     match settings::decode_preset_value(&preset_value) {
@@ -372,7 +376,9 @@ fn run() -> Result<()> {
                             preset_threads = Some(thr);
                             preset_encrypt = Some(enc);
                         }
-                        Err(e) => eprintln!("Warning: Failed to decode preset '{preset_name}': {e:#}"),
+                        Err(e) => {
+                            eprintln!("Warning: Failed to decode preset '{preset_name}': {e:#}")
+                        }
                     }
                 } else {
                     eprintln!("Warning: Preset '{preset_name}' not found");
@@ -385,11 +391,9 @@ fn run() -> Result<()> {
                     .unwrap_or(CompressionFormat::Zip)
             } else {
                 preset_format.unwrap_or_else(|| {
-                    format
-                        .map(map_compression_format)
-                        .unwrap_or_else(|| {
-                            CompressionFormat::detect(&output).unwrap_or(CompressionFormat::Zip)
-                        })
+                    format.map(map_compression_format).unwrap_or_else(|| {
+                        CompressionFormat::detect(&output).unwrap_or(CompressionFormat::Zip)
+                    })
                 })
             };
             let options = CompressionOptions {

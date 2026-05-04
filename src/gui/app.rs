@@ -2,9 +2,11 @@ use std::env;
 
 use super::*;
 
-
 impl FastZipGui {
-    pub(super) fn new(cc: &eframe::CreationContext<'_>, launch_request: Option<GuiLaunchRequest>) -> Self {
+    pub(super) fn new(
+        cc: &eframe::CreationContext<'_>,
+        launch_request: Option<GuiLaunchRequest>,
+    ) -> Self {
         #[cfg(target_os = "windows")]
         let root_hwnd = configure_native_window(cc);
         #[cfg(not(target_os = "windows"))]
@@ -228,10 +230,7 @@ impl FastZipGui {
         if (result as usize) > 32 {
             // UAC elevation succeeded, re-check autostart state
             self.autostart_enabled = load_autostart_enabled().unwrap_or(false);
-            let message = self.t(
-                "Autostart disabled successfully.",
-                "已成功关闭开机自启动。",
-            );
+            let message = self.t("Autostart disabled successfully.", "已成功关闭开机自启动。");
             self.push_log(message.to_string());
             self.show_toast(FeedbackTone::Success, message);
         } else {
@@ -312,7 +311,6 @@ impl FastZipGui {
             SideNavItem::FileManager
             | SideNavItem::Tasks
             | SideNavItem::Logs
-            
             | SideNavItem::Settings => {}
         }
     }
@@ -615,9 +613,11 @@ impl FastZipGui {
         self.compress_sources = sources;
         self.compress_excluded_paths.clear();
         self.reset_compress_browser();
-        if let Some(suggested_output) =
-            suggested_archive_output_path(&self.compress_sources, self.compression_options.format, self.language)
-        {
+        if let Some(suggested_output) = suggested_archive_output_path(
+            &self.compress_sources,
+            self.compression_options.format,
+            self.language,
+        ) {
             self.compress_output_path = suggested_output.display().to_string();
         }
 
@@ -640,9 +640,12 @@ impl FastZipGui {
 
     pub(super) fn append_compress_sources(&mut self, mut dropped_sources: Vec<PathBuf>) {
         let previous_sources = self.compress_sources.clone();
-        let previous_suggested_output =
-            suggested_archive_output_path(&previous_sources, self.compression_options.format, self.language)
-                .map(|path| path.display().to_string());
+        let previous_suggested_output = suggested_archive_output_path(
+            &previous_sources,
+            self.compression_options.format,
+            self.language,
+        )
+        .map(|path| path.display().to_string());
         let current_output = self.compress_output_path.trim().to_string();
 
         dropped_sources.sort();
@@ -742,9 +745,12 @@ impl FastZipGui {
     pub(super) fn remove_compress_source(&mut self, path: &Path) {
         let previous_sources = self.compress_sources.clone();
         let previous_count = previous_sources.len();
-        let previous_suggested_output =
-            suggested_archive_output_path(&previous_sources, self.compression_options.format, self.language)
-                .map(|value| value.display().to_string());
+        let previous_suggested_output = suggested_archive_output_path(
+            &previous_sources,
+            self.compression_options.format,
+            self.language,
+        )
+        .map(|value| value.display().to_string());
         let current_output = self.compress_output_path.trim().to_string();
 
         self.compress_sources.retain(|source| source != path);
@@ -885,9 +891,11 @@ impl FastZipGui {
         self.activate_workspace(WorkspaceMode::Compress);
 
         let mut dialog = FileDialog::new();
-        if let Some(default_output) =
-            suggested_archive_output_path(&self.compress_sources, self.compression_options.format, self.language)
-        {
+        if let Some(default_output) = suggested_archive_output_path(
+            &self.compress_sources,
+            self.compression_options.format,
+            self.language,
+        ) {
             if let Some(parent) = default_output.parent() {
                 dialog = dialog.set_directory(parent);
             }
@@ -977,7 +985,6 @@ impl FastZipGui {
             SideNavItem::FileManager
             | SideNavItem::Tasks
             | SideNavItem::Logs
-            
             | SideNavItem::Settings => {}
         }
     }
@@ -1115,9 +1122,12 @@ impl FastZipGui {
                 return;
             }
         };
-        let password: Option<String> = (!self.extract_password.is_empty())
-            .then_some(self.extract_password.clone());
-        match self.service.test_archive_with_password(&archive_path, password.as_deref()) {
+        let password: Option<String> =
+            (!self.extract_password.is_empty()).then_some(self.extract_password.clone());
+        match self
+            .service
+            .test_archive_with_password(&archive_path, password.as_deref())
+        {
             Ok(report) => {
                 self.test_report = Some(report);
                 self.show_test_result_dialog = true;
@@ -1298,7 +1308,9 @@ impl FastZipGui {
         Ok(conflicts)
     }
 
-    pub(super) fn reserved_extract_conflict_paths(dialog: &ExtractConflictDialogState) -> BTreeSet<PathBuf> {
+    pub(super) fn reserved_extract_conflict_paths(
+        dialog: &ExtractConflictDialogState,
+    ) -> BTreeSet<PathBuf> {
         dialog.task.plan.renamed_paths.values().cloned().collect()
     }
 
@@ -2199,7 +2211,6 @@ impl FastZipGui {
         }
     }
 
-
     pub(super) fn poll_task_jobs(&mut self, ctx: &Context) {
         if let Some(receiver) = &self.task_receiver {
             loop {
@@ -2728,9 +2739,7 @@ impl FastZipGui {
                         if ui
                             .add(
                                 Button::new(
-                                    RichText::new(copy_label)
-                                        .size(11.0)
-                                        .color(palette.primary),
+                                    RichText::new(copy_label).size(11.0).color(palette.primary),
                                 )
                                 .fill(palette.surface_high)
                                 .stroke(Stroke::new(1.0, palette.outline_variant))
@@ -2778,33 +2787,24 @@ impl FastZipGui {
                                             .strong()
                                             .color(palette.text),
                                     );
-                                    ui.with_layout(
-                                        Layout::right_to_left(Align::Center),
-                                        |ui| {
-                                            if ui
-                                                .add(
-                                                    Button::new(
-                                                        RichText::new(
-                                                            self.t("Copy", "复制"),
-                                                        )
+                                    ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                                        if ui
+                                            .add(
+                                                Button::new(
+                                                    RichText::new(self.t("Copy", "复制"))
                                                         .size(11.0)
                                                         .color(palette.primary),
-                                                    )
-                                                    .fill(palette.surface_high)
-                                                    .stroke(Stroke::new(
-                                                        1.0,
-                                                        palette.outline_variant,
-                                                    ))
-                                                    .corner_radius(6.0)
-                                                    .min_size(Vec2::new(64.0, 26.0)),
                                                 )
-                                                .clicked()
-                                            {
-                                                ui.ctx()
-                                                    .copy_text(result.hex_digest.clone());
-                                            }
-                                        },
-                                    );
+                                                .fill(palette.surface_high)
+                                                .stroke(Stroke::new(1.0, palette.outline_variant))
+                                                .corner_radius(6.0)
+                                                .min_size(Vec2::new(64.0, 26.0)),
+                                            )
+                                            .clicked()
+                                        {
+                                            ui.ctx().copy_text(result.hex_digest.clone());
+                                        }
+                                    });
                                 });
                                 ui.add_space(6.0);
                                 ui.label(
@@ -2833,10 +2833,7 @@ impl FastZipGui {
                 ui.add_space(14.0);
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     if ui
-                        .add(
-                            Button::new(self.t("Close", "关闭"))
-                                .min_size(Vec2::new(96.0, 36.0)),
-                        )
+                        .add(Button::new(self.t("Close", "关闭")).min_size(Vec2::new(96.0, 36.0)))
                         .clicked()
                     {
                         close_requested = true;
@@ -3098,8 +3095,7 @@ impl FastZipGui {
                                     if entry.show_extract_action {
                                         extract_target = Some(entry.path.clone());
                                     } else {
-                                        view_target =
-                                            Some((entry.path.clone(), entry.is_dir));
+                                        view_target = Some((entry.path.clone(), entry.is_dir));
                                     }
                                 }
                                 if entry.show_extract_action
@@ -3239,9 +3235,14 @@ impl FastZipGui {
         compact_glass_panel(palette.panel_fill, palette).show(ui, |ui| {
             let button_width = 154.0;
             let field_gap = 12.0;
-            let extra_test_button = if is_compress { 0.0 } else { button_width + field_gap };
+            let extra_test_button = if is_compress {
+                0.0
+            } else {
+                button_width + field_gap
+            };
             let field_width =
-                ((ui.available_width() - button_width - extra_test_button - field_gap * 2.0) / 2.0).max(160.0);
+                ((ui.available_width() - button_width - extra_test_button - field_gap * 2.0) / 2.0)
+                    .max(160.0);
 
             if ui.available_width() >= 900.0 {
                 ui.horizontal(|ui| {
@@ -3325,9 +3326,7 @@ impl FastZipGui {
                             |ui| {
                                 let test_label = self.t("Test", "测试");
                                 let button = Button::new(
-                                    RichText::new(test_label)
-                                        .size(11.0)
-                                        .color(palette.text),
+                                    RichText::new(test_label).size(11.0).color(palette.text),
                                 )
                                 .fill(palette.surface_highest)
                                 .stroke(Stroke::new(1.0, palette.outline_variant))
@@ -3400,15 +3399,12 @@ impl FastZipGui {
                     if !is_compress {
                         ui.add_space(6.0);
                         let test_label = self.t("Test", "测试");
-                        let test_button = Button::new(
-                            RichText::new(test_label)
-                                .size(11.0)
-                                .color(palette.text),
-                        )
-                        .fill(palette.surface_highest)
-                        .stroke(Stroke::new(1.0, palette.outline_variant))
-                        .corner_radius(10.0)
-                        .min_size(Vec2::new(160.0, 32.0));
+                        let test_button =
+                            Button::new(RichText::new(test_label).size(11.0).color(palette.text))
+                                .fill(palette.surface_highest)
+                                .stroke(Stroke::new(1.0, palette.outline_variant))
+                                .corner_radius(10.0)
+                                .min_size(Vec2::new(160.0, 32.0));
 
                         if ui.add(test_button).clicked() {
                             self.test_current_archive();
@@ -3473,7 +3469,10 @@ impl FastZipGui {
         ));
     }
 
-    pub(super) fn compression_method_description_for(&self, options: &CompressionOptions) -> String {
+    pub(super) fn compression_method_description_for(
+        &self,
+        options: &CompressionOptions,
+    ) -> String {
         match options.format {
             CompressionFormat::SevenZip => self.t("LZMA2 stream", "LZMA2 压缩流").to_string(),
             CompressionFormat::Zip => match options.zip_method {
@@ -3507,13 +3506,9 @@ impl FastZipGui {
             CompressionFormat::Gz => self.t("GZip stream", "GZip 压缩流").to_string(),
             CompressionFormat::Bz2 => self.t("BZip2 stream", "BZip2 压缩流").to_string(),
             CompressionFormat::Xz => self.t("XZ stream", "XZ 压缩流").to_string(),
-            CompressionFormat::TarZst => {
-                self.t("Zstd stream", "Zstd 压缩流").to_string()
-            }
+            CompressionFormat::TarZst => self.t("Zstd stream", "Zstd 压缩流").to_string(),
             CompressionFormat::Zst => self.t("Zstd stream", "Zstd 压缩流").to_string(),
-            CompressionFormat::TarLz4 => {
-                self.t("LZ4 stream", "LZ4 压缩流").to_string()
-            }
+            CompressionFormat::TarLz4 => self.t("LZ4 stream", "LZ4 压缩流").to_string(),
             CompressionFormat::Lz4 => self.t("LZ4 stream", "LZ4 压缩流").to_string(),
         }
     }
@@ -3655,13 +3650,9 @@ impl FastZipGui {
             (CompressionFormat::Bz2, _, _) => self.t("Medium (~32 MB)", "中（约 32 MB）"),
             (CompressionFormat::Xz, _, _) => self.t("High (~64 MB+)", "高（约 64 MB+）"),
             (CompressionFormat::Zst, _, _) => self.t("Medium (~32 MB)", "中（约 32 MB）"),
-            (CompressionFormat::TarZst, _, _) => {
-                self.t("Medium (~32 MB)", "中（约 32 MB）")
-            }
+            (CompressionFormat::TarZst, _, _) => self.t("Medium (~32 MB)", "中（约 32 MB）"),
             (CompressionFormat::Lz4, _, _) => self.t("Very low (< 8 MB)", "很低（< 8 MB）"),
-            (CompressionFormat::TarLz4, _, _) => {
-                self.t("Very low (< 8 MB)", "很低（< 8 MB）")
-            }
+            (CompressionFormat::TarLz4, _, _) => self.t("Very low (< 8 MB)", "很低（< 8 MB）"),
             (CompressionFormat::Zip, _, _) => unreachable!("ZIP handled above"),
         };
         memory.to_string()
@@ -4694,10 +4685,7 @@ impl FastZipGui {
                 ui.add_space(14.0);
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     if ui
-                        .add(
-                            Button::new(self.t("Cancel", "取消"))
-                                .min_size(Vec2::new(80.0, 32.0)),
-                        )
+                        .add(Button::new(self.t("Cancel", "取消")).min_size(Vec2::new(80.0, 32.0)))
                         .clicked()
                     {
                         close_requested = true;
@@ -4708,8 +4696,7 @@ impl FastZipGui {
                         .add_enabled(
                             can_save,
                             Button::new(
-                                RichText::new(self.t("Save", "保存"))
-                                    .color(palette.on_primary),
+                                RichText::new(self.t("Save", "保存")).color(palette.on_primary),
                             )
                             .fill(palette.primary_strong)
                             .corner_radius(8.0)
@@ -4787,12 +4774,9 @@ impl FastZipGui {
 
                 if preset_names.is_empty() {
                     ui.label(
-                        RichText::new(self.t(
-                            "No presets saved yet.",
-                            "尚未保存任何预设。",
-                        ))
-                        .size(13.0)
-                        .color(palette.text_secondary),
+                        RichText::new(self.t("No presets saved yet.", "尚未保存任何预设。"))
+                            .size(13.0)
+                            .color(palette.text_secondary),
                     );
                 } else {
                     ScrollArea::vertical()
@@ -4801,54 +4785,37 @@ impl FastZipGui {
                         .show(ui, |ui| {
                             for name in &preset_names {
                                 ui.horizontal(|ui| {
-                                    ui.label(
-                                        RichText::new(name)
-                                            .size(13.0)
-                                            .color(palette.text),
-                                    );
-                                    ui.with_layout(
-                                        Layout::right_to_left(Align::Center),
-                                        |ui| {
-                                            if ui
-                                                .add(
-                                                    Button::new(
-                                                        RichText::new(
-                                                            self.t("Delete", "删除"),
-                                                        )
+                                    ui.label(RichText::new(name).size(13.0).color(palette.text));
+                                    ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                                        if ui
+                                            .add(
+                                                Button::new(
+                                                    RichText::new(self.t("Delete", "删除"))
                                                         .size(11.0)
                                                         .color(palette.error),
-                                                    )
-                                                    .fill(palette.surface_high)
-                                                    .stroke(Stroke::new(
-                                                        1.0,
-                                                        palette.outline_variant,
-                                                    ))
-                                                    .corner_radius(6.0)
-                                                    .min_size(Vec2::new(64.0, 26.0)),
                                                 )
-                                                .clicked()
-                                            {
-                                                if let Err(e) =
-                                                    crate::settings::delete_preset(name)
-                                                {
-                                                    self.show_toast(
-                                                        FeedbackTone::Error,
-                                                        self.language.format(
-                                                            "Failed to delete preset: {error}",
-                                                            "删除预设失败：{error}",
-                                                            &[(
-                                                                "{error}",
-                                                                format!("{e:#}"),
-                                                            )],
-                                                        ),
-                                                    );
-                                                }
-                                                // Force close/reopen to refresh list
-                                                close_requested = true;
-                                                ui.ctx().request_repaint();
+                                                .fill(palette.surface_high)
+                                                .stroke(Stroke::new(1.0, palette.outline_variant))
+                                                .corner_radius(6.0)
+                                                .min_size(Vec2::new(64.0, 26.0)),
+                                            )
+                                            .clicked()
+                                        {
+                                            if let Err(e) = crate::settings::delete_preset(name) {
+                                                self.show_toast(
+                                                    FeedbackTone::Error,
+                                                    self.language.format(
+                                                        "Failed to delete preset: {error}",
+                                                        "删除预设失败：{error}",
+                                                        &[("{error}", format!("{e:#}"))],
+                                                    ),
+                                                );
                                             }
-                                        },
-                                    );
+                                            // Force close/reopen to refresh list
+                                            close_requested = true;
+                                            ui.ctx().request_repaint();
+                                        }
+                                    });
                                 });
                                 ui.add_space(4.0);
                             }
@@ -4858,10 +4825,7 @@ impl FastZipGui {
                 ui.add_space(10.0);
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     if ui
-                        .add(
-                            Button::new(self.t("Close", "关闭"))
-                                .min_size(Vec2::new(96.0, 36.0)),
-                        )
+                        .add(Button::new(self.t("Close", "关闭")).min_size(Vec2::new(96.0, 36.0)))
                         .clicked()
                     {
                         close_requested = true;
@@ -5021,10 +4985,7 @@ impl FastZipGui {
                 ui.add_space(14.0);
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     if ui
-                        .add(
-                            Button::new(self.t("Close", "关闭"))
-                                .min_size(Vec2::new(96.0, 36.0)),
-                        )
+                        .add(Button::new(self.t("Close", "关闭")).min_size(Vec2::new(96.0, 36.0)))
                         .clicked()
                     {
                         close_requested = true;
@@ -5538,11 +5499,7 @@ impl FastZipGui {
                     } else {
                         format!("FastZIP {} is available for download.", info.version)
                     };
-                    ui.label(
-                        RichText::new(version_label)
-                            .size(14.0)
-                            .color(palette.text),
-                    );
+                    ui.label(RichText::new(version_label).size(14.0).color(palette.text));
                     ui.add_space(8.0);
                     if !info.body.is_empty() {
                         ui.label(
@@ -5557,18 +5514,17 @@ impl FastZipGui {
                         } else {
                             info.body.clone()
                         };
-                        ui.label(
-                            RichText::new(body)
-                                .size(11.0)
-                                .color(palette.text_muted),
-                        );
+                        ui.label(RichText::new(body).size(11.0).color(palette.text_muted));
                     }
                 }
 
                 ui.add_space(20.0);
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     let download_btn = Button::new(
-                        RichText::new(download_text).size(14.0).strong().color(palette.text_secondary),
+                        RichText::new(download_text)
+                            .size(14.0)
+                            .strong()
+                            .color(palette.text_secondary),
                     )
                     .fill(palette.primary)
                     .corner_radius(8.0)
@@ -5581,7 +5537,9 @@ impl FastZipGui {
                     ui.add_space(12.0);
 
                     let later_btn = Button::new(
-                        RichText::new(close_text).size(14.0).color(palette.text_muted),
+                        RichText::new(close_text)
+                            .size(14.0)
+                            .color(palette.text_muted),
                     )
                     .fill(palette.subtle_fill)
                     .stroke(Stroke::new(1.0, palette.subtle_stroke))
@@ -6066,7 +6024,10 @@ impl FastZipGui {
                 self.language.format(
                     "Failed to open file manager directory {path}",
                     "无法打开文件管理器目录 {path}",
-                    &[("{path}", self.file_manager_current_dir.display().to_string())],
+                    &[(
+                        "{path}",
+                        self.file_manager_current_dir.display().to_string(),
+                    )],
                 )
             })?
             .filter_map(|entry| entry.ok())
@@ -6248,7 +6209,12 @@ impl FastZipGui {
         }
     }
 
-    pub(super) fn task_metrics(&self, _index: usize, task: &TaskQueueItem, now: Instant) -> TaskQueueMetrics {
+    pub(super) fn task_metrics(
+        &self,
+        _index: usize,
+        task: &TaskQueueItem,
+        now: Instant,
+    ) -> TaskQueueMetrics {
         let progress = real_task_progress(task);
         let speed_text = task
             .current_bytes_per_second
@@ -6287,7 +6253,9 @@ impl FastZipGui {
 
     pub(super) fn draw_footer(&mut self, ui: &mut egui::Ui) {
         let palette = self.palette();
-        let version_label = self.t("v{version}", "v{version}").replace("{version}", env!("CARGO_PKG_VERSION"));
+        let version_label = self
+            .t("v{version}", "v{version}")
+            .replace("{version}", env!("CARGO_PKG_VERSION"));
 
         ui.horizontal(|ui| {
             ui.label(
@@ -6429,7 +6397,6 @@ impl FastZipGui {
             SideNavItem::FileManager
             | SideNavItem::Tasks
             | SideNavItem::Logs
-            
             | SideNavItem::Settings => return,
         };
 
@@ -6460,4 +6427,3 @@ impl FastZipGui {
             });
     }
 }
-

@@ -68,8 +68,8 @@ fn visit_iso_dir(
 
 /// List all files and directories in an ISO 9660 image.
 pub fn list_iso(path: &Path) -> Result<Vec<ArchiveEntry>> {
-    let file = File::open(path)
-        .with_context(|| format!("Failed to open ISO file: {}", path.display()))?;
+    let file =
+        File::open(path).with_context(|| format!("Failed to open ISO file: {}", path.display()))?;
     let reader = IsoReader { inner: file };
     let mut iso = iso9660_simple::ISO9660::from_device(reader)
         .ok_or_else(|| anyhow!("Failed to read ISO 9660 filesystem from {}", path.display()))?;
@@ -106,8 +106,8 @@ pub fn extract_iso<F>(
 where
     F: FnMut(u64),
 {
-    let file = File::open(path)
-        .with_context(|| format!("Failed to open ISO file: {}", path.display()))?;
+    let file =
+        File::open(path).with_context(|| format!("Failed to open ISO file: {}", path.display()))?;
     let reader = IsoReader { inner: file };
     let mut iso = iso9660_simple::ISO9660::from_device(reader)
         .ok_or_else(|| anyhow!("Failed to read ISO 9660 filesystem from {}", path.display()))?;
@@ -219,11 +219,7 @@ where
     reader.seek(SeekFrom::Start(byte_offset as u64))?;
     reader.read_exact(&mut data)?;
     if options.scan_files {
-        super::amsi_scan_data(
-            &file_info.path.to_string_lossy(),
-            &data,
-            options,
-        )?;
+        super::amsi_scan_data(&file_info.path.to_string_lossy(), &data, options)?;
     }
     std::fs::write(&destination, &data)
         .with_context(|| format!("Failed to write extracted file: {}", destination.display()))?;

@@ -24,8 +24,8 @@ use std::{mem::transmute, sync::atomic::AtomicIsize};
 
 use anyhow::{Context as AnyhowContext, Result, anyhow, bail};
 use eframe::egui::{
-    self, Align, Button, CentralPanel, Color32, Context, Frame, Layout, Margin,
-    ProgressBar, RichText, ScrollArea, SidePanel, Stroke, TextEdit, TopBottomPanel, Vec2,
+    self, Align, Button, CentralPanel, Color32, Context, Frame, Layout, Margin, ProgressBar,
+    RichText, ScrollArea, SidePanel, Stroke, TextEdit, TopBottomPanel, Vec2,
 };
 #[cfg(target_os = "windows")]
 use raw_window_handle::{HasWindowHandle, RawWindowHandle};
@@ -74,11 +74,11 @@ use crate::archive::{
     parse_volume_size_spec, resolve_output_path, suggested_extract_output_dir,
 };
 use crate::encoding::FilenameEncoding;
+use crate::hash::{ChecksumResult, file_checksums};
 use crate::localization::{
     AppLocale, detect_app_locale, locale_is_chinese, localize_message, set_current_locale,
     supported_locales,
 };
-use crate::hash::{ChecksumResult, file_checksums};
 use crate::settings::{
     load_auto_update_enabled, load_autostart_enabled, load_preferred_theme,
     save_auto_update_enabled, save_autostart_enabled, save_preferred_language_value,
@@ -134,12 +134,8 @@ const ANIM_FAST: f32 = 0.15;
 const ANIM_NORMAL: f32 = 0.25;
 
 fn anim_bool(ctx: &egui::Context, id: egui::Id, target: bool, duration: f32) -> f32 {
-    let value = ctx.animate_bool_with_time_and_easing(
-        id,
-        target,
-        duration,
-        egui::emath::easing::cubic_out,
-    );
+    let value =
+        ctx.animate_bool_with_time_and_easing(id, target, duration, egui::emath::easing::cubic_out);
     if value > 0.0 && value < 1.0 {
         ctx.request_repaint_after(Duration::from_millis(16));
     }
@@ -1417,9 +1413,7 @@ impl eframe::App for ShellCompressionProgressApp {
                                         self.t("Speed", "速度"),
                                         self.current_bytes_per_second
                                             .map(|v| format_transfer_rate(v, self.language))
-                                            .unwrap_or_else(|| {
-                                                self.t("--", "--").to_string()
-                                            })
+                                            .unwrap_or_else(|| { self.t("--", "--").to_string() })
                                     ))
                                     .size(12.0)
                                     .color(palette.text_secondary),
@@ -2000,7 +1994,12 @@ fn live_status_chip(
     palette: ThemePalette,
 ) {
     let (fill, stroke, text, dot) = toast_colors(tone, palette);
-    let active = anim_bool(ui.ctx(), egui::Id::new("status-chip-pulse"), busy, ANIM_NORMAL);
+    let active = anim_bool(
+        ui.ctx(),
+        egui::Id::new("status-chip-pulse"),
+        busy,
+        ANIM_NORMAL,
+    );
     let pulse = if active > 0.001 {
         let time = ui.ctx().input(|input| input.time) as f32;
         0.7 + (0.5 + 0.5 * (time * 3.0).sin()) * 0.6 * active
@@ -2775,11 +2774,11 @@ fn task_queue_row(
                 ))
                 .desired_width(TASK_PROGRESS_COLUMN_WIDTH - 12.0)
                 .fill(match task.state {
-                        TaskState::Canceled => palette.text_muted,
-                        TaskState::Canceling => palette.badge_fill,
-                        _ => fill,
-                    })
-                    .text(metrics.progress_text.clone()),
+                    TaskState::Canceled => palette.text_muted,
+                    TaskState::Canceling => palette.badge_fill,
+                    _ => fill,
+                })
+                .text(metrics.progress_text.clone()),
             );
         },
     );

@@ -26,10 +26,7 @@ pub struct TestReport {
     pub errors: Vec<String>,
 }
 
-pub(crate) fn test_archive(
-    path: &Path,
-    password: Option<&str>,
-) -> Result<TestReport> {
+pub(crate) fn test_archive(path: &Path, password: Option<&str>) -> Result<TestReport> {
     let format = ArchiveFormat::detect(path)?;
     let started = Instant::now();
 
@@ -85,8 +82,7 @@ fn test_zip(
     format: &ArchiveFormat,
     started: Instant,
 ) -> Result<TestReport> {
-    let file =
-        File::open(path).with_context(|| format!("Failed to open {}", path.display()))?;
+    let file = File::open(path).with_context(|| format!("Failed to open {}", path.display()))?;
     let mut archive = ZipArchive::new(file)
         .with_context(|| format!("Failed to read ZIP archive {}", path.display()))?;
     let mut report = TestReport::new_empty(path, *format, started);
@@ -181,9 +177,7 @@ fn test_tar<R: Read>(
             Ok(bytes) => report.bytes_read += bytes,
             Err(e) => {
                 report.entries_failed += 1;
-                report
-                    .errors
-                    .push(format!("{entry_path}: {e:#}"));
+                report.errors.push(format!("{entry_path}: {e:#}"));
             }
         }
     }

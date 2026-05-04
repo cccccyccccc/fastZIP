@@ -45,12 +45,12 @@ use tar::Archive as TarArchive;
 use tar::{Builder as TarBuilder, Header as TarHeader, HeaderMode as TarHeaderMode};
 use xz2::stream::{Check as XzCheck, MtStreamBuilder};
 use xz2::write::XzEncoder;
-use zstd::stream::Encoder as ZstdEncoder;
 use zip::AesMode as ZipAesMode;
 use zip::CompressionMethod;
 use zip::DateTime;
 use zip::ZipArchive;
 use zip::write::{FileOptions as ZipFileOptions, SimpleFileOptions};
+use zstd::stream::Encoder as ZstdEncoder;
 
 pub use service::{ArchiveInspection, ArchiveService, BackendStatus};
 pub use test::TestReport;
@@ -408,7 +408,10 @@ impl CompressionFormat {
     }
 
     pub fn supports_thread_count(self) -> bool {
-        matches!(self, Self::SevenZip | Self::Zip | Self::TarXz | Self::Xz | Self::Zst | Self::TarZst)
+        matches!(
+            self,
+            Self::SevenZip | Self::Zip | Self::TarXz | Self::Xz | Self::Zst | Self::TarZst
+        )
     }
 
     pub fn supports_password_encryption(self) -> bool {
@@ -420,7 +423,10 @@ impl CompressionFormat {
     }
 
     pub fn is_single_file_stream(self) -> bool {
-        matches!(self, Self::Gz | Self::Bz2 | Self::Xz | Self::Zst | Self::Lz4)
+        matches!(
+            self,
+            Self::Gz | Self::Bz2 | Self::Xz | Self::Zst | Self::Lz4
+        )
     }
 
     pub fn detect(path: &Path) -> Result<Self> {
@@ -825,9 +831,9 @@ pub fn default_output_dir(archive: &Path) -> PathBuf {
     let lower = file_name.to_ascii_lowercase();
 
     let stripped = [
-        ".tar.gz", ".tar.bz2", ".tar.xz", ".tar.zst", ".tar.lz4", ".tgz", ".tbz2", ".txz",
-        ".tzst", ".tlz4", ".7z", ".zip", ".tar", ".rar", ".bzip2", ".gz", ".bz2", ".xz", ".zst",
-        ".zstd", ".lz4",
+        ".tar.gz", ".tar.bz2", ".tar.xz", ".tar.zst", ".tar.lz4", ".tgz", ".tbz2", ".txz", ".tzst",
+        ".tlz4", ".7z", ".zip", ".tar", ".rar", ".bzip2", ".gz", ".bz2", ".xz", ".zst", ".zstd",
+        ".lz4",
     ]
     .iter()
     .find_map(|suffix| lower.ends_with(suffix).then_some(*suffix))
@@ -1315,8 +1321,8 @@ fn create_zstd_encoder<W: Write>(
 ) -> Result<ZstdEncoder<'static, W>> {
     let level = options.level.zstd_level() as i32;
     let thread_count = options.thread_count.max(1) as u32;
-    let mut encoder = ZstdEncoder::new(writer, level)
-        .with_context(|| "Failed to initialize Zstd compression")?;
+    let mut encoder =
+        ZstdEncoder::new(writer, level).with_context(|| "Failed to initialize Zstd compression")?;
     if thread_count > 1 {
         encoder
             .multithread(thread_count)
@@ -1351,7 +1357,9 @@ where
         progress,
         should_cancel,
     )?;
-    builder.finish().with_context(|| "Failed to finalize tar.zst archive")?;
+    builder
+        .finish()
+        .with_context(|| "Failed to finalize tar.zst archive")?;
     builder
         .into_inner()
         .with_context(|| "Failed to finalize tar.zst archive")?
@@ -1387,7 +1395,9 @@ where
         progress,
         should_cancel,
     )?;
-    builder.finish().with_context(|| "Failed to finalize tar.lz4 archive")?;
+    builder
+        .finish()
+        .with_context(|| "Failed to finalize tar.lz4 archive")?;
     builder
         .into_inner()
         .with_context(|| "Failed to finalize tar.lz4 archive")?
@@ -2038,8 +2048,7 @@ where
                 .with_context(|| format!("Failed to finalize {}", source.display()))?;
         }
         CompressionFormat::Lz4 => {
-            let mut encoder =
-                lz4_flex::frame::FrameEncoder::new(output_file);
+            let mut encoder = lz4_flex::frame::FrameEncoder::new(output_file);
             io::copy(&mut reader, &mut encoder)
                 .with_context(|| format!("Failed to compress {}", source.display()))?;
             encoder
@@ -2241,9 +2250,9 @@ where
                     let temp_path =
                         temp_dir.join(format!(".fastzip_tar_{}.tmp", std::process::id()));
                     {
-                        let temp_file = File::create(&temp_path).with_context(|| {
-                            "Failed to create temporary file for tar.gz compression"
-                        })?;
+                        let temp_file = File::create(&temp_path).with_context(
+                            || "Failed to create temporary file for tar.gz compression",
+                        )?;
                         let buf = BufWriter::new(temp_file);
                         let mut builder = TarBuilder::new(buf);
                         add_sources_to_tar(
@@ -2256,15 +2265,13 @@ where
                             progress,
                             should_cancel,
                         )?;
-                        builder.finish().with_context(|| {
-                            "Failed to finalize tar stage for gzip compression"
-                        })?;
+                        builder
+                            .finish()
+                            .with_context(|| "Failed to finalize tar stage for gzip compression")?;
                     }
                     let mut tar_data = Vec::new();
                     File::open(&temp_path)
-                        .with_context(|| {
-                            "Failed to open temporary tar for gzip compression"
-                        })?
+                        .with_context(|| "Failed to open temporary tar for gzip compression")?
                         .read_to_end(&mut tar_data)
                         .with_context(|| "Failed to read temporary tar for gzip compression")?;
                     let _ = fs::remove_file(&temp_path);
@@ -2274,10 +2281,8 @@ where
                         .write_all(&compressed)
                         .with_context(|| "Failed to write gzip-compressed output")?;
                 } else {
-                    let encoder = GzEncoder::new(
-                        output_file,
-                        GzCompression::new(options.level.gzip_level()),
-                    );
+                    let encoder =
+                        GzEncoder::new(output_file, GzCompression::new(options.level.gzip_level()));
                     let mut builder = TarBuilder::new(encoder);
                     add_sources_to_tar(
                         &mut builder,
@@ -3714,7 +3719,8 @@ where
         let entry_name_bytes = file.archive_path.as_bytes().to_vec();
         write_single_entry_zip_local_header(
             &mut output,
-            &header_layout,            &entry_name_bytes,
+            &header_layout,
+            &entry_name_bytes,
             0,
             file.input_len,
             0,
@@ -4303,7 +4309,10 @@ fn parallel_deflate_chunk_specs(
     specs
 }
 
-fn single_entry_zip_header_layout(uncompressed_size: u64, method: u16) -> SingleEntryZipHeaderLayout {
+fn single_entry_zip_header_layout(
+    uncompressed_size: u64,
+    method: u16,
+) -> SingleEntryZipHeaderLayout {
     let use_zip64 = uncompressed_size > ZIP64_U32_MAX;
     let version_needed = if use_zip64 { 45 } else { 20 };
     let version_made_by = (3u16 << 8) | version_needed;
@@ -4927,13 +4936,24 @@ where
         output.flush().ok();
         drop(output);
         if scan_files {
-            let data = fs::read(&staged_output)
-                .with_context(|| format!("Failed to read staged output for AMSI scan: {}", staged_output.display()))?;
+            let data = fs::read(&staged_output).with_context(|| {
+                format!(
+                    "Failed to read staged output for AMSI scan: {}",
+                    staged_output.display()
+                )
+            })?;
             let name = destination
                 .file_name()
                 .and_then(|n| n.to_str())
                 .unwrap_or("unknown");
-            amsi_scan_data(name, &data, &ExtractOptions { scan_files: true, ..ExtractOptions::default() })?;
+            amsi_scan_data(
+                name,
+                &data,
+                &ExtractOptions {
+                    scan_files: true,
+                    ..ExtractOptions::default()
+                },
+            )?;
         }
         commit_staged_output_file(&staged_output, destination)?;
         Ok(())
@@ -5389,7 +5409,11 @@ pub(crate) fn amsi_scan_data(file_name: &str, data: &[u8], options: &ExtractOpti
 }
 
 #[cfg(not(target_os = "windows"))]
-pub(crate) fn amsi_scan_data(_file_name: &str, _data: &[u8], _options: &ExtractOptions) -> Result<()> {
+pub(crate) fn amsi_scan_data(
+    _file_name: &str,
+    _data: &[u8],
+    _options: &ExtractOptions,
+) -> Result<()> {
     Ok(())
 }
 

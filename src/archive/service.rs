@@ -3,12 +3,12 @@ use std::path::{Path, PathBuf};
 
 use anyhow::{Context, Result};
 
+use super::test::TestReport;
 use super::{
     ArchiveEntry, ArchiveFormat, BackendKind, CompressionOptions, CompressionReport,
     ExtractOptions, ExtractPathPlan, ExtractionReport, FilenameEncoding, default_output_dir,
     native::NativeBackend, rar::RarBackend, test,
 };
-use super::test::TestReport;
 
 #[derive(Debug, Clone)]
 pub struct BackendStatus {
@@ -205,16 +205,19 @@ impl ArchiveService {
         options: CompressionOptions,
     ) -> Result<CompressionReport> {
         if options.sfx {
-            self.compress_sfx(sources, &[], output_path, options, &mut |_| {}, &mut || false)
+            self.compress_sfx(sources, &[], output_path, options, &mut |_| {}, &mut || {
+                false
+            })
         } else {
-            self.native.compress_with_options_and_exclusions_and_progress_and_cancel(
-                sources,
-                &[],
-                output_path,
-                options,
-                &mut |_delta| {},
-                &mut || false,
-            )
+            self.native
+                .compress_with_options_and_exclusions_and_progress_and_cancel(
+                    sources,
+                    &[],
+                    output_path,
+                    options,
+                    &mut |_delta| {},
+                    &mut || false,
+                )
         }
     }
 
@@ -232,7 +235,14 @@ impl ArchiveService {
         C: FnMut() -> bool,
     {
         if options.sfx {
-            self.compress_sfx(sources, excluded_paths, output_path, options, progress, should_cancel)
+            self.compress_sfx(
+                sources,
+                excluded_paths,
+                output_path,
+                options,
+                progress,
+                should_cancel,
+            )
         } else {
             self.native
                 .compress_with_options_and_exclusions_and_progress_and_cancel(
@@ -266,12 +276,16 @@ impl ArchiveService {
         let temp_path = temp_file.path().to_path_buf();
 
         let format = options.format;
-        let report = self.native
+        let report = self
+            .native
             .compress_with_options_and_exclusions_and_progress_and_cancel(
                 sources,
                 excluded_paths,
                 &temp_path,
-                CompressionOptions { sfx: false, ..options },
+                CompressionOptions {
+                    sfx: false,
+                    ..options
+                },
                 progress,
                 should_cancel,
             )?;
@@ -295,14 +309,12 @@ impl ArchiveService {
         let temp_file = read_stdin_to_temp(format)?;
         match format {
             ArchiveFormat::Rar => self.rar.list_archive(temp_file.path()),
-            _ => self
-                .native
-                .list_archive_with_password(
-                    temp_file.path(),
-                    format,
-                    password,
-                    FilenameEncoding::Utf8,
-                ),
+            _ => self.native.list_archive_with_password(
+                temp_file.path(),
+                format,
+                password,
+                FilenameEncoding::Utf8,
+            ),
         }
     }
 
@@ -353,7 +365,8 @@ impl ArchiveService {
             .suffix(options.format.default_extension())
             .tempfile()
             .context("Failed to create temp file for stdout compression")?;
-        let report = self.native
+        let report = self
+            .native
             .compress_with_options_and_exclusions_and_progress_and_cancel(
                 sources,
                 &[],
@@ -368,7 +381,6 @@ impl ArchiveService {
         stdout.flush()?;
         Ok(report)
     }
-
 }
 
 /// Read stdin into a NamedTempFile with the appropriate extension for format detection.
@@ -384,9 +396,7 @@ fn read_stdin_to_temp(format: ArchiveFormat) -> Result<tempfile::NamedTempFile> 
     temp_file
         .write_all(&data)
         .context("Failed to write stdin data to temp file")?;
-    temp_file
-        .flush()
-        .context("Failed to flush temp file")?;
+    temp_file.flush().context("Failed to flush temp file")?;
     Ok(temp_file)
 }
 

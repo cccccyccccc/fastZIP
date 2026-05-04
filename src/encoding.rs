@@ -68,9 +68,7 @@ pub fn decode_zip_filename(raw: &[u8], encoding: FilenameEncoding) -> String {
             // UTF-8 validation failed; return lossy representation.
             String::from_utf8_lossy(raw).into_owned()
         }
-        FilenameEncoding::Auto => {
-            auto_decode(raw)
-        }
+        FilenameEncoding::Auto => auto_decode(raw),
         FilenameEncoding::ShiftJis => decode_with(raw, encoding_rs::SHIFT_JIS),
         FilenameEncoding::Gbk => decode_with(raw, encoding_rs::GBK),
         FilenameEncoding::EucKr => decode_with(raw, encoding_rs::EUC_KR),

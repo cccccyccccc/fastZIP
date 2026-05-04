@@ -57,8 +57,9 @@ fn embed_sfx_stub() -> Result<Vec<u8>> {
 
     for candidate in &candidates {
         if candidate.exists() {
-            return fs::read(candidate)
-                .with_context(|| format!("Failed to read embedded sfx-stub: {}", candidate.display()));
+            return fs::read(candidate).with_context(|| {
+                format!("Failed to read embedded sfx-stub: {}", candidate.display())
+            });
         }
     }
 
@@ -70,11 +71,7 @@ fn embed_sfx_stub() -> Result<Vec<u8>> {
 /// Wrap an existing archive file as an SFX executable.
 /// Reads the archive, appends it to the sfx-stub along with a footer,
 /// and writes the result to `output_path`.
-pub fn wrap_sfx(
-    archive_path: &Path,
-    output_path: &Path,
-    format: CompressionFormat,
-) -> Result<()> {
+pub fn wrap_sfx(archive_path: &Path, output_path: &Path, format: CompressionFormat) -> Result<()> {
     let stub_bytes = locate_sfx_stub()?;
     let archive_bytes = fs::read(archive_path)
         .with_context(|| format!("Failed to read archive: {}", archive_path.display()))?;

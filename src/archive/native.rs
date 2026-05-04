@@ -433,7 +433,12 @@ mod tests {
         create_zip_archive(&archive_path, source_name, source_bytes);
 
         let entries = backend
-            .list_archive_with_password(&archive_path, ArchiveFormat::Zip, None, FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &archive_path,
+                ArchiveFormat::Zip,
+                None,
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert_eq!(entries.len(), 1);
         assert_eq!(entries[0].path, PathBuf::from(source_name));
@@ -487,7 +492,12 @@ mod tests {
         assert_eq!(report.files_added, 2);
 
         let entries = backend
-            .list_archive_with_password(&archive_path, ArchiveFormat::Zip, None, FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &archive_path,
+                ArchiveFormat::Zip,
+                None,
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert!(
             entries
@@ -535,15 +545,29 @@ mod tests {
             .unwrap();
         assert_eq!(report.files_added, 4);
 
-        let missing_password = backend.list_archive_with_password(&archive_path, ArchiveFormat::Zip, None, FilenameEncoding::Utf8);
+        let missing_password = backend.list_archive_with_password(
+            &archive_path,
+            ArchiveFormat::Zip,
+            None,
+            FilenameEncoding::Utf8,
+        );
         assert!(missing_password.is_err());
 
-        let wrong_password =
-            backend.list_archive_with_password(&archive_path, ArchiveFormat::Zip, Some("wrong"), FilenameEncoding::Utf8);
+        let wrong_password = backend.list_archive_with_password(
+            &archive_path,
+            ArchiveFormat::Zip,
+            Some("wrong"),
+            FilenameEncoding::Utf8,
+        );
         assert!(wrong_password.is_err());
 
         let entries = backend
-            .list_archive_with_password(&archive_path, ArchiveFormat::Zip, Some(password), FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &archive_path,
+                ArchiveFormat::Zip,
+                Some(password),
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         for index in 0..4 {
             assert!(entries
@@ -559,8 +583,8 @@ mod tests {
                 overwrite_mode: OverwriteMode::Overwrite,
                 keep_paths: true,
                 password: None,
-                    filename_encoding: FilenameEncoding::Utf8,
-                    scan_files: false,
+                filename_encoding: FilenameEncoding::Utf8,
+                scan_files: false,
             },
             &ExtractPathPlan::default(),
             &mut |_delta| {},
@@ -630,7 +654,12 @@ mod tests {
 
         assert_eq!(report.files_added, 2);
         let entries = backend
-            .list_archive_with_password(&archive_path, ArchiveFormat::SevenZip, None, FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &archive_path,
+                ArchiveFormat::SevenZip,
+                None,
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert!(
             entries
@@ -718,7 +747,12 @@ mod tests {
         assert!(second_volume.exists());
 
         let entries = backend
-            .list_archive_with_password(&first_volume, ArchiveFormat::Zip, None, FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &first_volume,
+                ArchiveFormat::Zip,
+                None,
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert!(
             entries
@@ -813,7 +847,12 @@ mod tests {
         assert!(temp.path().join("vault.7z.002").exists());
 
         let entries = backend
-            .list_archive_with_password(&first_volume, ArchiveFormat::SevenZip, None, FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &first_volume,
+                ArchiveFormat::SevenZip,
+                None,
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert!(
             entries
@@ -893,17 +932,32 @@ mod tests {
 
         assert!(
             backend
-                .list_archive_with_password(&archive_path, ArchiveFormat::SevenZip, None, FilenameEncoding::Utf8)
+                .list_archive_with_password(
+                    &archive_path,
+                    ArchiveFormat::SevenZip,
+                    None,
+                    FilenameEncoding::Utf8
+                )
                 .is_err()
         );
         assert!(
             backend
-                .list_archive_with_password(&archive_path, ArchiveFormat::SevenZip, Some("wrong"), FilenameEncoding::Utf8)
+                .list_archive_with_password(
+                    &archive_path,
+                    ArchiveFormat::SevenZip,
+                    Some("wrong"),
+                    FilenameEncoding::Utf8
+                )
                 .is_err()
         );
 
         let entries = backend
-            .list_archive_with_password(&archive_path, ArchiveFormat::SevenZip, Some(password), FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &archive_path,
+                ArchiveFormat::SevenZip,
+                Some(password),
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert!(
             entries
@@ -921,8 +975,8 @@ mod tests {
                         overwrite_mode: OverwriteMode::Overwrite,
                         keep_paths: true,
                         password: None,
-                    filename_encoding: FilenameEncoding::Utf8,
-                    scan_files: false,
+                        filename_encoding: FilenameEncoding::Utf8,
+                        scan_files: false,
                     },
                     &ExtractPathPlan::default(),
                     &mut |_delta| {},
@@ -1004,8 +1058,8 @@ mod tests {
                         overwrite_mode: OverwriteMode::Overwrite,
                         keep_paths: true,
                         password: None,
-                    filename_encoding: FilenameEncoding::Utf8,
-                    scan_files: false,
+                        filename_encoding: FilenameEncoding::Utf8,
+                        scan_files: false,
                     },
                     &ExtractPathPlan::default(),
                     &mut |_delta| {},
@@ -1031,7 +1085,12 @@ mod tests {
         create_tar_gz_archive(&archive_path, source_name, source_bytes);
 
         let entries = backend
-            .list_archive_with_password(&archive_path, ArchiveFormat::TarGz, None, FilenameEncoding::Utf8)
+            .list_archive_with_password(
+                &archive_path,
+                ArchiveFormat::TarGz,
+                None,
+                FilenameEncoding::Utf8,
+            )
             .unwrap();
         assert_eq!(entries.len(), 1);
         assert_eq!(entries[0].path, PathBuf::from(source_name));
@@ -1097,8 +1156,8 @@ mod tests {
                         overwrite_mode: OverwriteMode::Overwrite,
                         keep_paths: true,
                         password: None,
-                    filename_encoding: FilenameEncoding::Utf8,
-                    scan_files: false,
+                        filename_encoding: FilenameEncoding::Utf8,
+                        scan_files: false,
                     },
                     &ExtractPathPlan::default(),
                     &mut |_delta| {},
@@ -1172,8 +1231,8 @@ mod tests {
                 overwrite_mode: OverwriteMode::Overwrite,
                 keep_paths: true,
                 password: None,
-                    filename_encoding: FilenameEncoding::Utf8,
-                    scan_files: false,
+                filename_encoding: FilenameEncoding::Utf8,
+                scan_files: false,
             },
             &plan,
             &mut |delta| processed.set(processed.get().saturating_add(delta)),
