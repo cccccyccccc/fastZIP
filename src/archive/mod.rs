@@ -5596,7 +5596,7 @@ mod tests {
 
     #[test]
     fn suggests_parent_output_dir_for_matching_wrapped_root() {
-        let archive = Path::new(r"D:\demo\notes.zip");
+        let archive = Path::new("demo").join("notes.zip");
         let entries = vec![
             ArchiveEntry {
                 path: PathBuf::from("notes"),
@@ -5613,14 +5613,14 @@ mod tests {
         ];
 
         assert_eq!(
-            suggested_extract_output_dir(archive, &entries, true),
-            PathBuf::from(r"D:\demo")
+            suggested_extract_output_dir(&archive, &entries, true),
+            PathBuf::from("demo")
         );
     }
 
     #[test]
     fn keeps_default_output_dir_when_archive_is_not_wrapped_by_matching_root() {
-        let archive = Path::new(r"D:\demo\notes.zip");
+        let archive = Path::new("demo").join("notes.zip");
         let entries = vec![ArchiveEntry {
             path: PathBuf::from("chapter1.txt"),
             is_dir: false,
@@ -5629,14 +5629,14 @@ mod tests {
         }];
 
         assert_eq!(
-            suggested_extract_output_dir(archive, &entries, true),
-            PathBuf::from(r"D:\demo\notes")
+            suggested_extract_output_dir(&archive, &entries, true),
+            Path::new("demo").join("notes")
         );
     }
 
     #[test]
     fn keeps_default_output_dir_for_flat_extraction() {
-        let archive = Path::new(r"D:\demo\notes.zip");
+        let archive = Path::new("demo").join("notes.zip");
         let entries = vec![ArchiveEntry {
             path: PathBuf::from("notes/chapter1.txt"),
             is_dir: false,
@@ -5645,8 +5645,8 @@ mod tests {
         }];
 
         assert_eq!(
-            suggested_extract_output_dir(archive, &entries, false),
-            PathBuf::from(r"D:\demo\notes")
+            suggested_extract_output_dir(&archive, &entries, false),
+            Path::new("demo").join("notes")
         );
     }
 }
