@@ -22,6 +22,7 @@ use windows_sys::Win32::System::Registry::{
 const SETTINGS_SECTION: &str = "ui";
 const LANGUAGE_KEY: &str = "language";
 const THEME_KEY: &str = "theme";
+const AUTOUPDATE_KEY: &str = "auto_update";
 const SETTINGS_FILE_NAME: &str = "settings.ini";
 const SETTINGS_DIR_NAME: &str = "FastZIP";
 #[cfg(target_os = "windows")]
@@ -46,7 +47,7 @@ pub fn save_preferred_language_value(value: &str) -> Result<PathBuf> {
     let path = user_settings_path()
         .ok_or_else(|| anyhow!("LOCALAPPDATA is not available for FastZIP settings"))?;
     let theme = read_settings_key(&path, THEME_KEY);
-    write_settings_file(&path, Some(value), theme.as_deref())?;
+    write_settings_file(&path, Some(value), theme.as_deref(), None)?;
     Ok(path)
 }
 
@@ -63,7 +64,7 @@ pub fn save_preferred_theme_value(value: &str) -> Result<PathBuf> {
     let path = user_settings_path()
         .ok_or_else(|| anyhow!("LOCALAPPDATA is not available for FastZIP settings"))?;
     let language = read_settings_key(&path, LANGUAGE_KEY);
-    write_settings_file(&path, language.as_deref(), Some(value))?;
+    write_settings_file(&path, language.as_deref(), Some(value), None)?;
     Ok(path)
 }
 
@@ -127,6 +128,24 @@ pub fn delete_autostart_hklm_value() -> Result<()> {
     delete_autostart_value(HKEY_LOCAL_MACHINE)
 }
 
+pub fn load_auto_update_enabled() -> bool {
+    for path in settings_search_paths() {
+        if let Some(value) = read_settings_key(&path, AUTOUPDATE_KEY) {
+            return value.to_lowercase() != "false";
+        }
+    }
+    true
+}
+
+pub fn save_auto_update_enabled(enabled: bool) -> Result<PathBuf> {
+    let path = user_settings_path()
+        .ok_or_else(|| anyhow!("LOCALAPPDATA is not available for FastZIP settings"))?;
+    let language = read_settings_key(&path, LANGUAGE_KEY);
+    let theme = read_settings_key(&path, THEME_KEY);
+    write_settings_file(&path, language.as_deref(), theme.as_deref(), Some(enabled))?;
+    Ok(path)
+}
+
 fn settings_search_paths() -> Vec<PathBuf> {
     let mut paths = Vec::new();
 
@@ -163,7 +182,12 @@ fn read_settings_key(path: &Path, key: &str) -> Option<String> {
     read_settings_file(path).and_then(|contents| parse_ini_value(&contents, SETTINGS_SECTION, key))
 }
 
-fn write_settings_file(path: &Path, language_value: Option<&str>, theme_value: Option<&str>) -> Result<()> {
+fn write_settings_file(
+    path: &Path,
+    language_value: Option<&str>,
+    theme_value: Option<&str>,
+    auto_update_value: Option<bool>,
+) -> Result<()> {
     let parent = path
         .parent()
         .ok_or_else(|| anyhow!("Settings file path has no parent: {}", path.display()))?;
@@ -179,6 +203,9 @@ fn write_settings_file(path: &Path, language_value: Option<&str>, theme_value: O
     }
     if let Some(theme) = theme_value {
         lines.push(format!("{}={}", THEME_KEY, theme));
+    }
+    if let Some(enabled) = auto_update_value {
+        lines.push(format!("{}={}", AUTOUPDATE_KEY, enabled));
     }
     let contents = lines.join("\r\n") + "\r\n";
     fs::write(path, contents)

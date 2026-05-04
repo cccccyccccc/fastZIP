@@ -7,6 +7,7 @@ use bzip2::Compression as BzCompression;
 use bzip2::write::BzEncoder;
 use criterion::{BatchSize, Criterion, Throughput, criterion_group, criterion_main};
 use fastzip::archive::{ArchiveService, ExtractOptions, OverwriteMode};
+use fastzip::encoding::FilenameEncoding;
 use flate2::Compression as GzCompression;
 use flate2::write::GzEncoder;
 use tar::Builder;
@@ -97,7 +98,7 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("zip-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true,
+                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
                         },
                     )
                     .unwrap();
@@ -117,7 +118,7 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("tar-gz-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true,
+                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
                         },
                     )
                     .unwrap();
@@ -137,7 +138,7 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("tar-bz2-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true,
+                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
                         },
                     )
                     .unwrap();
@@ -157,7 +158,7 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("tar-xz-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true,
+                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
                         },
                     )
                     .unwrap();
@@ -182,7 +183,7 @@ fn archive_extract_benchmarks(c: &mut Criterion) {
                         &ExtractOptions {
                             output_dir: output.path().join("gz-out"),
                             overwrite_mode: OverwriteMode::Overwrite,
-                            keep_paths: true,
+                            keep_paths: true, filename_encoding: FilenameEncoding::Utf8, password: None, scan_files: false,
                         },
                     )
                     .unwrap();

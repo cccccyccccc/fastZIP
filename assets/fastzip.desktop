@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=FastZIP
+Comment=A native Rust archive extractor with multi-format support
+Exec=fastzip
+Icon=fastzip
+Terminal=false
+Categories=Utility;Archiving;Compression;GTK;
+Keywords=archive;extract;compress;zip;7z;rar;tar;gz;
+StartupWMClass=fastzip

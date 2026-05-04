@@ -307,3 +307,37 @@ Failed to open path: {error}	تعذر فتح المسار: {error}
 No files or folders are selected in the file manager.	لا توجد ملفات أو مجلدات محددة في مدير الملفات.
 View Selected Files	عرض الملفات المحددة
 Selected Files	الملفات المحددة
+English	الإنجليزية
+Chinese (Simplified)	الصينية (المبسطة)
+Japanese	اليابانية
+Korean	الكورية
+French	الفرنسية
+German	الألمانية
+Spanish	الإسبانية
+Italian	الإيطالية
+Portuguese (Brazil)	البرتغالية (البرازيل)
+Russian	الروسية
+Arabic	العربية
+Turkish	التركية
+AMSI Malware Scan	فحص البرامج الضارة AMSI
+Scan extracted files with Windows Antimalware Scan Interface before writing to disk.	فحص الملفات المستخرجة بواجهة فحص البرامج الضارة من Windows (AMSI) قبل الكتابة على القرص.
+Default Apps	التطبيقات الافتراضية
+Set FastZIP as the default app for opening archive files.	تعيين FastZIP كتطبيق افتراضي لفتح ملفات الأرشيف.
+Set as Default	تعيين كافتراضي
+Performance Benchmark	اختبار الأداء
+Run compression benchmarks across all formats and levels. Results are saved to disk.	تشغيل اختبارات الضغط عبر جميع التنسيقات والمستويات. يتم حفظ النتائج على القرص.
+Run Benchmark	تشغيل الاختبار
+-	-
+--	--
+Auto Update	التحديث التلقائي
+Check for new versions on startup.	التحقق من الإصدارات الجديدة عند بدء التشغيل.
+New Version Available	إصدار جديد متاح
+Release Notes:	ملاحظات الإصدار:
+Download	تنزيل
+Later	لاحقًا
+Compare compression performance with other installed tools.	مقارنة أداء الضغط مع الأدوات الأخرى المثبتة.
+Tool	أداة
+Time	الوقت
+Ratio	نسبة
+Benchmark completed.	اكتمل الاختبار.
+Running benchmark, please wait...	جاري تشغيل الاختبار، يرجى الانتظار...

@@ -307,3 +307,37 @@ Failed to open path: {error}	경로를 열지 못했습니다: {error}
 No files or folders are selected in the file manager.	파일 관리자에서 선택된 파일 또는 폴더가 없습니다.
 View Selected Files	선택한 파일 보기
 Selected Files	선택한 파일
+English	영어
+Chinese (Simplified)	중국어 (간체)
+Japanese	일본어
+Korean	한국어
+French	프랑스어
+German	독일어
+Spanish	스페인어
+Italian	이탈리아어
+Portuguese (Brazil)	포르투갈어 (브라질)
+Russian	러시아어
+Arabic	아랍어
+Turkish	터키어
+AMSI Malware Scan	AMSI 멀웨어 검사
+Scan extracted files with Windows Antimalware Scan Interface before writing to disk.	디스크에 쓰기 전에 Windows 맬웨어 방지 검사 인터페이스(AMSI)로 추출된 파일을 검사합니다.
+Default Apps	기본 앱
+Set FastZIP as the default app for opening archive files.	FastZIP을 압축 파일을 여는 기본 앱으로 설정합니다.
+Set as Default	기본값으로 설정
+Performance Benchmark	성능 벤치마크
+Run compression benchmarks across all formats and levels. Results are saved to disk.	모든 형식과 레벨에서 압축 벤치마크를 실행합니다. 결과는 디스크에 저장됩니다.
+Run Benchmark	벤치마크 실행
+-	-
+--	--
+Auto Update	자동 업데이트
+Check for new versions on startup.	시작 시 새 버전 확인.
+New Version Available	새 버전 사용 가능
+Release Notes:	릴리스 노트:
+Download	다운로드
+Later	나중에
+Compare compression performance with other installed tools.	설치된 다른 도구와 압축 성능을 비교합니다.
+Tool	도구
+Time	시간
+Ratio	비율
+Benchmark completed.	벤치마크 완료.
+Running benchmark, please wait...	벤치마크 실행 중, 기다려 주세요...

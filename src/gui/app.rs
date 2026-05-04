@@ -20,6 +20,7 @@ impl FastZipGui {
         };
         let theme_mode = ThemeMode::detect();
         let autostart_enabled = load_autostart_enabled().unwrap_or(false);
+        let auto_update_enabled = load_auto_update_enabled();
         let file_manager_current_dir = default_file_manager_dir();
         let file_manager_path_input = file_manager_current_dir.display().to_string();
         let mut compression_options = CompressionOptions::default();
@@ -32,6 +33,10 @@ impl FastZipGui {
             locale,
             theme_mode,
             autostart_enabled,
+            auto_update_enabled,
+            show_update_dialog: false,
+            update_info: None,
+            update_check_pending: false,
             file_manager_current_dir,
             file_manager_path_input,
             file_manager_selected_paths: BTreeSet::new(),
@@ -76,7 +81,7 @@ impl FastZipGui {
             logs: vec![initial_ready_log(language), initial_backend_log(language)],
             scan_receiver: None,
             task_receiver: None,
-            benchmark_receiver: None,
+            update_receiver: None,
             requested_viewport_size: None,
             pending_launch_request: launch_request,
             #[cfg(target_os = "windows")]
@@ -115,7 +120,7 @@ impl FastZipGui {
         self.push_log(format!(
             "{}: {}",
             self.t("Interface Language", "界面语言"),
-            locale.display_name
+            locale.display_name()
         ));
         if let Err(error) = save_preferred_language_value(locale.code) {
             self.push_log(format!(
@@ -287,42 +292,6 @@ impl FastZipGui {
 
     #[cfg(not(target_os = "windows"))]
     pub(super) fn try_open_default_apps_dialog(&mut self) {}
-
-    pub(super) fn start_benchmark(&mut self) {
-        let msg = self.t(
-            "Benchmark started. Results will appear in the log when complete.",
-            "基准测试已开始。完成后结果将显示在日志中。",
-        );
-        self.push_log(msg.to_string());
-        self.show_toast(FeedbackTone::Info, msg);
-        let (tx, rx) = mpsc::channel();
-        self.benchmark_receiver = Some(rx);
-        std::thread::spawn(move || {
-            let out_dir = std::path::PathBuf::from("benchmark_results");
-            let lines = match crate::benchmark::run_benchmark(&out_dir) {
-                Ok(entries) => {
-                    let mut lines = vec![format!(
-                        "Benchmark complete. {} results saved to {}",
-                        entries.len(),
-                        out_dir.display()
-                    )];
-                    for entry in &entries {
-                        lines.push(format!(
-                            "{:?} {:?} ratio={:.4} throughput={:.2} MB/s",
-                            entry.format,
-                            entry.level,
-                            entry.compression_ratio(),
-                            entry.throughput_mbps(),
-                        ));
-                    }
-                    lines
-                }
-                Err(e) => vec![format!("Benchmark failed: {e:#}")],
-            };
-            let _ = tx.send(lines);
-        });
-    }
-
     pub(super) fn activate_workspace(&mut self, workspace_mode: WorkspaceMode) {
         self.workspace_mode = workspace_mode;
         self.side_nav = self.current_workspace_nav_item();
@@ -343,6 +312,7 @@ impl FastZipGui {
             SideNavItem::FileManager
             | SideNavItem::Tasks
             | SideNavItem::Logs
+            
             | SideNavItem::Settings => {}
         }
     }
@@ -646,7 +616,7 @@ impl FastZipGui {
         self.compress_excluded_paths.clear();
         self.reset_compress_browser();
         if let Some(suggested_output) =
-            suggested_archive_output_path(&self.compress_sources, self.compression_options.format)
+            suggested_archive_output_path(&self.compress_sources, self.compression_options.format, self.language)
         {
             self.compress_output_path = suggested_output.display().to_string();
         }
@@ -671,7 +641,7 @@ impl FastZipGui {
     pub(super) fn append_compress_sources(&mut self, mut dropped_sources: Vec<PathBuf>) {
         let previous_sources = self.compress_sources.clone();
         let previous_suggested_output =
-            suggested_archive_output_path(&previous_sources, self.compression_options.format)
+            suggested_archive_output_path(&previous_sources, self.compression_options.format, self.language)
                 .map(|path| path.display().to_string());
         let current_output = self.compress_output_path.trim().to_string();
 
@@ -698,6 +668,7 @@ impl FastZipGui {
             if let Some(suggested_output) = suggested_archive_output_path(
                 &self.compress_sources,
                 self.compression_options.format,
+                self.language,
             ) {
                 self.compress_output_path = suggested_output.display().to_string();
             }
@@ -772,7 +743,7 @@ impl FastZipGui {
         let previous_sources = self.compress_sources.clone();
         let previous_count = previous_sources.len();
         let previous_suggested_output =
-            suggested_archive_output_path(&previous_sources, self.compression_options.format)
+            suggested_archive_output_path(&previous_sources, self.compression_options.format, self.language)
                 .map(|value| value.display().to_string());
         let current_output = self.compress_output_path.trim().to_string();
 
@@ -803,6 +774,7 @@ impl FastZipGui {
                 if let Some(suggested_output) = suggested_archive_output_path(
                     &self.compress_sources,
                     self.compression_options.format,
+                    self.language,
                 ) {
                     self.compress_output_path = suggested_output.display().to_string();
                 }
@@ -914,7 +886,7 @@ impl FastZipGui {
 
         let mut dialog = FileDialog::new();
         if let Some(default_output) =
-            suggested_archive_output_path(&self.compress_sources, self.compression_options.format)
+            suggested_archive_output_path(&self.compress_sources, self.compression_options.format, self.language)
         {
             if let Some(parent) = default_output.parent() {
                 dialog = dialog.set_directory(parent);
@@ -1005,6 +977,7 @@ impl FastZipGui {
             SideNavItem::FileManager
             | SideNavItem::Tasks
             | SideNavItem::Logs
+            
             | SideNavItem::Settings => {}
         }
     }
@@ -2226,22 +2199,6 @@ impl FastZipGui {
         }
     }
 
-    pub(super) fn poll_benchmark_jobs(&mut self) {
-        if let Some(receiver) = &self.benchmark_receiver {
-            match receiver.try_recv() {
-                Ok(lines) => {
-                    self.benchmark_receiver = None;
-                    for line in lines {
-                        self.push_log(line);
-                    }
-                }
-                Err(mpsc::TryRecvError::Empty) => {}
-                Err(mpsc::TryRecvError::Disconnected) => {
-                    self.benchmark_receiver = None;
-                }
-            }
-        }
-    }
 
     pub(super) fn poll_task_jobs(&mut self, ctx: &Context) {
         if let Some(receiver) = &self.task_receiver {
@@ -3486,7 +3443,7 @@ impl FastZipGui {
 
         let previous_format = self.compression_options.format;
         let previous_suggested_output =
-            suggested_archive_output_path(&self.compress_sources, previous_format)
+            suggested_archive_output_path(&self.compress_sources, previous_format, self.language)
                 .map(|path| path.display().to_string());
         let current_output = self.compress_output_path.trim().to_string();
 
@@ -3500,7 +3457,7 @@ impl FastZipGui {
                 .is_some_and(|value| value == &current_output)
         {
             if let Some(suggested_output) =
-                suggested_archive_output_path(&self.compress_sources, format)
+                suggested_archive_output_path(&self.compress_sources, format, self.language)
             {
                 self.compress_output_path = suggested_output.display().to_string();
             }
@@ -4001,7 +3958,7 @@ impl FastZipGui {
                                     ui,
                                     self.t("Encryption Method", "加密方法"),
                                     if encryption_supported {
-                                        "AES-256"
+                                        self.t("AES-256", "AES-256")
                                     } else {
                                         self.t("Not available for this format", "当前格式不支持")
                                     },
@@ -5529,6 +5486,139 @@ impl FastZipGui {
             });
     }
 
+    pub(super) fn trigger_startup_update_check(&mut self) {
+        if !self.auto_update_enabled || self.update_check_pending {
+            return;
+        }
+        self.update_check_pending = true;
+        let (tx, rx) = std::sync::mpsc::channel();
+        self.update_receiver = Some(rx);
+        std::thread::spawn(move || {
+            let result = crate::update::check_latest_release();
+            if let Ok(Some(info)) = result {
+                let _ = tx.send(info);
+            }
+        });
+    }
+
+    pub(super) fn poll_update_check(&mut self) {
+        if let Some(ref rx) = self.update_receiver {
+            if let Ok(info) = rx.try_recv() {
+                self.update_info = Some(info);
+                self.show_update_dialog = true;
+                self.update_receiver = None;
+            }
+        }
+    }
+
+    pub(super) fn draw_update_dialog(&mut self, ctx: &Context) {
+        if !self.show_update_dialog {
+            return;
+        }
+        let palette = self.palette();
+        let title = self.t("New Version Available", "发现新版本");
+        let close_text = self.t("Later", "以后再说");
+        let download_text = self.t("Download", "下载");
+
+        let mut close = false;
+        let mut open_download = false;
+
+        egui::Window::new(title)
+            .collapsible(false)
+            .resizable(false)
+            .anchor(egui::Align2::CENTER_CENTER, Vec2::ZERO)
+            .fixed_size(Vec2::new(420.0, 280.0))
+            .show(ctx, |ui| {
+                ui.set_min_width(380.0);
+                ui.add_space(12.0);
+
+                if let Some(ref info) = self.update_info {
+                    let version_label = if self.language == Language::ChineseSimplified {
+                        format!("FastZIP {} 可供下载。", info.version)
+                    } else {
+                        format!("FastZIP {} is available for download.", info.version)
+                    };
+                    ui.label(
+                        RichText::new(version_label)
+                            .size(14.0)
+                            .color(palette.text),
+                    );
+                    ui.add_space(8.0);
+                    if !info.body.is_empty() {
+                        ui.label(
+                            RichText::new(self.t("Release Notes:", "更新内容："))
+                                .size(12.0)
+                                .strong()
+                                .color(palette.text_secondary),
+                        );
+                        ui.add_space(4.0);
+                        let body = if info.body.len() > 500 {
+                            format!("{}...", &info.body[..500])
+                        } else {
+                            info.body.clone()
+                        };
+                        ui.label(
+                            RichText::new(body)
+                                .size(11.0)
+                                .color(palette.text_muted),
+                        );
+                    }
+                }
+
+                ui.add_space(20.0);
+                ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                    let download_btn = Button::new(
+                        RichText::new(download_text).size(14.0).strong().color(palette.text_secondary),
+                    )
+                    .fill(palette.primary)
+                    .corner_radius(8.0)
+                    .min_size(Vec2::new(100.0, 36.0));
+                    if ui.add(download_btn).clicked() {
+                        open_download = true;
+                        close = true;
+                    }
+
+                    ui.add_space(12.0);
+
+                    let later_btn = Button::new(
+                        RichText::new(close_text).size(14.0).color(palette.text_muted),
+                    )
+                    .fill(palette.subtle_fill)
+                    .stroke(Stroke::new(1.0, palette.subtle_stroke))
+                    .corner_radius(8.0)
+                    .min_size(Vec2::new(80.0, 36.0));
+                    if ui.add(later_btn).clicked() {
+                        close = true;
+                    }
+                });
+            });
+
+        if close {
+            self.show_update_dialog = false;
+        }
+        if open_download {
+            if let Some(ref info) = self.update_info {
+                #[cfg(target_os = "windows")]
+                {
+                    let wide_url: Vec<u16> = std::ffi::OsStr::new(&info.download_url)
+                        .encode_wide()
+                        .chain(std::iter::once(0))
+                        .collect();
+                    unsafe {
+                        ShellExecuteW(
+                            std::ptr::null_mut(),
+                            std::ptr::null(),
+                            wide_url.as_ptr(),
+                            std::ptr::null(),
+                            std::ptr::null(),
+                            1, // SW_SHOWNORMAL
+                        );
+                    }
+                }
+            }
+        }
+    }
+
     pub(super) fn draw_settings_page(&mut self, ui: &mut egui::Ui) {
         let palette = self.palette();
 
@@ -5570,14 +5660,14 @@ impl FastZipGui {
 
                         ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                             egui::ComboBox::from_id_salt("settings-language")
-                                .selected_text(self.locale.display_name)
+                                .selected_text(self.locale.display_name())
                                 .width(128.0)
                                 .show_ui(ui, |ui| {
                                     for locale in supported_locales() {
                                         if ui
                                             .selectable_label(
                                                 self.locale == locale,
-                                                locale.display_name,
+                                                locale.display_name(),
                                             )
                                             .clicked()
                                         {
@@ -5733,6 +5823,57 @@ impl FastZipGui {
                     ui.horizontal(|ui| {
                         ui.vertical(|ui| {
                             ui.label(
+                                RichText::new(self.t("Auto Update", "自动更新"))
+                                    .size(15.0)
+                                    .strong()
+                                    .color(palette.text),
+                            );
+                            ui.add_space(4.0);
+                            ui.label(
+                                RichText::new(self.t(
+                                    "Check for new versions on startup.",
+                                    "启动时检查新版本。",
+                                ))
+                                .size(12.0)
+                                .color(palette.text_muted),
+                            );
+                        });
+
+                        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                            ui.label(
+                                RichText::new(if self.auto_update_enabled {
+                                    self.t("Enabled", "已开启")
+                                } else {
+                                    self.t("Disabled", "已关闭")
+                                })
+                                .size(11.0)
+                                .strong()
+                                .color(if self.auto_update_enabled {
+                                    palette.primary
+                                } else {
+                                    palette.text_muted
+                                }),
+                            );
+                            ui.add_space(12.0);
+
+                            if theme_switch(ui, "auto-update", self.auto_update_enabled, palette) {
+                                self.auto_update_enabled = !self.auto_update_enabled;
+                                if let Err(e) = save_auto_update_enabled(self.auto_update_enabled) {
+                                    self.push_log(format!(
+                                        "Failed to update auto-update setting: {e}",
+                                    ));
+                                }
+                            }
+                        });
+                    });
+
+                    ui.add_space(18.0);
+                    thin_separator(ui, palette.outline_variant);
+                    ui.add_space(18.0);
+
+                    ui.horizontal(|ui| {
+                        ui.vertical(|ui| {
+                            ui.label(
                                 RichText::new(self.t("Default Apps", "默认应用"))
                                     .size(15.0)
                                     .strong()
@@ -5770,49 +5911,6 @@ impl FastZipGui {
                         });
                     });
 
-                    ui.add_space(18.0);
-                    thin_separator(ui, palette.outline_variant);
-                    ui.add_space(18.0);
-
-                    ui.horizontal(|ui| {
-                        ui.vertical(|ui| {
-                            ui.label(
-                                RichText::new(self.t("Performance Benchmark", "性能基准测试"))
-                                    .size(15.0)
-                                    .strong()
-                                    .color(palette.text),
-                            );
-                            ui.add_space(4.0);
-                            ui.label(
-                                RichText::new(self.t(
-                                    "Run compression benchmarks across all formats and levels. Results are saved to disk.",
-                                    "运行所有格式和级别的压缩基准测试。结果保存到磁盘。",
-                                ))
-                                .size(12.0)
-                                .color(palette.text_muted),
-                            );
-                        });
-
-                        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-                            let btn_text = self.t(
-                                "Run Benchmark",
-                                "运行基准测试",
-                            );
-                            let button = Button::new(
-                                RichText::new(btn_text)
-                                    .size(15.0)
-                                    .strong()
-                                    .color(palette.text_secondary),
-                            )
-                            .fill(palette.subtle_fill)
-                            .stroke(Stroke::new(1.0, palette.subtle_stroke))
-                            .corner_radius(10.0)
-                            .min_size(Vec2::new(36.0, 30.0));
-                            if ui.add(button).clicked() {
-                                self.start_benchmark();
-                            }
-                        });
-                    });
                 });
             });
     }
@@ -5906,7 +6004,7 @@ impl FastZipGui {
                     .file_stem()
                     .map(|value| value.to_string_lossy().to_string())
                     .filter(|value| !value.is_empty())
-                    .unwrap_or_else(|| "archive".to_string()),
+                    .unwrap_or_else(|| self.t("archive", "归档").to_string()),
                 unique_id
             ));
             fs::create_dir_all(&preview_root).with_context(|| {
@@ -5965,9 +6063,10 @@ impl FastZipGui {
     pub(super) fn collect_file_manager_entries(&self) -> Result<Vec<FileManagerEntry>> {
         let mut entries = fs::read_dir(&self.file_manager_current_dir)
             .with_context(|| {
-                format!(
-                    "Failed to open file manager directory {}",
-                    self.file_manager_current_dir.display()
+                self.language.format(
+                    "Failed to open file manager directory {path}",
+                    "无法打开文件管理器目录 {path}",
+                    &[("{path}", self.file_manager_current_dir.display().to_string())],
                 )
             })?
             .filter_map(|entry| entry.ok())
@@ -5984,7 +6083,7 @@ impl FastZipGui {
                     size: if is_dir {
                         "-".to_string()
                     } else {
-                        format_size(Some(metadata.len()))
+                        format_size(Some(metadata.len()), self.language)
                     },
                     kind: file_kind.label(self.language).to_string(),
                     is_dir,
@@ -6080,7 +6179,7 @@ impl FastZipGui {
                     size: if is_dir {
                         "-".to_string()
                     } else {
-                        format_size(entry.uncompressed_size)
+                        format_size(entry.uncompressed_size, self.language)
                     },
                     kind: file_kind_from_path(&child_path, is_dir, self.language),
                     status: QueueStatus::Complete,
@@ -6127,7 +6226,7 @@ impl FastZipGui {
         let size = if is_dir {
             "-".to_string()
         } else {
-            format_size(path.metadata().ok().map(|meta| meta.len()))
+            format_size(path.metadata().ok().map(|meta| meta.len()), self.language)
         };
 
         QueueRowData {
@@ -6153,15 +6252,15 @@ impl FastZipGui {
         let progress = real_task_progress(task);
         let speed_text = task
             .current_bytes_per_second
-            .map(format_transfer_rate)
-            .unwrap_or_else(|| "--".to_string());
+            .map(|v| format_transfer_rate(v, self.language))
+            .unwrap_or_else(|| self.t("--", "--").to_string());
         let is_finalizing = task_is_finalizing(task);
         let eta_text = match task.state {
-            TaskState::Queued => "--".to_string(),
+            TaskState::Queued => self.t("--", "--").to_string(),
             TaskState::Running if is_finalizing => self.t("Finalizing", "收尾中").to_string(),
             TaskState::Running => running_task_eta(task, now)
-                .map(format_duration_compact)
-                .unwrap_or_else(|| "--".to_string()),
+                .map(|d| format_duration_compact(d, self.language))
+                .unwrap_or_else(|| self.t("--", "--").to_string()),
             TaskState::Canceling if is_finalizing => self.t("Finalizing", "收尾中").to_string(),
             TaskState::Canceling => self.t("Stopping", "停止中").to_string(),
             TaskState::Completed => self.t("Done", "已完成").to_string(),
@@ -6174,7 +6273,11 @@ impl FastZipGui {
             progress_text: if is_finalizing {
                 self.t("Finalizing", "收尾中").to_string()
             } else {
-                format!("{:.0}%", progress * 100.0)
+                self.language.format(
+                    "{progress}%",
+                    "{progress}%",
+                    &[("{progress}", format!("{:.0}", progress * 100.0))],
+                )
             },
             speed_text,
             eta_text,
@@ -6184,7 +6287,7 @@ impl FastZipGui {
 
     pub(super) fn draw_footer(&mut self, ui: &mut egui::Ui) {
         let palette = self.palette();
-        let version_label = format!("v{}", env!("CARGO_PKG_VERSION"));
+        let version_label = self.t("v{version}", "v{version}").replace("{version}", env!("CARGO_PKG_VERSION"));
 
         ui.horizontal(|ui| {
             ui.label(
@@ -6207,12 +6310,12 @@ impl FastZipGui {
 
             ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                 egui::ComboBox::from_id_salt("footer-language")
-                    .selected_text(self.locale.display_name)
+                    .selected_text(self.locale.display_name())
                     .width(110.0)
                     .show_ui(ui, |ui| {
                         for locale in supported_locales() {
                             if ui
-                                .selectable_label(self.locale == locale, locale.display_name)
+                                .selectable_label(self.locale == locale, locale.display_name())
                                 .clicked()
                             {
                                 self.switch_locale(locale);
@@ -6326,6 +6429,7 @@ impl FastZipGui {
             SideNavItem::FileManager
             | SideNavItem::Tasks
             | SideNavItem::Logs
+            
             | SideNavItem::Settings => return,
         };
 

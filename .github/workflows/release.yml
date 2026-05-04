@@ -1,0 +1,252 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  # ── Native platform builds (GUI + CLI) ──────────────────────────
+  native:
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            ext: .exe
+            gui: true
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            ext: ""
+            gui: true
+          - target: x86_64-apple-darwin
+            os: macos-latest
+            ext: ""
+            gui: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install stable --profile minimal -t ${{ matrix.target }}
+          rustup default stable
+
+      - name: Install Linux system deps (GUI)
+        if: runner.os == 'Linux' && matrix.gui
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
+            libxkbcommon-dev libwayland-dev libx11-dev libgtk-3-dev libudev-dev
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: release-${{ matrix.target }}
+
+      - name: Build (GUI binary)
+        if: matrix.gui
+        run: cargo build --locked --release --target ${{ matrix.target }}
+
+      - name: Build (CLI binary)
+        run: cargo build --locked --release --target ${{ matrix.target }} --bin fastzip-cli
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p pkg/fastzip-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/fastzip pkg/fastzip-${{ matrix.target }}/
+          cp target/${{ matrix.target }}/release/fastzip-cli pkg/fastzip-${{ matrix.target }}/
+          cp assets/fastzip.desktop pkg/fastzip-${{ matrix.target }}/
+          cp assets/fastzip-icon.png pkg/fastzip-${{ matrix.target }}/
+          cp tools/install-fastzip-linux.sh pkg/fastzip-${{ matrix.target }}/
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p pkg/fastzip-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/fastzip pkg/fastzip-${{ matrix.target }}/
+          cp target/${{ matrix.target }}/release/fastzip-cli pkg/fastzip-${{ matrix.target }}/
+
+      - name: Upload GUI artifact
+        if: matrix.gui
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastzip-${{ matrix.target }}
+          path: pkg/fastzip-${{ matrix.target }}/fastzip${{ matrix.ext }}
+
+      - name: Upload CLI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastzip-cli-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/fastzip-cli${{ matrix.ext }}
+
+      - name: Upload platform package
+        if: runner.os != 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastzip-pkg-${{ matrix.target }}
+          path: pkg/fastzip-${{ matrix.target }}/*
+
+  # ── Cross-compile CLI-only (no GUI deps) ────────────────────────
+  cross-cli:
+    name: Cross CLI (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - x86_64-unknown-linux-musl
+          - aarch64-unknown-linux-gnu
+          - armv7-unknown-linux-gnueabihf
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install cross
+        run: |
+          pushd "$(mktemp -d)"
+          wget https://github.com/cross-rs/cross/releases/download/v0.2.4/cross-x86_64-unknown-linux-musl.tar.gz
+          tar xf cross-x86_64-unknown-linux-musl.tar.gz
+          cp cross ~/.cargo/bin
+          popd
+          echo "CARGO=cross" >> $GITHUB_ENV
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install stable --profile minimal -t ${{ matrix.target }}
+          rustup default stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: release-cross-${{ matrix.target }}
+
+      - name: Build CLI
+        run: ${{ env.CARGO }} build --locked --release --target ${{ matrix.target }} --bin fastzip-cli
+
+      - name: Upload CLI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastzip-cli-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/fastzip-cli
+
+  # ── Windows Installer (Inno Setup) ──────────────────────────────
+  installer:
+    name: Windows Installer
+    runs-on: windows-latest
+    needs: [native]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download GUI artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: fastzip-x86_64-pc-windows-msvc
+          path: dist/
+
+      - name: Build installer
+        shell: pwsh
+        run: |
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) {
+            Write-Host "Inno Setup not found, skipping installer build"
+            exit 0
+          }
+          & $iscc installer\FastZIP.iss
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: FastZIP-Installer
+          path: dist/*.exe
+
+  # ── GitHub Release ──────────────────────────────────────────────
+  publish:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [native, cross-cli, installer]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Create archive packages
+        run: |
+          set -euxo pipefail
+          for dir in artifacts/*/; do
+            name=$(basename "$dir")
+            # Skip already-packaged platform dirs and the installer
+            if [[ "$name" == FastZIP-Installer ]] || [[ "$name" == fastzip-pkg-* ]]; then
+              continue
+            fi
+            if [[ "$name" == *windows* ]]; then
+              (cd "$dir" && zip -9 "../${name}.zip" *.exe)
+            else
+              (cd "$dir" && tar -caf "../${name}.tar.gz" *)
+            fi
+          done
+          # Package Linux and macOS platform bundles
+          for dir in artifacts/fastzip-pkg-*/; do
+            name=$(basename "$dir")
+            pkgname="${name#fastzip-pkg-}"
+            (cd "$dir" && tar -caf "../${pkgname}.tar.gz" *)
+            # remove the raw dir so it's not uploaded twice
+            rm -rf "$dir"
+          done
+          ls -lh artifacts/
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          name: "FastZIP ${{ github.ref_name }}"
+          body: |
+            ## FastZIP ${{ github.ref_name }}
+
+            ### Downloads
+
+            **Windows**
+            | File | Description |
+            |------|-------------|
+            | `fastzip-x86_64-pc-windows-msvc.zip` | GUI + CLI (portable) |
+            | `fastzip-cli-x86_64-pc-windows-msvc.zip` | CLI only |
+            | `FastZIP-Installer/` | Inno Setup installer |
+
+            **Linux**
+            | File | Description |
+            |------|-------------|
+            | `x86_64-unknown-linux-gnu.tar.gz` | GUI + CLI + .desktop + icon |
+            | `x86_64-unknown-linux-musl.tar.gz` | CLI only (static) |
+            | `aarch64-unknown-linux-gnu.tar.gz` | CLI only (ARM64) |
+            | `armv7-unknown-linux-gnueabihf.tar.gz` | CLI only (ARMv7) |
+
+            **macOS**
+            | File | Description |
+            |------|-------------|
+            | `x86_64-apple-darwin.tar.gz` | GUI + CLI |
+
+            ### Linux setup
+
+            ```bash
+            tar xf x86_64-unknown-linux-gnu.tar.gz
+            cd fastzip-x86_64-unknown-linux-gnu
+            sudo ./install-fastzip-linux.sh
+            ```
+
+            ### macOS setup
+
+            ```bash
+            tar xf x86_64-apple-darwin.tar.gz
+            sudo cp fastzip-apple-darwin/fastzip /usr/local/bin/
+            ```
+
+            See the [README](https://github.com/ccccyccccc/fastZIP#readme) for more details.
+          files: artifacts/*
+          generate_release_notes: true

@@ -307,3 +307,37 @@ Failed to open path: {error}	Yol açılamadı: {error}
 No files or folders are selected in the file manager.	Dosya yöneticisinde seçili dosya veya klasör yok.
 View Selected Files	Seçili dosyaları görüntüle
 Selected Files	Seçili dosyalar
+English	İngilizce
+Chinese (Simplified)	Çince (Basitleştirilmiş)
+Japanese	Japonca
+Korean	Korece
+French	Fransızca
+German	Almanca
+Spanish	İspanyolca
+Italian	İtalyanca
+Portuguese (Brazil)	Portekizce (Brezilya)
+Russian	Rusça
+Arabic	Arapça
+Turkish	Türkçe
+AMSI Malware Scan	AMSI Kötü Amaçlı Yazılım Taraması
+Scan extracted files with Windows Antimalware Scan Interface before writing to disk.	Diske yazmadan önce çıkarılan dosyaları Windows Kötü Amaçlı Yazılım Tarama Arayüzü (AMSI) ile tara.
+Default Apps	Varsayılan Uygulamalar
+Set FastZIP as the default app for opening archive files.	FastZIP'i arşiv dosyalarını açmak için varsayılan uygulama olarak ayarla.
+Set as Default	Varsayılan Olarak Ayarla
+Performance Benchmark	Performans Karşılaştırması
+Run compression benchmarks across all formats and levels. Results are saved to disk.	Tüm format ve seviyelerde sıkıştırma karşılaştırmaları çalıştır. Sonuçlar diske kaydedilir.
+Run Benchmark	Karşılaştırmayı Çalıştır
+-	-
+--	--
+Auto Update	Otomatik Güncelleme
+Check for new versions on startup.	Başlangıçta yeni sürümleri kontrol et.
+New Version Available	Yeni Sürüm Mevcut
+Release Notes:	Sürüm Notları:
+Download	İndir
+Later	Daha sonra
+Compare compression performance with other installed tools.	Sıkıştırma performansını diğer yüklü araçlarla karşılaştır.
+Tool	Araç
+Time	Süre
+Ratio	Oran
+Benchmark completed.	Karşılaştırma tamamlandı.
+Running benchmark, please wait...	Karşılaştırma çalışıyor, lütfen bekleyin...

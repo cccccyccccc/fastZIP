@@ -80,8 +80,9 @@ use crate::localization::{
 };
 use crate::hash::{ChecksumResult, file_checksums};
 use crate::settings::{
-    load_autostart_enabled, load_preferred_theme, save_autostart_enabled,
-    save_preferred_language_value, save_preferred_theme_value,
+    load_auto_update_enabled, load_autostart_enabled, load_preferred_theme,
+    save_auto_update_enabled, save_autostart_enabled, save_preferred_language_value,
+    save_preferred_theme_value,
 };
 
 const WINDOW_WIDTH: f32 = 1360.0;
@@ -747,7 +748,7 @@ pub fn create_shell_compression_request(
     }
 
     let output_path = output_path
-        .or_else(|| suggested_archive_output_path(&normalized_sources, format))
+        .or_else(|| suggested_archive_output_path(&normalized_sources, format, Language::detect()))
         .ok_or_else(|| {
             anyhow!(localize_message(
                 "Failed to determine an output path for the selected sources",
@@ -805,6 +806,10 @@ struct FastZipGui {
     locale: &'static AppLocale,
     theme_mode: ThemeMode,
     autostart_enabled: bool,
+    auto_update_enabled: bool,
+    show_update_dialog: bool,
+    update_info: Option<crate::update::ReleaseInfo>,
+    update_check_pending: bool,
     file_manager_current_dir: PathBuf,
     file_manager_path_input: String,
     file_manager_selected_paths: BTreeSet<PathBuf>,
@@ -849,7 +854,7 @@ struct FastZipGui {
     logs: Vec<String>,
     scan_receiver: Option<Receiver<ScanJobResult>>,
     task_receiver: Option<Receiver<TaskJobResult>>,
-    benchmark_receiver: Option<Receiver<Vec<String>>>,
+    update_receiver: Option<Receiver<crate::update::ReleaseInfo>>,
     requested_viewport_size: Option<Vec2>,
     pending_launch_request: Option<GuiLaunchRequest>,
     #[cfg(target_os = "windows")]
@@ -1031,8 +1036,8 @@ impl ShellCompressionProgressApp {
                 } else {
                     format!(
                         "{} / {}",
-                        format_size(Some(self.processed_bytes)),
-                        format_size(Some(self.total_bytes))
+                        format_size(Some(self.processed_bytes), self.language),
+                        format_size(Some(self.total_bytes), self.language)
                     )
                 }
             }
@@ -1041,11 +1046,13 @@ impl ShellCompressionProgressApp {
                 .as_ref()
                 .map(|report| {
                     format!(
-                        "{} files, {} dirs  ·  {} → {}",
+                        "{} {}, {} {}  ·  {} → {}",
                         report.files_added,
+                        self.t("files", "个文件"),
                         report.directories_added,
-                        format_size(Some(report.input_bytes)),
-                        format_size(Some(report.output_bytes)),
+                        self.t("dirs", "个目录"),
+                        format_size(Some(report.input_bytes), self.language),
+                        format_size(Some(report.output_bytes), self.language),
                     )
                 })
                 .unwrap_or_default(),
@@ -1409,8 +1416,10 @@ impl eframe::App for ShellCompressionProgressApp {
                                         "{}: {}",
                                         self.t("Speed", "速度"),
                                         self.current_bytes_per_second
-                                            .map(format_transfer_rate)
-                                            .unwrap_or_else(|| "--".to_string())
+                                            .map(|v| format_transfer_rate(v, self.language))
+                                            .unwrap_or_else(|| {
+                                                self.t("--", "--").to_string()
+                                            })
                                     ))
                                     .size(12.0)
                                     .color(palette.text_secondary),
@@ -1419,7 +1428,7 @@ impl eframe::App for ShellCompressionProgressApp {
                                     RichText::new(format!(
                                         "{}: {}",
                                         self.t("Elapsed", "耗时"),
-                                        format_duration_compact(elapsed)
+                                        format_duration_compact(elapsed, self.language)
                                     ))
                                     .size(12.0)
                                     .color(palette.text_secondary),
@@ -1454,7 +1463,8 @@ impl eframe::App for FastZipGui {
         self.enforce_viewport_aspect_ratio(ctx);
         self.poll_scan_jobs(ctx);
         self.poll_task_jobs(ctx);
-        self.poll_benchmark_jobs();
+        self.trigger_startup_update_check();
+        self.poll_update_check();
         self.handle_dropped_files(ctx);
         let palette = self.palette();
 
@@ -1487,6 +1497,7 @@ impl eframe::App for FastZipGui {
         self.draw_test_result_dialog(ctx);
         self.draw_extract_conflict_dialog(ctx);
         self.draw_compress_source_picker(ctx);
+        self.draw_update_dialog(ctx);
         self.process_pending_dialog_action();
 
         if self.needs_live_animation() {
@@ -3586,10 +3597,16 @@ fn detect_text_file_kind(bytes: &[u8]) -> DetectedFileKind {
     DetectedFileKind::Txt
 }
 
-fn format_size(value: Option<u64>) -> String {
+fn format_size(value: Option<u64>, language: Language) -> String {
     match value {
         Some(bytes) => {
-            let units = ["B", "KB", "MB", "GB", "TB"];
+            let units = [
+                language.text("B", "B"),
+                language.text("KB", "KB"),
+                language.text("MB", "MB"),
+                language.text("GB", "GB"),
+                language.text("TB", "TB"),
+            ];
             let mut size = bytes as f64;
             let mut index = 0usize;
             while size >= 1024.0 && index < units.len() - 1 {
@@ -3602,30 +3619,38 @@ fn format_size(value: Option<u64>) -> String {
                 format!("{size:.1} {}", units[index])
             }
         }
-        None => "-".to_string(),
+        None => language.text("-", "-").to_string(),
     }
 }
 
-fn format_transfer_rate(bytes_per_second: f64) -> String {
+fn format_transfer_rate(bytes_per_second: f64, language: Language) -> String {
     if !bytes_per_second.is_finite() || bytes_per_second <= 0.0 {
-        return "--".to_string();
+        return language.text("--", "--").to_string();
     }
 
-    format!("{}/s", format_size(Some(bytes_per_second.round() as u64)))
+    format!(
+        "{}{}",
+        format_size(Some(bytes_per_second.round() as u64), language),
+        language.text("/s", "/秒"),
+    )
 }
 
-fn format_duration_compact(duration: Duration) -> String {
+fn format_duration_compact(duration: Duration, language: Language) -> String {
     let total_seconds = duration.as_secs();
     let hours = total_seconds / 3600;
     let minutes = (total_seconds % 3600) / 60;
     let seconds = total_seconds % 60;
 
+    let h_label = language.text("h", "时");
+    let m_label = language.text("m", "分");
+    let s_label = language.text("s", "秒");
+
     if hours > 0 {
-        format!("{hours}h {minutes:02}m")
+        format!("{hours}{h_label} {minutes:02}{m_label}")
     } else if minutes > 0 {
-        format!("{minutes}m {seconds:02}s")
+        format!("{minutes}{m_label} {seconds:02}{s_label}")
     } else {
-        format!("{seconds}s")
+        format!("{seconds}{s_label}")
     }
 }
 
@@ -3829,6 +3854,7 @@ fn ensure_archive_extension(path: PathBuf, format: CompressionFormat) -> PathBuf
 fn suggested_archive_output_path(
     sources: &[PathBuf],
     format: CompressionFormat,
+    language: Language,
 ) -> Option<PathBuf> {
     let [first, ..] = sources else {
         return None;
@@ -3836,26 +3862,27 @@ fn suggested_archive_output_path(
 
     if sources.len() == 1 {
         let parent = first.parent().unwrap_or_else(|| Path::new("."));
+        let default_name = language.text("archive", "归档");
         let base_name = if first.is_file() {
             if format.is_single_file_stream() {
                 first
                     .file_name()
                     .map(|value| value.to_string_lossy().to_string())
                     .filter(|value| !value.is_empty())
-                    .unwrap_or_else(|| "archive".to_string())
+                    .unwrap_or_else(|| default_name.to_string())
             } else {
                 first
                     .file_stem()
                     .map(|value| value.to_string_lossy().to_string())
                     .filter(|value| !value.is_empty())
-                    .unwrap_or_else(|| "archive".to_string())
+                    .unwrap_or_else(|| default_name.to_string())
             }
         } else {
             first
                 .file_name()
                 .map(|value| value.to_string_lossy().to_string())
                 .filter(|value| !value.is_empty())
-                .unwrap_or_else(|| "archive".to_string())
+                .unwrap_or_else(|| default_name.to_string())
         };
         return Some(parent.join(format!("{base_name}{}", format.primary_suffix())));
     }
@@ -3866,7 +3893,11 @@ fn suggested_archive_output_path(
             .map(Path::to_path_buf)
             .unwrap_or_else(|| PathBuf::from("."))
     });
-    Some(output_dir.join(format!("fastzip_bundle{}", format.primary_suffix())))
+    Some(output_dir.join(format!(
+        "{}{}",
+        language.text("fastzip_bundle", "fastzip压缩包"),
+        format.primary_suffix()
+    )))
 }
 
 fn known_archive_suffixes_for_output() -> &'static [&'static str] {

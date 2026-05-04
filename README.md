@@ -10,7 +10,7 @@ A native Rust archive tool with GUI and CLI. Compress, extract, test, and benchm
 
 - **Compression & extraction** — 12 output formats with 5 compression levels
 - **Archive testing** — stream through entries and verify CRC32 integrity without extracting
-- **Performance benchmark** — built-in benchmark suite across all format/level combinations
+- **Performance benchmark** — CLI benchmark suite measuring compression ratio and throughput across all formats and levels
 - **Self-extracting archives** — wrap any archive into a standalone .exe (SFX)
 - **AMSI malware scanning** — optional Windows Antimalware Scan Interface integration for extracted files
 - **Hash/checksum** — SHA-256, BLAKE3, CRC32 for any file
@@ -108,9 +108,31 @@ A slim CLI-only binary (`fastzip-cli.exe`) is also included for scripting — it
 
 ## Performance benchmark
 
-FastZIP includes a built-in benchmark that tests every format (ZIP, 7z, TarGz, TarBz2, TarXz, TarZst, TarLz4, Gz, Bz2, Xz, Zst, LZ4) across three compression levels (Fastest, Normal, Maximum) on both compressible and incompressible 1 MB data sets. Results include compression ratio and throughput in MB/s.
+FastZIP includes a CLI benchmark that tests every format (ZIP, 7z, TarGz, TarBz2, TarXz, TarZst, TarLz4, Gz, Bz2, Xz, Zst, LZ4) across three compression levels (Fastest, Normal, Maximum) on both compressible and incompressible 1 MB data sets. Results include compression ratio and throughput in MB/s.
 
-Run it from CLI or from the Settings page in the GUI.
+```powershell
+fastzip benchmark -o ./results
+```
+
+The benchmark produces a directory of compressed archives along with console output showing:
+
+| Metric | Description |
+|--------|-------------|
+| Compression Ratio | output_size / input_size (lower is better) |
+| Throughput (MB/s) | input data processed per second (higher is better) |
+| Elapsed Time | wall-clock duration per format/level combination |
+
+### Comparison with other tools
+
+To compare FastZIP against 7-Zip and other installed tools, use the comparison scripts in `tools/`:
+
+```powershell
+# Windows PowerShell
+.\tools\zip_compare.ps1     # Compare ZIP compression performance
+.\tools\zip_perf.ps1        # Detailed ZIP performance profiling
+```
+
+These scripts run identical workloads across multiple tools and report speed, ratio, and time differences.
 
 ## Screenshots
 

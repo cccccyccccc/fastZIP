@@ -5367,6 +5367,7 @@ pub(crate) fn resolve_output_path(
     Ok(options.output_dir.join(file_name))
 }
 
+#[cfg(target_os = "windows")]
 pub(crate) fn amsi_scan_data(file_name: &str, data: &[u8], options: &ExtractOptions) -> Result<()> {
     if !options.scan_files {
         return Ok(());
@@ -5384,6 +5385,11 @@ pub(crate) fn amsi_scan_data(file_name: &str, data: &[u8], options: &ExtractOpti
         }
     }
     // If AMSI is unavailable (no session), silently pass — fail open
+    Ok(())
+}
+
+#[cfg(not(target_os = "windows"))]
+pub(crate) fn amsi_scan_data(_file_name: &str, _data: &[u8], _options: &ExtractOptions) -> Result<()> {
     Ok(())
 }
 

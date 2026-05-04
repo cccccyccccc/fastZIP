@@ -307,3 +307,37 @@ Failed to open path: {error}	Impossible d'ouvrir le chemin : {error}
 No files or folders are selected in the file manager.	Aucun fichier ou dossier n'est sélectionné dans le gestionnaire de fichiers.
 View Selected Files	Afficher les fichiers sélectionnés
 Selected Files	Fichiers sélectionnés
+English	Anglais
+Chinese (Simplified)	Chinois (simplifié)
+Japanese	Japonais
+Korean	Coréen
+French	Français
+German	Allemand
+Spanish	Espagnol
+Italian	Italien
+Portuguese (Brazil)	Portugais (Brésil)
+Russian	Russe
+Arabic	Arabe
+Turkish	Turc
+AMSI Malware Scan	Analyse anti-programme malveillant AMSI
+Scan extracted files with Windows Antimalware Scan Interface before writing to disk.	Analyse les fichiers extraits avec l'interface AMSI de Windows avant de les écrire sur le disque.
+Default Apps	Applications par défaut
+Set FastZIP as the default app for opening archive files.	Définir FastZIP comme application par défaut pour ouvrir les archives.
+Set as Default	Définir par défaut
+Performance Benchmark	Test de performance
+Run compression benchmarks across all formats and levels. Results are saved to disk.	Exécute des tests de compression sur tous les formats et niveaux. Les résultats sont enregistrés sur le disque.
+Run Benchmark	Exécuter le test
+-	-
+--	--
+Auto Update	Mise à jour automatique
+Check for new versions on startup.	Vérifier les nouvelles versions au démarrage.
+New Version Available	Nouvelle version disponible
+Release Notes:	Notes de version :
+Download	Télécharger
+Later	Plus tard
+Compare compression performance with other installed tools.	Comparer les performances de compression avec d'autres outils installés.
+Tool	Outil
+Time	Temps
+Ratio	Ratio
+Benchmark completed.	Benchmark terminé.
+Running benchmark, please wait...	Benchmark en cours, veuillez patienter...

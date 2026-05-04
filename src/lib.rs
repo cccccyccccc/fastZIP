@@ -1,3 +1,4 @@
+#[cfg(target_os = "windows")]
 pub mod amsi;
 pub mod archive;
 pub mod benchmark;
@@ -6,3 +7,4 @@ pub mod gui;
 pub mod hash;
 pub mod localization;
 pub mod settings;
+pub mod update;

@@ -10,57 +10,76 @@ use windows_sys::Win32::Globalization::GetUserDefaultUILanguage;
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct AppLocale {
     pub code: &'static str,
-    pub display_name: &'static str,
+    pub name_en: &'static str,
+    pub name_zh: &'static str,
+}
+
+impl AppLocale {
+    pub fn display_name(&self) -> &'static str {
+        localize_message(self.name_en, self.name_zh)
+    }
 }
 
 const SUPPORTED_LOCALES: [AppLocale; 12] = [
     AppLocale {
         code: "en",
-        display_name: "English",
+        name_en: "English",
+        name_zh: "英语",
     },
     AppLocale {
         code: "zh-CN",
-        display_name: "简体中文",
+        name_en: "Chinese (Simplified)",
+        name_zh: "简体中文",
     },
     AppLocale {
         code: "ja",
-        display_name: "日本語",
+        name_en: "Japanese",
+        name_zh: "日语",
     },
     AppLocale {
         code: "ko",
-        display_name: "한국어",
+        name_en: "Korean",
+        name_zh: "韩语",
     },
     AppLocale {
         code: "fr",
-        display_name: "Français",
+        name_en: "French",
+        name_zh: "法语",
     },
     AppLocale {
         code: "de",
-        display_name: "Deutsch",
+        name_en: "German",
+        name_zh: "德语",
     },
     AppLocale {
         code: "es",
-        display_name: "Español",
+        name_en: "Spanish",
+        name_zh: "西班牙语",
     },
     AppLocale {
         code: "it",
-        display_name: "Italiano",
+        name_en: "Italian",
+        name_zh: "意大利语",
     },
     AppLocale {
         code: "pt-BR",
-        display_name: "Português (Brasil)",
+        name_en: "Portuguese (Brazil)",
+        name_zh: "葡萄牙语（巴西）",
     },
     AppLocale {
         code: "ru",
-        display_name: "Русский",
+        name_en: "Russian",
+        name_zh: "俄语",
     },
     AppLocale {
         code: "ar",
-        display_name: "العربية",
+        name_en: "Arabic",
+        name_zh: "阿拉伯语",
     },
     AppLocale {
         code: "tr",
-        display_name: "Türkçe",
+        name_en: "Turkish",
+        name_zh: "土耳其语",
     },
 ];
 

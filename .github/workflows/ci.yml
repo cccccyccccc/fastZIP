@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install stable --profile minimal -t ${{ matrix.target }}
+          rustup default stable
+
+      - name: Install Linux system deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
+            libxkbcommon-dev libwayland-dev libx11-dev libgtk-3-dev libudev-dev
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Build
+        run: cargo build --locked --target ${{ matrix.target }}
+
+      - name: Test
+        run: cargo test --locked --target ${{ matrix.target }}
+
+  # Cross-compilation checks (build-only, no test runner)
+  cross-check:
+    name: Cross check (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - x86_64-unknown-linux-musl
+          - aarch64-unknown-linux-gnu
+          - armv7-unknown-linux-gnueabihf
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install cross
+        run: |
+          pushd "$(mktemp -d)"
+          wget https://github.com/cross-rs/cross/releases/download/v0.2.4/cross-x86_64-unknown-linux-musl.tar.gz
+          tar xf cross-x86_64-unknown-linux-musl.tar.gz
+          cp cross ~/.cargo/bin
+          popd
+          echo "CARGO=cross" >> $GITHUB_ENV
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install stable --profile minimal -t ${{ matrix.target }}
+          rustup default stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: cross-${{ matrix.target }}
+
+      - name: Build
+        run: ${{ env.CARGO }} build --locked --target ${{ matrix.target }}
+
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup toolchain install stable --profile minimal -c rustfmt
+      - run: cargo fmt -- --check

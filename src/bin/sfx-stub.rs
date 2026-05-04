@@ -1,4 +1,4 @@
-#![windows_subsystem = "windows"]
+#![cfg_attr(windows, windows_subsystem = "windows")]
 #![allow(dead_code, unused_imports)]
 
 use std::io::{Read, Seek, SeekFrom};
@@ -6,6 +6,7 @@ use std::process::Command;
 
 #[path = "../archive/mod.rs"]
 mod archive;
+#[cfg(target_os = "windows")]
 #[path = "../amsi.rs"]
 mod amsi;
 #[path = "../encoding.rs"]

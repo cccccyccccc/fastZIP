@@ -7,6 +7,7 @@ use clap::{Parser, Subcommand, ValueEnum};
 
 #[path = "../archive/mod.rs"]
 mod archive;
+#[cfg(target_os = "windows")]
 #[path = "../amsi.rs"]
 mod amsi;
 #[path = "../benchmark.rs"]
