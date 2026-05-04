@@ -7,5 +7,6 @@ pub mod hash;
 pub mod localization;
 pub mod serde_helpers;
 pub mod settings;
+#[cfg(feature = "gui")]
 pub mod tauri_commands;
 pub mod update;

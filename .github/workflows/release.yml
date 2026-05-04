@@ -145,7 +145,7 @@ jobs:
           key: release-cross-${{ matrix.target }}
 
       - name: Build CLI
-        run: ${{ env.CARGO }} build --release --target ${{ matrix.target }} --bin fastzip-cli
+        run: ${{ env.CARGO }} build --no-default-features --release --target ${{ matrix.target }} --bin fastzip-cli
 
       - name: Upload CLI artifact
         uses: actions/upload-artifact@v4

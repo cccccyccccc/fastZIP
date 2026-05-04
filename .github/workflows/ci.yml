@@ -98,7 +98,7 @@ jobs:
           key: cross-${{ matrix.target }}
 
       - name: Build (CLI only — no GUI/taui deps)
-        run: ${{ env.CARGO }} build --target ${{ matrix.target }} --bin fastzip-cli
+        run: ${{ env.CARGO }} build --no-default-features --target ${{ matrix.target }} --bin fastzip-cli
 
   fmt:
     name: Format
