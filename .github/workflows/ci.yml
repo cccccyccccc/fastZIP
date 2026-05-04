@@ -79,8 +79,8 @@ jobs:
         with:
           key: cross-${{ matrix.target }}
 
-      - name: Build
-        run: ${{ env.CARGO }} build --target ${{ matrix.target }}
+      - name: Build (CLI only — GUI requires windows-sys Shell types)
+        run: ${{ env.CARGO }} build --target ${{ matrix.target }} --bin fastzip-cli
 
   fmt:
     name: Format

@@ -554,9 +554,14 @@ fn run() -> Result<()> {
             }
             println!("\nResults saved to: {}", out_dir.display());
         }
+        #[cfg(target_os = "windows")]
         Some(Command::InternalDeleteAutostart) => {
             fastzip::settings::delete_autostart_hklm_value()?;
             println!("Autostart registry value removed from HKLM.");
+        }
+        #[cfg(not(target_os = "windows"))]
+        Some(Command::InternalDeleteAutostart) => {
+            println!("Autostart is only supported on Windows.");
         }
     }
 
