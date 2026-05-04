@@ -70,7 +70,7 @@ jobs:
 
       - name: Build (GUI binary)
         if: matrix.gui
-        run: cargo build --release --target ${{ matrix.target }}
+        run: cargo build --release --target ${{ matrix.target }} --bin fastzip
 
       - name: Build (CLI binary)
         run: cargo build --release --target ${{ matrix.target }} --bin fastzip-cli
